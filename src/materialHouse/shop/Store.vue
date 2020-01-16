@@ -49,7 +49,11 @@
       <button :class="{red_btn:this.type === 'des_status',navigation_btn:this.type !=='des_status'}" @click="checkType('des_status')">销量</button>
     </li>
     <li>
-      <button :class="{red_btn:this.type === 'price',navigation_btn:this.type !=='price'}" @click="checkType('price')">价格⬆</button>
+      <button :class="{red_btn:this.type === 'price',navigation_btn:this.type !=='price'}" @click="checkType('price')">
+        价格
+        <span v-if="param.des_status === 3">⬇</span>
+        <span v-else>⬆</span>
+      </button>
     </li>
     <li>
       <button :class="{red_btn:this.type === 'new',navigation_btn:this.type !=='new'}" @click="checkType('new')">新品优先</button>
@@ -85,24 +89,43 @@ export default {
   methods: {
     handleFun () {
       var _this = this
-      window.onscroll = function () {
-        _this.scroll = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) >= 400
-        // 变量scrollTop是滚动条滚动时，距离顶部的距离
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        // 变量windowHeight是可视区的高度
-        var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
-        // 变量scrollHeight是滚动条的总高度
-        var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
-        // 滚动条到底部的条件
-        if (scrollTop + windowHeight === scrollHeight) {
-          this.param.lastIndex = _this.commoditys.length
-          _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
-            _this.commoditys = _this.commoditys.concat(response.data.data)
-          })
-        }
+      // 变量scrollTop是滚动条滚动时，距离顶部的距离
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      // 变量windowHeight是可视区的高度
+      var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+      // 变量scrollHeight是滚动条的总高度
+      var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+      // 滚动条到底部的条件
+      if (scrollTop + windowHeight === scrollHeight) {
+        _this.param.lastIndex = _this.commoditys.length
+        _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
+          _this.commoditys = _this.commoditys.concat(response.data.data)
+        })
       }
     },
     checkType (val) {
+      switch (val) {
+        case 'default':
+          this.param.des_status = 0
+          break
+        case 'des_status':
+          this.param.des_status = 1
+          break
+        case 'price':
+          if (this.param.des_status === 2) {
+            this.param.des_status = 3
+          } else {
+            this.param.des_status = 2
+          }
+          break
+        case 'new':
+          this.param.des_status = 4
+          break
+      }
+      this.param.lastIndex = 0
+      this.$ajax.get('/api/shop/goods', {params: this.param}).then((res) => {
+        this.commoditys = res.data.data
+      })
       this.type = val
     },
     titler: function (val) {
@@ -138,37 +161,11 @@ export default {
         _this.store.backgroundImage = this.store.carousel_image[0]
       }
     })
-    this.$ajax.get('/api/shop/goods?shop_id=' + this.$route.query.id).then((response) => {
+    this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
       _this.commoditys = response.data.data
     })
   },
   computed: {},
-  watch: {
-    type: function (val) {
-      switch (val) {
-        case 'default':
-          this.param.des_status = 0
-          break
-        case 'des_status':
-          if (this.param.des_status === 1) {
-            this.param.des_status = 2
-          } else {
-            this.param.des_status = 1
-          }
-          break
-        case 'price':
-          this.param.des_status = 3
-          break
-        case 'new':
-          this.param.des_status = 4
-          break
-      }
-      this.param.lastIndex = 0
-      this.$ajax.get('/api/shop/goods', {params: this.param}).then((res) => {
-        this.commoditys = res.data.data
-      })
-    }
-  },
   data () {
     return {
       param: {

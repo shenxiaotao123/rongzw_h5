@@ -22,14 +22,18 @@
       </div>
     </div>
     <div v-for="(designer) in works" class="works" :key="designer.id" v-if="path.indexOf('home')>-1||path.indexOf('picture')>-1">
-      <div class="works_avatar ">
+      <div class="works-info">
+        <div v-show="path.indexOf('home')>-1" style="padding:2vw; border-radius: 0 0 2vw 0; height: 5vw; color: white; font-size: 3vw;  ">
+        <div class="works_avatar">
         <img :src=designer.designer_image />
         <span>{{designer.designer_name}}</span>
       </div>
-      <div  v-show="path.indexOf('home')>-1" style=" padding:1vw;position: absolute;    border-radius: 0 0 2vw 0;  bottom: 0;right: 0;    color: white;    background: linear-gradient(rgba(0,0,0,0),gray);">
-        阅读{{designer.hits>10000 ?designer.hits/10000+'万':designer.hits}}
+        <span style="float: right; margin-top: 1vw;">阅读{{designer.hits>10000 ?designer.hits/10000+'万':designer.hits}}</span>
       </div>
-      <img :src=designer.img @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})"/>
+      </div>
+      <div class="works_img">
+        <img :src=designer.img @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})"/>
+      </div>
       <div class="introduce">
         <p class="medium p1">{{designer.title}}</p>
         <ul  >
@@ -128,12 +132,10 @@ export default {
 </script>
 
 <style scoped>
-  .introduce p{
-    line-height: 7vw;
+  .introduce {
+    margin-top: 1.5vw;
   }
-  .introduce{
-    margin-top: -6vw;
-  }
+  .introduce ul { margin-bottom:3vw; float: left; font-size: 3vw;}
   .works_avatar_detail{
     background-color: black;
     width: 15vw;
@@ -161,49 +163,52 @@ export default {
     margin-right: 2vw
   }
   .introduce_fx{
+    margin-bottom:3vw;
     width: 20vw;
     height: 5vw;
     text-align: -webkit-center;
   }
   .works_avatar span{
     position: absolute;
-    bottom: 1vw;
-    left: 11vw;
+    bottom: 3vw;
+    left: 8vw;
     width: 13vw;
     color: white;
-    font-size: 4vw;
+    font-size: 3vw;
   }
 .works_avatar{
-  position: absolute;
-  width: 8vw;
-  bottom: 2vw;
-  left: 1vw;
-  height: 8vw;
+  float: left;
+  width: 5vw;
+  height: 5vw;
 }
   .works{
     width: 100%;
-    border-radius: 5vw;
     position: relative;
-    height: 35vw;    clear: both;
+    clear: both;
   }
+  .works-info { position: absolute; top:31vw; background: linear-gradient(rgba(0,0,0,0),gray); width: 100%; border-radius:0 0 3vw 3vw;}
   .works li{
     float: left;
     padding: 1vw 0vw 1vw 1vw;
     text-align: center;
   }
-  img{
+  .works_img {
+    overflow: hidden;
+    height:40vw;
+    border-radius: 3vw;
+  }
+  .works img{
     width:100%;
-    height:50vw;
     max-width:100%;
-    max-height:100%;
     border-radius: 2vw;
   }
   .p1{
-    margin-top: 6vw;
+    margin-top: 1vw;
     margin-left: 1vw;
-    font-size: 4vw;
+    font-size: 3.5vw;
     color: #000033;
     font-weight: 600;
+    line-height: 1.5;
   }
   .p2{
     margin-top: 3vw;

@@ -1,10 +1,10 @@
 <template>
-  <swiper :options="swiperOption" style="text-align:center;height: 27vw; touch-action: none;margin-top: 2vw">
+  <swiper :options="swiperOption" style="text-align:center; touch-action: none;margin-top: 2vw">
     <swiper-slide v-for="site of constructionSite" :key="site.id">
-      <img :src="site.thumb_img" style="border-radius: 2vw" />
-      <div>
-        <p class="heavy" style="padding-left: 4.9vw;    font-size: .1vw;    height: 5vw;    position: relative;    right: 2vw;    width: 27vw;    text-align: center;">{{site.quarter_name}}|{{site.shape_name}}</p>
-      </div>
+      <img :src="site.thumb_img" style="height: 22vw; border-radius: 2vw" />
+
+        <p class="heavy" style="padding:1vw 0 0 1vw;  text-align: center; line-height: 1.2;">{{site.quarter_name}}|{{site.shape_name}}</p>
+
     </swiper-slide>
   </swiper>
 </template>
@@ -50,7 +50,6 @@ img{
   max-width: 100%;
   max-height: 100%;
   width: 90%;
-  float: right;
   height: 83%;
   margin-bottom: 1vw;
 }

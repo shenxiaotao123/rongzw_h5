@@ -122,7 +122,7 @@ export default {
           this.param.des_status = 4
           break
       }
-      this.param.lastIndex = 0
+      this.param.lastIndex = 0 //测试试试
       this.$ajax.get('/api/shop/goods', {params: this.param}).then((res) => {
         this.commoditys = res.data.data
       })

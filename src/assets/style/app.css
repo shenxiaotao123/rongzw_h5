@@ -162,7 +162,7 @@ body,#app,html{
   float: left;
 }
 .designerList .details {
-  margin: 3.5vw 0vw 0 3vw;
+  margin: 3.5vw 0vw 0 25vw;
 }
 
 .designerList .details p{
@@ -324,13 +324,15 @@ body,#app,html{
 }
 
 .effect{
-  margin-top: 5vw;
+  margin-top: 3vw;
 }
 .effect button{
   width: 18%;
   height: 100%;
   margin-left: 0.9vw;
   margin-bottom: 3vw;
+  font-size: 3.5vw;
+  color: #3A405E;
 }
 .effect div  {
   height: 25vw;

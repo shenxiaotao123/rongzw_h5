@@ -50,16 +50,17 @@ export default {
 <style scoped>
   .menu>a>div>img{
     margin-bottom: 2vw;
-    width: 6.9vw;
-    height: 6vw;
+    height: 5vw;
   }
+  .router-link-exact-active { color: #333 !important;}
   .menu>a{
     float: left;
     text-align: center;
     width: 19.5vw;
     height: 7.5vw;
-    margin-top: 4vw;
-    color: #333;
+    margin-top: 3vw;
+    color: #999;
+    font-size: 3vw;
   }
   .menu{
     background-color: white;
@@ -68,7 +69,7 @@ export default {
     bottom: 0;
     z-index: 100000;
     position: fixed;
-    padding-bottom: 3vw;
+    padding-bottom: 1vw;
     margin: 0;
   }
 </style>

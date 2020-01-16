@@ -9,8 +9,10 @@
           <img src="../assets/img/msg.png" height="15" width="18"/>
         </div>
         <swiper :options="titleSwiperOption">
-          <swiper-slide v-for="tt of titleHome" style="    height: 41vw;">
-            <img :src="tt.pic_url" class="img" style="float: none;    width: 90%; margin: 0 5vw;"/>
+          <swiper-slide v-for="tt of titleHome" style="height: 41vw;">
+            <div style=" margin: 0 2vw;">
+              <img :src="tt.pic_url" class="img bannerimgheight" style="float: none; width: 100%;"/>
+            </div>
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"/>
         </swiper>
@@ -39,7 +41,9 @@
       <!--轮播图开始-->
       <swiper :options="swiperOption1" style="height: 25vw; touch-action: none;margin-top: 2vw">
           <swiper-slide v-for="gg of advertisement" @click="$router.push({path:gg.url,query:{id:gg.id}})">
-            <img :src="gg.pic_url"  />
+            <div style=" margin: 0 0 0 2vw;">
+             <img :src="gg.pic_url"  />
+            </div>
           </swiper-slide>
         </swiper>
       <!--轮播图结束-->
@@ -77,13 +81,21 @@
       <!--推荐设计师结束-->
 
       <!--热门攻略开始-->
-      <div class="individual all">
+      <div class="individual all" style="margin-bottom: 0;">
         <p class="individual-title">
           <span class="individual-title-left heavy">热门攻略</span>
         </p>
         <div style=" height: 64vw">
-          <div class="left strategy" v-for="ss of strategys" @click="$router.push({path:ss.url,query:{id:ss.id}})">
-            <img :src="ss.pic_url" class="img">
+          <div class="strategy-row">
+          <div class="strategy" v-for="ss of strategys" @click="$router.push({path:ss.url,query:{id:ss.id}})">
+
+              <div class="strategy-com-50">
+                <div class="strategy-img">
+                  <img :src="ss.pic_url" class="img">
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -372,10 +384,8 @@ export default {
   border-radius: 2vw;
 }
   .strategy{
-    margin-left: 2.3vw;
-    margin-top: 2.3vw;
-    width: 47%;
-    height: 44%;
+    display: inline;
+    height: 40%;
   }
   .individual_body{
     margin-top: 3vw;
@@ -390,16 +400,17 @@ export default {
     color: #999999;
   }
   .individual-title-left{
-    font-size: 6vw;
+    font-size: 5vw;
     font-weight: 600;
 
   }
   .individual-title{
+    margin-top: 5vw;
     line-height: 8vw;
     clear: both;
   }
   .individual{
-    margin-bottom: 10vw;
+    margin-bottom: 8vw;
   }
   .slide-content p{
     margin-bottom: 1vw;
@@ -407,17 +418,20 @@ export default {
   .swiper-slide img{
     max-width: 100%;
     max-height: 100%;
-    width: 90%;
+    width: 100%;
     float: right;
     height: 90%;
-    border-radius: 3vw;
+    border-radius: 2vw;
   }
+  .bannerimgheight { height: 41vw;}
   .baozhang{
-    font-size: 1vw;
+    margin: 2vw 2vw 3vw 2vw;
+    font-size: 2.5vw;
     text-align: center;
     color: #333333;
     font-weight: 100;
   }
+  .baozhang img { vertical-align: top; margin-right: 1vw;}
   .hometitle img{
     height: auto;
     max-width: 100%;
@@ -427,13 +441,12 @@ export default {
   .ti{
     background-image:url("../assets/img/home/tou.png");
     background-repeat: no-repeat;
-    background-position: 80%;
-    height:50vw;
+    background-position: top 80%;
     background-size: 100%;
     position: relative;
   }
   .hometitle{
-    padding: 4vw;
+    padding: 3vw 3vw 2.5vw 3vw;
     display: flex;
     align-items: center;
   }
@@ -441,8 +454,10 @@ export default {
   .hometitle input{
     border-radius: 5vw;
     width: 53vw;
-    margin-left: 8vw;
-    padding-left: 7vw;
+    height: 7vw;
+    margin-left: 6vw;
+    padding-left: 8vw;
+    font-size: 3vw;
     background-image: url(../assets/img/home/sousuo.png);
     background-repeat: no-repeat;
     background-position: 4%;
@@ -450,6 +465,10 @@ export default {
   }
   .futitle{
     transform: scale(0.9);
-    margin-left: -4vw;
+    margin-left: -5vw;
   }
+  .strategy-row { margin: 0 -1vw;}
+  .strategy-row&:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
+  .strategy-com-50 { display: inline-block; width: 50%;}
+  .strategy-img { margin: 0 1vw 2vw 1vw;}
 </style>

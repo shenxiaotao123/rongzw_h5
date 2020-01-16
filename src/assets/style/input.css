@@ -1,0 +1,37 @@
+input{
+  padding-left: 7vw;
+  background-color: #f7f7f7;
+  height: 7vw;
+  width: 80vw;
+  color: #999999;
+}
+.icon-user{
+     position: absolute;left: 0;
+     z-index:5;
+     background-image: url("../../assets/img/loginUser/phone.png");
+     background-repeat: no-repeat; /*设置图片不重复*/
+     background-position:30% 30%; /*图片显示的位置*/
+     width: 40px; /*设置图片显示的宽*/
+     height: 35px; /*图片显示的高*/
+     background-size:30%;
+}
+.icon-pass{
+       position: absolute;left: 0;
+       z-index:5;
+       background-image: url("../../assets/img/loginUser/password.png");
+       background-repeat: no-repeat; /*设置图片不重复*/
+       background-position:30% 30%; /*图片显示的位置*/
+       width: 40px; /*设置图片显示的宽*/
+       height: 35px; /*图片显示的高*/
+       background-size:30%;
+}
+.icon-code{
+  position: absolute;left: 0;
+  z-index:5;
+  background-image: url("../../assets/img/loginUser/code.png");
+  background-repeat: no-repeat; /*设置图片不重复*/
+  background-position:50% 90%; /*图片显示的位置*/
+  width: 40px; /*设置图片显示的宽*/
+  height: 35px; /*图片显示的高*/
+  background-size:30%;
+}

@@ -1,0 +1,204 @@
+<template>
+    <div class="backcolor" style="height: 100%;">
+      <mtitle :titleC="title.titlec"  :titleR="title.titleR"></mtitle>
+      <!--类目-->
+      <div class="white" :class="{showTitle:showAllType}" >
+        <navigation :types="types" :model="selectType" @up="up"/>
+
+        <div v-show="childrens.length > 0" class="backcolor" style="    clear: both;     height: 8.5vw;">
+          <div  v-for="(type,index) in childrens" :key="index" class="left" style="margin-left: 4vw;
+    margin-top: 3vw;">
+            <input type="radio" name="type" :id="type.id" v-model="selectType" :value="type.id" />
+            <label :for="type.id" :class="{cinnabar:type.id === selectType}">{{type.category_name}}</label>
+          </div>
+        </div>
+      </div>
+      <!--类目-->
+
+      <div style="height: 2vw"></div>
+
+      <drop-down :types="dd" @sort="sort"/>
+      <!--筛选类目-->
+      <!--商品-->
+      <div class="white" style="padding: 0 5vw;">
+        <div class="forYou left" v-for="(shop,index) in shops" :key="index" @click="$router.push({path: '/materialShopDetail', query: {id: shop.spu_id}})">
+          <div style="    height: 20vw;    width: 40vw;"><img class="img" :src="shop.goods_thumb"/></div>
+          <p>{{shop.goods_name}}</p>
+          <p>
+            <span class="cinnabar">￥{{shop.low_price}} </span>
+            <span class="right gray">{{shop.sales_actual+shop.sales_initial}}人付款 </span>
+          </p>
+        </div>
+        <div style="clear: both"><br/></div>
+      </div>
+      <!--商品-->
+      <div class="overburden2" :class="{hide:!showAllType}" @click="showAllType = !showAllType"></div>
+
+    </div>
+</template>
+
+<script>
+import mtitle from '@/public/TextTitle'
+import dropDown from '@/public/DropDown'
+export default {
+  name: 'materialCommodityIndex',
+  components: {
+    mtitle,
+    dropDown,
+    navigation: () => import('@/public/NavigationBar')
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.handleFun)
+  },
+  mounted () {
+    this.$ajax.get('/api/shop/category').then((response) => {
+      this.types = response.data.data
+      this.types.unshift({category_name: '全部', id: 0})
+    })
+    this.param.category_id = this.$route.query.pid
+    this.getGoods()
+    window.addEventListener('scroll', this.handleFun)
+  },
+  data () {
+    return {
+      dd: [
+        {
+          name: '默认',
+          default: 0,
+          display: 'none',
+          mode: 'one',
+          method: 'sort'
+        },
+        {
+          name: '价格',
+          defaultName: '价格',
+          default: '价格',
+          list: [{id: 3, name: '价格最高'}, {id: 2, name: '价格最低'}],
+          display: 'none',
+          mode: 'sort'
+        },
+        {
+          name: '销量',
+          default: 1,
+          display: 'none',
+          mode: 'one',
+          method: 'sort'
+        }
+      ],
+      navagation: [],
+      title: {
+        titlec: {
+          content: '建材城',
+          type: 'text'
+        },
+        titleR: {
+          content: [require('@/assets/img/home/sousuo.png'), require('@/assets/img/home/jaincai/payCar.png')],
+          type: 'imgArray',
+          method: ['search', 'paycar']
+        }
+      },
+      selectType: parseInt(this.$route.query.pid),
+      showAllType: false,
+      childrens: [],
+      types: [],
+      shops: [],
+      param: {
+        des_status: 0,
+        no_cached: 1,
+        itemsPerLoad: 20,
+        lastIndex: 0,
+        category_id: this.selectType
+      }
+    }
+  },
+  methods: {
+    handleFun () {
+      var _this = this
+      window.onscroll = function () {
+        // 变量scrollTop是滚动条滚动时，距离顶部的距离
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        // 变量windowHeight是可视区的高度
+        var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+        // 变量scrollHeight是滚动条的总高度
+        var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+        // 滚动条到底部的条件
+        if (scrollTop + windowHeight === scrollHeight) {
+          _this.params.lastIndex = _this.shops.length
+          _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
+            _this.shops = _this.shops.concat(response.data.data)
+          })
+        }
+      }
+    },
+    sort (index, val) {
+      if (val.default) {
+        this.param.des_status = val.default
+      } else {
+        this.param.des_status = val.id
+      }
+      this.dd.forEach((item) => {
+        item.display = 'none'
+      })
+      if (this.dd[index].mode === 'one') {
+        this.dd[index].display = 'block'
+        this.dd[1].name = this.dd[1].defaultName
+      }
+
+      this.getGoods()
+    },
+    getGoods () {
+      let _this = this
+      _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((res) => {
+        _this.shops = res.data.data
+      })
+    },
+    up: function (val) {
+      this.param.category_id = val
+      this.selectType = val
+      this.getGoods()
+    }
+  }
+}
+</script>
+
+<style scoped>
+  .showTitle{
+    overflow: inherit !important;
+    height: 18vw !important;
+  }
+  input[name='type']{
+    display: none;
+  }
+.otherType>li{
+  width: 24%;
+  padding-left: 5%;
+}
+  .forYou>p{
+    height: 12%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 1vw;
+  }
+  .forYou>div{
+    height: 65%;
+  }
+  .forYou{
+    height: 45vw;
+    width: 45.5%;
+    margin-left: 3%;
+  }
+  li{
+    float: left;
+    margin-left: 4vw;
+    margin-top: 3vw;
+  }
+  .navigationBar{
+    white-space: nowrap;
+    overflow-x: auto;
+    text-align: center;
+    padding: 5vw;
+    font-size: 4vw;
+    background-color: white;
+  }
+</style>

@@ -1,0 +1,16 @@
+.head{
+  position: absolute;top: 8.62%;left: 36.67%;right:36.67%;bottom: 76.39%;
+}
+.back{
+  position: absolute;top:2%;left: 4.4%;
+}
+.loginInformation{
+  position: absolute;
+  top: 32.01%;
+  left: 6.67%;
+  width: 100%;
+
+}
+.other{
+  width: 100%; position:absolute;top:77.44%
+}

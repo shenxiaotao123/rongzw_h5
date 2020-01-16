@@ -1,0 +1,215 @@
+<template>
+  <div style="clear: both;">
+    <div v-for="designer in designers" class="works" :key="designer.id" v-if="path.indexOf('showDetail')>-1" >
+
+      <swiper :options="swiperOption1" style="height: 25vw; touch-action: none;margin-top: 2vw">
+        <swiper-slide v-for="gg of designer.work_images">
+          <img :src="gg" @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})" class="img"/>
+        </swiper-slide>
+      </swiper>
+
+      <div class="works_avatar_detail " >
+          <span class="fontWhite">{{designer.work_images.length}}张</span>
+      </div>
+      <div class="introduce">
+        <p class="medium p2">{{designer.title}}</p>
+        <ul  >
+          <li class="gray" >{{designer.style.name}}</li>
+          <li class="gray"  >{{designer.shape.name}}</li>
+          <li  class="gray" >{{designer.mianji}}m²</li>
+        </ul>
+        <button class="bule_white_btn right" >立刻咨询</button>
+      </div>
+    </div>
+    <div v-for="(designer) in works" class="works" :key="designer.id" v-if="path.indexOf('home')>-1||path.indexOf('picture')>-1">
+      <div class="works_avatar ">
+        <img :src=designer.designer_image />
+        <span>{{designer.designer_name}}</span>
+      </div>
+      <div  v-show="path.indexOf('home')>-1" style=" padding:1vw;position: absolute;    border-radius: 0 0 2vw 0;  bottom: 0;right: 0;    color: white;    background: linear-gradient(rgba(0,0,0,0),gray);">
+        阅读{{designer.hits>10000 ?designer.hits/10000+'万':designer.hits}}
+      </div>
+      <img :src=designer.img @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})"/>
+      <div class="introduce">
+        <p class="medium p1">{{designer.title}}</p>
+        <ul  >
+          <li class="gray" >{{designer.style.name}}</li>
+          <li class="gray"  >{{designer.shape.name}}</li>
+          <li  class="gray" >{{designer.mianji}}m²</li>
+        </ul>
+        <span class="right gray" v-show="path.indexOf('picture')>-1">
+          收藏{{designer.coll_nums}}&nbsp;|&nbsp;阅读{{designer.hits>10000 ?designer.hits/10000+'万':designer.hits}}
+        </span>
+        <div  class="right introduce_fx hide" :class="{display : path.indexOf('home')>-1}">
+          <button class="white introduce_fx_sc"></button>
+          <button class="white introduce_fx_fx "></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<script>
+export default {
+  name: 'works',
+  props: ['works'],
+  data () {
+    return {
+      designers: [],
+      path: window.location.href,
+      swiperOption1: {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      }
+    }
+  },
+  methods: {
+    to: function (url) {
+      this.$router.push(url)
+    },
+    handleFun: function () {
+      let _this = this
+      _this.scroll = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) >= 400
+      // 变量scrollTop是滚动条滚动时，距离顶部的距离
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      // 变量windowHeight是可视区的高度
+      var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+      // 变量scrollHeight是滚动条的总高度
+      var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+      // 滚动条到底部的条件
+      if (scrollTop + windowHeight === scrollHeight) {
+        let path = '/api/designer/works?no_cached=1&lastIndex=' + _this.designers.length
+        if (_this.$route.query.id) {
+          path = path + '&designer_id=' + _this.$route.query.id
+          _this.$ajax.get(path).then((response) => {
+            _this.designers = _this.designers.concat(response.data.data)
+          })
+        }else{
+          _this.$emit('pic')
+        }
+
+      }
+    }
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.handleFun)
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleFun)
+    if (this.path.indexOf('home')>-1) {
+      window.removeEventListener('scroll', this.handleFun)
+    }
+
+    let path = '/api/designer/works'
+    if (this.$route.query.id) {
+      path = path + '?designer_id=' + this.$route.query.id
+    } else if (this.path.indexOf('home') >-1) {
+      path = path + '?is_rec=1&itemsPerLoad=3'
+    } else if (this.path.indexOf('pic')>-1) {
+    }
+    this.$ajax.get(path).then((response) => {
+      this.designers = response.data.data
+    })
+  }
+}
+</script>
+
+<style scoped>
+  .introduce p{
+    line-height: 7vw;
+  }
+  .introduce{
+    margin-top: -6vw;
+  }
+  .works_avatar_detail{
+    background-color: black;
+    width: 15vw;
+    height: 5vw;
+    opacity: .5;
+    position: relative;
+    bottom: 7vw;
+    border-radius: 0 0 0 2vw;
+    text-align: center;
+    font-size: unset;
+    padding-top: 2vw;
+    z-index: 1;
+  }
+  .introduce_fx_fx{
+    background-image: url("../../assets/img/home/recommend/fenxiang.png");
+    height:4vw;
+    width:4vw;
+    background-size: 100%;
+  }
+  .introduce_fx_sc{
+    background-image: url("../../assets/img/home/recommend/collection.png");
+    height: 4vw;
+    width: 4vw;
+    background-size: 100%;
+    margin-right: 2vw
+  }
+  .introduce_fx{
+    width: 20vw;
+    height: 5vw;
+    text-align: -webkit-center;
+  }
+  .works_avatar span{
+    position: absolute;
+    bottom: 1vw;
+    left: 11vw;
+    width: 13vw;
+    color: white;
+    font-size: 4vw;
+  }
+.works_avatar{
+  position: absolute;
+  width: 8vw;
+  bottom: 2vw;
+  left: 1vw;
+  height: 8vw;
+}
+  .works{
+    width: 100%;
+    border-radius: 5vw;
+    position: relative;
+    height: 35vw;    clear: both;
+  }
+  .works li{
+    float: left;
+    padding: 1vw 0vw 1vw 1vw;
+    text-align: center;
+  }
+  img{
+    width:100%;
+    height:50vw;
+    max-width:100%;
+    max-height:100%;
+    border-radius: 2vw;
+  }
+  .p1{
+    margin-top: 6vw;
+    margin-left: 1vw;
+    font-size: 4vw;
+    color: #000033;
+    font-weight: 600;
+  }
+  .p2{
+    margin-top: 3vw;
+    margin-left: 1vw;
+    font-size: 4vw;
+    color: #000033;
+    font-weight: 600;
+  }
+</style>

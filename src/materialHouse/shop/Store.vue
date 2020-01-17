@@ -90,8 +90,6 @@ export default {
     handleFun () {
       var _this = this
       let titleScrollHeight = document.getElementById('tt').scrollHeight - document.getElementsByClassName('fontWhite')[0].scrollHeight* 4
-      console.log(titleScrollHeight)
-      console.log((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop))
       this.top = ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > titleScrollHeight) ||
         ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) === titleScrollHeight)
       // 变量scrollTop是滚动条滚动时，距离顶部的距离
@@ -104,6 +102,7 @@ export default {
       if (scrollTop + windowHeight === scrollHeight) {
         _this.param.lastIndex = _this.commoditys.length
         _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
+          alert()
           _this.commoditys = _this.commoditys.concat(response.data.data)
         })
       }
@@ -168,6 +167,8 @@ export default {
     })
     this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
       _this.commoditys = response.data.data
+      _this.param.lastIndex = _this.commoditys.length
+      alert('shengchengshi')
     })
   },
   computed: {},

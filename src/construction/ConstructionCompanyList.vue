@@ -47,22 +47,9 @@ import bmap from '@/public/Bmap' */
 export default {
   name: 'ConstructionCompanyList',
   props: ['companys'],
-  components: {
-    /* bmap */
-  },
   data () {
     return {
-      bma: 'dist',
-      jl: [],
-      a: ''
-    }
-  },
-  created () {
-    this.a = this.companys.id === undefined
-  },
-  methods: {
-    juli (val) {
-      this.jl.push(val)
+      bma: 'dist'
     }
   }
 }

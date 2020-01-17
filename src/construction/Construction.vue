@@ -54,8 +54,9 @@ export default {
   },
   methods: {
     getCompany () {
-      this.$ajax.get(this.path, {params: this.req}).then((res) => {
-        this.companys = res.data.data
+      let _this =this
+      _this.$ajax.get(this.path, {params: this.req}).then((res) => {
+        _this.companys = res.data.data
       })
     },
     region (val, key) {
@@ -82,9 +83,9 @@ export default {
       let stagecrollHeight = document.getElementsByClassName('medium')[0].scrollHeight
       let lbtScrollHeight = document.getElementsByClassName('lbt')[0].scrollHeight
       this.top = ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) >
-        titleScrollHeight + picScrollHeight  + stagecrollHeight + lbtScrollHeight) ||
+        titleScrollHeight + picScrollHeight + stagecrollHeight + lbtScrollHeight) ||
         ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) ===
-          titleScrollHeight + picScrollHeight  + stagecrollHeight + lbtScrollHeight)
+          titleScrollHeight + picScrollHeight + stagecrollHeight + lbtScrollHeight)
 
       // 变量scrollTop是滚动条滚动时，距离顶部的距离
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
@@ -94,9 +95,9 @@ export default {
       var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
       // 滚动条到底部的条件
       if (scrollTop + windowHeight === scrollHeight) {
-        _this.req.lastIndex = _this.companys.length
-        _this.$ajax.get(this.path, {params: this.req}).then((res) => {
-          this.companys = this.companys.concat(res.data.data)
+        _this.req.lastIndex = _this.companys.length === null ? 0 : _this.companys.length
+        _this.$ajax.get(this.path, {params: _this.req}).then((res) => {
+          _this.companys = _this.companys.concat(res.data.data)
         })
       }
     }
@@ -104,12 +105,14 @@ export default {
   beforeDestroy () {
     window.removeEventListener('scroll', this.topdd)
   },
-  mounted () {
+  created () {
     this.getCompany()
     this.$ajax.get('/api/shapes').then((res) => {
       this.types[2].list = res.data.data
       this.types[2].list.unshift({id: 0, name: '不限', sort: 1})
     })
+  },
+  mounted () {
     window.addEventListener('scroll', this.topdd)
   },
   data: function () {
@@ -121,7 +124,8 @@ export default {
         lat: sessionStorage.getItem('lat'),
         area_id: '',
         city_id: sessionStorage.getItem('city'),
-        no_cached: 1
+        no_cached: 1,
+        lastIndex: 0
         /* shapes: '不限' */
       },
       path: '/api/construction/company',

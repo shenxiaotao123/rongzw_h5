@@ -1,6 +1,6 @@
 <template>
-<div>
-  <mtitle :name="title.name" :titleRight="title.titleR" :titleCenter="title.titlec" :backUrl="title.backUrl"></mtitle>
+<div style="padding-top: 15vw">
+  <mtitle :name="title.name" :titleRight="title.titleR" :titleCenter="title.titlec" :backUrl="title.backUrl" class="top_title"></mtitle>
   <div class="all">
     <div  class="designerList back_white">
       <div class="photo">

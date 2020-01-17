@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <mtitle :titleC="title.titlec"  :titleR="title.titleR"></mtitle>
+    <div style="padding-top: 15vw;">
+      <mtitle :titleC="title.titlec"  :titleR="title.titleR" class="top_title"></mtitle>
       <!--类目-->
       <!--<navigation :types="types" :model="selectType" @up="up"/>-->
       <!--类目-->

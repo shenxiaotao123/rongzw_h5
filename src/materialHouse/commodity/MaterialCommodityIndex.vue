@@ -1,6 +1,6 @@
 <template>
-    <div class="backcolor" style="height: 100%;">
-      <mtitle :titleC="title.titlec"  :titleR="title.titleR"></mtitle>
+    <div class="backcolor" style="padding-top:15vw;height: 100%;">
+      <mtitle :titleC="title.titlec"  :titleR="title.titleR" class="top_title"></mtitle>
       <!--类目-->
       <div class="white" :class="{showTitle:showAllType}" >
         <navigation :types="types" :model="selectType" @up="up"/>

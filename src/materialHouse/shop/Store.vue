@@ -1,10 +1,10 @@
 <template>
 <div>
 
-  <div :style="{height:store.backgroundImage !=='undefined' ? '90vw' : '45vw'}">
+  <div id="tt" :style="{height:store.backgroundImage !=='undefined' ? '90vw' : '45vw'}">
     <div :style="{backgroundImage: 'url(' + (store.backgroundImage) + ')' }" class="bg bg-blur">
     </div>
-    <div class="title-content">
+    <div class="title-content" :class="{white:top}" :style="{backgroundImage: 'url(' + (store.backgroundImage) + ')' }">
       <img src="../../assets/img/loginUser/whiteBack.png" class="titleLeft"  @click="$router.go(-1)"/>
       <input  class="medium sreachInput" type="text" :placeholder="titleC.content" v-model="search" v-if="titleC.type==='search'">
       <img :src="type"  v-for="(type,index) of titleR.content" @click="titler(titleR.method[index])"  style="width: 5vw;margin-left: 3vw;margin-top: 3vw"/>
@@ -41,7 +41,7 @@
     </swiper>
   </div>
 
-  <ul class="fontWhite">
+  <ul class="fontWhite" :class="{top_dd:top}" :style="{backgroundImage: 'url(' + (store.backgroundImage) + ')' }">
     <li>
       <button :class="{red_btn:this.type === 'default',navigation_btn:this.type !=='default'}" @click="checkType('default')">综合</button>
     </li>
@@ -89,6 +89,11 @@ export default {
   methods: {
     handleFun () {
       var _this = this
+      let titleScrollHeight = document.getElementById('tt').scrollHeight - document.getElementsByClassName('fontWhite')[0].scrollHeight* 4
+      console.log(titleScrollHeight)
+      console.log((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop))
+      this.top = ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > titleScrollHeight) ||
+        ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) === titleScrollHeight)
       // 变量scrollTop是滚动条滚动时，距离顶部的距离
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       // 变量windowHeight是可视区的高度
@@ -122,7 +127,7 @@ export default {
           this.param.des_status = 4
           break
       }
-      this.param.lastIndex = 0 //测试试试
+      this.param.lastIndex = 0 // 测试试试
       this.$ajax.get('/api/shop/goods', {params: this.param}).then((res) => {
         this.commoditys = res.data.data
       })
@@ -168,6 +173,7 @@ export default {
   computed: {},
   data () {
     return {
+      top: false,
       param: {
         des_status: 0,
         itemsPerLoad: 10,
@@ -279,6 +285,9 @@ export default {
   .fontWhite{
     position: relative;
     bottom: 7vw;
+    height: 8vw;
+    background-size: cover;
+    background-position: bottom;
   }
   .fontWhite li{
     float:left;
@@ -311,12 +320,12 @@ export default {
     margin-top: 3vw;
   }
   .title-content{
-    position:absolute;
+    position:fixed;
     width: 100%;
     height: 15vw;
     font-size: 4.4vw;
     text-align: center;
-
+    z-index: 999;
   }
   .gengduo>img{
     position: absolute;

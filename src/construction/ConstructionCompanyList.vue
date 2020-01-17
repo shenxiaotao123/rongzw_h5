@@ -4,7 +4,7 @@
       <div class="companyImg">
         <img :src="company.avatar" class="img"/></div>
       <div class="companyDetail">
-        <span class="regular companyName">{{company.name}}</span>
+        <p class="regular companyName">{{company.name}}</p>
         <p class="regular gray aa" >
          {{company.brief}}
         </p>
@@ -17,7 +17,6 @@
       </div>
       <!--<bmap :method="bma" :stratLng="company.lng"  :stratlat="company.lat" @juli="juli"/>-->
     </div>
-
 
     <div class=" company"  v-if="typeof companys.id  === 'number'" style="height: 25vw;">
       <div class="companyImg">
@@ -44,12 +43,12 @@
 
 <script>
 /*
-import bmap from '@/public/Bmap'*/
+import bmap from '@/public/Bmap' */
 export default {
   name: 'ConstructionCompanyList',
   props: ['companys'],
   components: {
-    /*bmap*/
+    /* bmap */
   },
   data () {
     return {
@@ -59,7 +58,7 @@ export default {
     }
   },
   created () {
-    this.a =  this.companys.id  === undefined
+    this.a = this.companys.id === undefined
   },
   methods: {
     juli (val) {
@@ -82,7 +81,11 @@ export default {
   }
   .companyName{
     font-weight: 600;
-    font-size: 4vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 1vw;
+    width: 100%;
   }
 .company{
   clear: both;

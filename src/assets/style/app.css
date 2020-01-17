@@ -520,3 +520,12 @@ body,#app,html{
   width: -webkit-fill-available;
   z-index: 999;
 }
+.noComment>p{
+  margin-top: 3vw;
+  font-size: small;
+}
+.noComment {
+  padding: 10vw 30vw;
+  background-color: white;
+  text-align: center;
+}

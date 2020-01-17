@@ -1,6 +1,6 @@
 <!--评价-->
 <template>
-<div class="all medium">
+<div class="all medium" v-if="comments.length>0">
   <ul>
     <li @click="up(comments)" class="fontcolor">全部 {{comments.length}}</li>
     <li @click="up(good)">好评 {{good.length}}</li>
@@ -16,6 +16,18 @@
     <p class="all" style="padding-top: 3vw;">{{comment.content}} </p>
   </div>
 </div>
+  <!--没有评价的情况-->
+  <div class=" gray  noComment" v-else>
+
+    <img src="../assets/img/zanwu.png"/>
+    <p>
+      没有相应的评价
+    </p>
+    <p style="font-size: xx-small;">
+      看看其他的~
+    </p>
+  </div>
+  <!--没有评价的情况-->
 </template>
 
 <script>

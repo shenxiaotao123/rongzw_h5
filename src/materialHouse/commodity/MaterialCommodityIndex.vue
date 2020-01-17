@@ -71,11 +71,10 @@ export default {
         },
         {
           name: '价格',
-          defaultName: '价格',
-          default: '价格',
-          list: [{id: 3, name: '价格最高'}, {id: 2, name: '价格最低'}],
+          default: 2,
           display: 'none',
-          mode: 'sort'
+          mode: 'one',
+          method: 'sort'
         },
         {
           name: '销量',
@@ -131,19 +130,24 @@ export default {
       }
     },
     sort (index, val) {
-      if (val.default) {
-        this.param.des_status = val.default
-      } else {
-        this.param.des_status = val.id
+      this.param.des_status = val.default
+      if (index === 1 && val.default === this.dd[index].default) { // 如果是价格的的话
+        switch (val.default) {
+          case 2:
+            this.param.des_status = 3
+            this.dd[index].default = 3
+            break
+          case 3:
+            this.param.des_status = 2
+            this.dd[index].default = 2
+            break
+        }
       }
+
       this.dd.forEach((item) => {
         item.display = 'none'
       })
-      if (this.dd[index].mode === 'one') {
-        this.dd[index].display = 'block'
-        this.dd[1].name = this.dd[1].defaultName
-      }
-
+      this.dd[index].display = 'block'
       this.getGoods()
     },
     getGoods () {

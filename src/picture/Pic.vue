@@ -23,7 +23,7 @@
           </span>
         </p>
       </div>
-      <div class="content_bottom">
+      <div class="content_bottom" style="background-color: black">
         <p class="content_title">
           <span @click="$router.push({path:'/worksShow',query:{workid:site.id,designerid:site.designer_id}})">了解更多</span>
           <span class="right">

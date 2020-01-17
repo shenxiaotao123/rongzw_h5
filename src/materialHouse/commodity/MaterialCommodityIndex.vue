@@ -122,7 +122,7 @@ export default {
         var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
         // 滚动条到底部的条件
         if (scrollTop + windowHeight === scrollHeight) {
-          _this.params.lastIndex = _this.shops.length
+          _this.param.lastIndex = _this.shops.length
           _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
             _this.shops = _this.shops.concat(response.data.data)
           })

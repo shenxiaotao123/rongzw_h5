@@ -89,7 +89,7 @@ export default {
   methods: {
     handleFun () {
       var _this = this
-      let titleScrollHeight = document.getElementById('tt').scrollHeight - document.getElementsByClassName('fontWhite')[0].scrollHeight* 4
+      let titleScrollHeight = document.getElementById('tt').scrollHeight - document.getElementsByClassName('fontWhite')[0].scrollHeight * 4
       this.top = ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > titleScrollHeight) ||
         ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) === titleScrollHeight)
       // 变量scrollTop是滚动条滚动时，距离顶部的距离
@@ -101,10 +101,11 @@ export default {
       // 滚动条到底部的条件
       if (scrollTop + windowHeight === scrollHeight) {
         _this.param.lastIndex = _this.commoditys.length
-        _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
-          alert()
-          _this.commoditys = _this.commoditys.concat(response.data.data)
-        })
+        if (_this.param.lastIndex > 0) {
+          _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
+            _this.commoditys = _this.commoditys.concat(response.data.data)
+          })
+        }
       }
     },
     checkType (val) {
@@ -156,7 +157,7 @@ export default {
   },
   mounted () {
     let _this = this
-    window.addEventListener('scroll', this.handleFun)
+
     this.$ajax.get('/api/shop/store/' + this.$route.query.id).then((response) => {
       _this.store = response.data.data
       if (_this.store.carousel_image.length < 1) {
@@ -168,7 +169,7 @@ export default {
     this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
       _this.commoditys = response.data.data
       _this.param.lastIndex = _this.commoditys.length
-      alert('shengchengshi')
+      window.addEventListener('scroll', this.handleFun)
     })
   },
   computed: {},

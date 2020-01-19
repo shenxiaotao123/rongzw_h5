@@ -27,8 +27,8 @@
             <p>{{guide.bbs_title}}</p>
             <p class="gray" style="position: absolute;    bottom: 0;">阅读{{guide.bbs_view}} | 评论{{guide.bbs_com_num}} |  {{guide.bbs_user_name}}  </p>
           </div>
-          <div class="left" style="width: 45%; height: 100%;">
-            <img :src="guide.bbs_pic" class="img" style=" border-radius: 2vw;"/>
+          <div class="left gl-pic">
+            <img :src="guide.bbs_pic" class="img" style="border-radius: 2vw;"/>
           </div>
         </li>
       </ul>
@@ -129,9 +129,15 @@ export default {
     padding: 5vw 2vw 2vw 5vw;
   }
   .wz{
-    width: 55%;
+    width: 65%;
     height: 100%;
     position: relative;
+  }
+  .wz p {
+    padding-right: 5vw;
+  }
+  .gl-pic{
+    width: 35%; height: 100%;
   }
   .red_btn{
     margin: 5vw;

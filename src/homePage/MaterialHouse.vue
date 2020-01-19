@@ -4,17 +4,17 @@
       <!--轮播图-->
       <swiper :options="swiperOption" style="height: 40vw;">
         <swiper-slide v-for="tt of indexSwiper">
-          <img :src="tt.pic_url" class="img" style="float: none;    width: 90%; margin: 0 5vw;"/>
+          <img :src="tt.pic_url" class="img" style="float: none; width: 100%;"/>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"/>
       </swiper>
 
       <!--轮播图-->
       <!--图标-->
-      <div class="effect all">
+      <div class="effect">
           <button class="white" v-for="na of navigation" @click="$router.push({path: '/materialCommodityIndex',query: {pid: na.id}})">
-            <img :src="na.img_url" class="img"/>
-            {{na.category_name}}
+            <img :src="na.img_url" class="imgIcon"/>
+            <p>{{na.category_name}}</p>
           </button>
       </div>
       <!--图标-->
@@ -67,8 +67,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;    ">{{commodity.goods_name}}</p>
           <p>
-            <span class="cinnabar">￥{{commodity.low_price}} </span>
             <span class="right gray">{{commodity.sales_actual+commodity.sales_initial}}人付款 </span>
+            <span class="cinnabar">￥{{commodity.low_price}} </span>
           </p>
         </div>
 
@@ -175,12 +175,14 @@ export default {
 
 <style scoped>
   .forYou>p{
-    height: 12%;
+    height: 3.5vw;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin-top: 1vw;
+    margin-top: 2vw;
   }
+  .forYou>p .cinnabar { float: left; font-size:3vw;}
+  .forYou>p .right { font-size: 2.5vw;}
   .forYou>div{
     height: 65%;
   }
@@ -195,10 +197,11 @@ export default {
     margin-top: -5vw;
   }
   .avatar>p:nth-child(1){
-    font-size: large;
+    margin-top: 2vw;
+    font-size: 4vw;
   }
   .avatar>p{
-    height: 50%;
+    height: 40%;
   }
   .company>.avatar:nth-child(1){
     border: .1vw solid #f7f7f7;
@@ -240,7 +243,7 @@ export default {
     height: 100%;
     margin-left: 4vw;
     margin-bottom: 3vw;
-    font-size: xx-small;
+    font-size:3.5vw;
   }
   .onehang{
     display: block;
@@ -249,4 +252,7 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .imgIcon{ width: 70%; height: 100%;
+    max-width: 100%;
+    max-height: 100%;}
 </style>

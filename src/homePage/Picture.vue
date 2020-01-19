@@ -2,7 +2,7 @@
 <div  style="margin:26vw 0  30vw 0">
   <div class="title top_title">
     <ul>
-      <li>
+      <li class="center">
         <router-link to="/index/picture/effect">
           效果图
         </router-link>
@@ -12,7 +12,7 @@
           局部图
         </router-link>
       </li>-->
-      <li>
+      <li class="center">
         <router-link to="/index/picture/case">
           装修案例
         </router-link>
@@ -32,8 +32,8 @@ export default {
 
 <style scoped>
   .router-link-active {
-    border-bottom: .1vw solid red;
-    height: 14.5vw;
+    border-bottom: .4vw solid #DD1A21;
+    height: 13.60vw;
     display: inline-block;
   }
   a{
@@ -47,7 +47,9 @@ ul{
   li{
     float: left;
     width: 50%;
-    line-height: 15vw;
+    line-height: 14vw;
     text-align: left;
   }
+  .center
+  { text-align: center;}
 </style>

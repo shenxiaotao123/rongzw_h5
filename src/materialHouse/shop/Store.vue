@@ -2,9 +2,9 @@
 <div>
 
   <div id="tt" :style="{height:store.backgroundImage !=='undefined' ? '90vw' : '45vw'}">
-    <div :style="{backgroundImage: 'url(' + (store.backgroundImage) + ')' }" class="bg bg-blur">
+    <div :style="{background: 'url(' + (store.backgroundImage) + ')' }" class="bg bg-blur">
     </div>
-    <div class="title-content" :class="{white:top}" :style="{backgroundImage: 'url(' + (store.backgroundImage) + ')' }">
+    <div class="title-content" :class="{color:top}" >
       <img src="../../assets/img/loginUser/whiteBack.png" class="titleLeft"  @click="$router.go(-1)"/>
       <input  class="medium sreachInput" type="text" :placeholder="titleC.content" v-model="search" v-if="titleC.type==='search'">
       <img :src="type"  v-for="(type,index) of titleR.content" @click="titler(titleR.method[index])"  style="width: 5vw;margin-left: 3vw;margin-top: 3vw"/>
@@ -41,7 +41,7 @@
     </swiper>
   </div>
 
-  <ul class="fontWhite" :class="{top_dd:top}" :style="{backgroundImage: 'url(' + (store.backgroundImage) + ')' }">
+  <ul class="fontWhite" :class="{top_dd:top,color:top  }">
     <li>
       <button :class="{red_btn:this.type === 'default',navigation_btn:this.type !=='default'}" @click="checkType('default')">综合</button>
     </li>
@@ -156,8 +156,8 @@ export default {
     window.removeEventListener('scroll', this.handleFun)
   },
   mounted () {
+    window.scrollTo(0, 0)
     let _this = this
-
     this.$ajax.get('/api/shop/store/' + this.$route.query.id).then((response) => {
       _this.store = response.data.data
       if (_this.store.carousel_image.length < 1) {
@@ -363,5 +363,8 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .color{
+    background-color: #961818;
   }
 </style>

@@ -2,7 +2,7 @@
     <div style="margin:28vw 0 30vw 0 ">
       <div class="title top_title">
 
-        <router-link to="/index/strategy/gl" class="titlecenter regular" >
+        <router-link to="/index/strategy/gl" class="S_titlecenter regular" >
           <span >
             攻略
           </span>
@@ -10,7 +10,7 @@
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <router-link to="/index/strategy/zx" class="titlecenter regular">
+        <router-link to="/index/strategy/zx" class="S_titlecenter regular">
           <span>
             咨询
           </span>
@@ -73,9 +73,10 @@ export default {
   a {
     color:black;
   }
+  .S_titlecenter { line-height: 14vw; font-size: 4.4vw;}
   .router-link-active {
-    border-bottom: .1vw solid red;
-    height: 8.5vw;
+    border-bottom: .4vw solid red;
+    height: 13.60vw;
     display: inline-block;
   }
   .tuijian>.right{

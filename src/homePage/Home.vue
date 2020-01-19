@@ -21,8 +21,8 @@
       <!--图标开始-->
       <div class="effect all">
           <button class="white" v-for="na of navigations" @click="$router.push({path:na.url})" style="width: 19%;">
-            <img :src="na.pic_url" class="img" style="width: 80%;"/>
-            {{na.name}}
+            <img :src="na.pic_url" class="imgIcon"/>
+            <p>{{na.name}}</p>
           </button>
       </div>
       <!--图标结束-->
@@ -471,4 +471,5 @@ export default {
   .strategy-row&:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
   .strategy-com-50 { display: inline-block; width: 50%;}
   .strategy-img { margin: 0 1vw 2vw 1vw;}
+  .imgIcon{ width: 65%;}
 </style>

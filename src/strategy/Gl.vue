@@ -53,7 +53,6 @@ export default {
       })
     }
   },
-  //辅导辅导书
   components: {
     navigation: () => import('@/public/NavigationBar')
   },

@@ -2,7 +2,7 @@
     <div class="backcolor" style="padding-top:15vw;height: 100%;">
       <mtitle :titleC="title.titlec"  :titleR="title.titleR" class="top_title"></mtitle>
       <!--类目-->
-      <div class="white" :class="{showTitle:showAllType}" >
+      <div class="white" :class="{showTitle:showAllType}" id="tt">
         <navigation :types="types" :model="selectType" @up="up"/>
 
         <div v-show="childrens.length > 0" class="backcolor" style="    clear: both;     height: 8.5vw;">
@@ -17,7 +17,7 @@
 
       <div style="height: 2vw"></div>
 
-      <drop-down :types="dd" @sort="sort"/>
+      <drop-down :types="dd" @sort="sort" :class="{top_dd:top}"/>
       <!--筛选类目-->
       <!--商品-->
       <div class="white" style="padding: 0 5vw;">
@@ -61,6 +61,7 @@ export default {
   },
   data () {
     return {
+      top: false,
       dd: [
         {
           name: '默认',
@@ -113,20 +114,20 @@ export default {
   methods: {
     handleFun () {
       var _this = this
-      window.onscroll = function () {
-        // 变量scrollTop是滚动条滚动时，距离顶部的距离
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        // 变量windowHeight是可视区的高度
-        var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
-        // 变量scrollHeight是滚动条的总高度
-        var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
-        // 滚动条到底部的条件
-        if (scrollTop + windowHeight === scrollHeight) {
-          _this.param.lastIndex = _this.shops.length
-          _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
-            _this.shops = _this.shops.concat(response.data.data)
-          })
-        }
+      let titleScrollHeight = document.getElementById('tt').scrollHeight
+      this.top = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) >= (titleScrollHeight-1)
+      // 变量scrollTop是滚动条滚动时，距离顶部的距离
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      // 变量windowHeight是可视区的高度
+      var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+      // 变量scrollHeight是滚动条的总高度
+      var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+      // 滚动条到底部的条件
+      if (scrollTop + windowHeight === scrollHeight) {
+        _this.param.lastIndex = _this.shops.length
+        _this.$ajax.get('/api/shop/goods', {params: _this.param}).then((response) => {
+          _this.shops = _this.shops.concat(response.data.data)
+        })
       }
     },
     sort (index, val) {

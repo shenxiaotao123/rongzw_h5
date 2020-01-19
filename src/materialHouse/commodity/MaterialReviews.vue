@@ -67,15 +67,7 @@ export default {
 </script>
 
 <style scoped>
-  .noComment>p{
-    margin-top: 3vw;
-    font-size: small;
-  }
-  .noComment {
-    padding: 10vw 30vw;
-    background-color: white;
-    text-align: center;
-  }
+
   .shop>div:nth-child(1)>img{
     height: 9vw;
     width: 11vw;

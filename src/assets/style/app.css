@@ -515,8 +515,17 @@ body,#app,html{
   z-index: 999;
 }
 .top_dd{
-  position: fixed;
+  position: fixed !important;
   top: 15vw;
   width: -webkit-fill-available;
   z-index: 999;
+}
+.noComment>p{
+  margin-top: 3vw;
+  font-size: small;
+}
+.noComment {
+  padding: 10vw 30vw;
+  background-color: white;
+  text-align: center;
 }

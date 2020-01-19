@@ -6,6 +6,8 @@
           <!--就一个-->
           <div v-if="type.mode==='one'" @click="one(type,index)" :class="{goodColor: type.display === 'block'}">
             {{type.name}}
+            <span v-show="type.default === 2">↑</span>
+            <span v-show="type.default === 3">↓</span>
           </div>
           <!--就一个-->
           <div v-else>

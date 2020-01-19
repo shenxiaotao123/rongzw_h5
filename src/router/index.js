@@ -169,7 +169,7 @@ export default new Router({
           component: comment
         }
       ],
-      redirect: '/company/companyDetail'
+      redirect: '/company/constructionSite'
     },
     {
       path: '/construction',

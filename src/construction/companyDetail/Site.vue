@@ -56,11 +56,9 @@ export default {
   },
   created () {
     window.addEventListener('scroll', this.handleFun)
-    if (this.pa.indexOf('constructionSite') > 0) {
-      this.$ajax.get('/api/construction/site', {params: this.param}).then((res) => {
-        this.ss = res.data.data
-      })
-    }
+    this.$ajax.get('/api/construction/site', {params: this.param}).then((res) => {
+      this.ss = res.data.data
+    })
   }
 }
 </script>

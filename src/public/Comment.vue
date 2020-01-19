@@ -1,6 +1,6 @@
 <!--评价-->
 <template>
-<div class="all medium">
+<div class="all medium" v-if="comments.length>0 && aa">
   <ul>
     <li @click="up(comments)" class="fontcolor">全部 {{comments.length}}</li>
     <li @click="up(good)">好评 {{good.length}}</li>
@@ -16,6 +16,18 @@
     <p class="all" style="padding-top: 3vw;">{{comment.content}} </p>
   </div>
 </div>
+  <!--没有评价的情况-->
+  <div class=" gray  noComment" v-else-if="aa">
+
+    <img src="../assets/img/zanwu.png"/>
+    <p>
+      没有相应的评价
+    </p>
+    <p style="font-size: xx-small;">
+      看看其他的~
+    </p>
+  </div>
+  <!--没有评价的情况-->
 </template>
 
 <script>
@@ -23,6 +35,7 @@ export default {
   name: 'Comment',
   data: function () {
     return {
+      aa:false,
       comments: [],
       good: [],
       medium: [],
@@ -57,6 +70,7 @@ export default {
           this.bad.push(item)
         }
       })
+      this.aa = true
     })
   }
 }

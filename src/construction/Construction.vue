@@ -1,12 +1,11 @@
 <template>
     <div style="height: auto;width:100%;margin-top: 15vw">
-      <div class="hh" :class="{hide :!quyu}"></div>
       <!--抬头-->
       <mtitle :titleC="titleC" :titleR="titleR" :titleL="titleL" @to="$router.push({path:'/index/home'})" class="top_title"></mtitle>
       <!--抬头-->
 
       <!--图片-->
-      <div style="height: 49vw;width: 100%"><img src="../assets/img/construction/bj.png" style="height: 100%;width: 100%"/></div>
+      <div style="height: 49vw;width: 100%"><img src="../assets/img/construction/bj.png" class="img"/></div>
       <!--图片-->
 
       <!--介绍-->
@@ -18,7 +17,7 @@
       <!--介绍-->
 
       <!--轮播图-->
-      <scene style="margin-bottom: 2vw;"></scene>
+      <scene class="lbt"></scene>
       <!--轮播图-->
 
       <!--介绍-->
@@ -55,8 +54,9 @@ export default {
   },
   methods: {
     getCompany () {
-      this.$ajax.get(this.path, {params: this.req}).then((res) => {
-        this.companys = res.data.data
+      let _this =this
+      _this.$ajax.get(this.path, {params: this.req}).then((res) => {
+        _this.companys = res.data.data
       })
     },
     region (val, key) {
@@ -77,18 +77,42 @@ export default {
       this.getCompany()
     },
     topdd () {
-      this.top = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > 262
+      let _this = this
+      let titleScrollHeight = document.getElementsByClassName('top_title')[0].scrollHeight
+      let picScrollHeight = document.getElementsByClassName('img')[0].scrollHeight
+      let stagecrollHeight = document.getElementsByClassName('medium')[0].scrollHeight
+      let lbtScrollHeight = document.getElementsByClassName('lbt')[0].scrollHeight
+      this.top = ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) >
+        titleScrollHeight + picScrollHeight + stagecrollHeight + lbtScrollHeight) ||
+        ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) ===
+          titleScrollHeight + picScrollHeight + stagecrollHeight + lbtScrollHeight)
+
+      // 变量scrollTop是滚动条滚动时，距离顶部的距离
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      // 变量windowHeight是可视区的高度
+      var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+      // 变量scrollHeight是滚动条的总高度
+      var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+      // 滚动条到底部的条件
+      if (scrollTop + windowHeight === scrollHeight) {
+        _this.req.lastIndex = _this.companys.length === null ? 0 : _this.companys.length
+        _this.$ajax.get(this.path, {params: _this.req}).then((res) => {
+          _this.companys = _this.companys.concat(res.data.data)
+        })
+      }
     }
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.topdd)
   },
-  mounted () {
+  created () {
     this.getCompany()
     this.$ajax.get('/api/shapes').then((res) => {
       this.types[2].list = res.data.data
       this.types[2].list.unshift({id: 0, name: '不限', sort: 1})
     })
+  },
+  mounted () {
     window.addEventListener('scroll', this.topdd)
   },
   data: function () {
@@ -100,7 +124,8 @@ export default {
         lat: sessionStorage.getItem('lat'),
         area_id: '',
         city_id: sessionStorage.getItem('city'),
-        no_cached: 1
+        no_cached: 1,
+        lastIndex: 0
         /* shapes: '不限' */
       },
       path: '/api/construction/company',
@@ -120,7 +145,7 @@ export default {
       types: [
         {
           name: '区域选择',
-          defaultName:'区域选择',
+          defaultName: '区域选择',
           default: this.regions[sessionStorage.getItem('province')][sessionStorage.getItem('city')],
           list: this.regions[sessionStorage.getItem('city')],
           display: 'none',
@@ -146,7 +171,7 @@ export default {
         },
         {
           name: '筛选',
-          defaultName:'筛选',
+          defaultName: '筛选',
           default: '不限',
           list: [],
           display: 'none',
@@ -163,7 +188,9 @@ export default {
 </script>
 
 <style scoped>
-
+.lbt{
+  margin-top: 2vw;
+}
   .details p:nth-child(2){
     padding-top: 2vw;
   }

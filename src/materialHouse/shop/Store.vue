@@ -98,7 +98,7 @@ export default {
       var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
       // 变量scrollHeight是滚动条的总高度
       var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
-      // 滚动条到底部的条件
+      // 滚动条到底部的条件132
       if (scrollTop + windowHeight === scrollHeight) {
         _this.param.lastIndex = _this.commoditys.length
         if (_this.param.lastIndex > 0) {

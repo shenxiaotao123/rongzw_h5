@@ -52,7 +52,7 @@ export default {
         this.gl = res.data.data
       })
     }
-  },
+  },//123
   components: {
     navigation: () => import('@/public/NavigationBar')
   },

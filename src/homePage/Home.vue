@@ -420,7 +420,6 @@ export default {
     max-height: 100%;
     width: 100%;
     float: right;
-    height: 90%;
     border-radius: 2vw;
   }
   .bannerimgheight { height: 41vw;}

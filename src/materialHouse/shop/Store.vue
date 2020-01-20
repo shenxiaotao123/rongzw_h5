@@ -1,9 +1,12 @@
 <template>
 <div>
 
-  <div id="tt" :style="{height:store.backgroundImage !=='undefined' ? '90vw' : '45vw'}">
+  <div id="tt" :style="{height:store.backgroundImage !=='undefined' ? '92vw' : '45vw'}" style="overflow: hidden;">
+
     <div :style="{background: 'url(' + (store.backgroundImage) + ')' }" class="bg bg-blur">
     </div>
+
+    <div class="BlackMask"></div>
     <div class="title-content" :class="{color:top}" >
       <img src="../../assets/img/loginUser/whiteBack.png" class="titleLeft"  @click="$router.go(-1)"/>
       <input  class="medium sreachInput" type="text" :placeholder="titleC.content" v-model="search" v-if="titleC.type==='search'">
@@ -217,6 +220,7 @@ export default {
 </script>
 
 <style scoped>
+  .BlackMask {position: absolute; width: 100%; height: 92vw; background: rgba(0,0,0,.6);z-index: 1;}
   .avatar>p>.white_btn{
     width: 20vw;
     margin-top: -5vw;
@@ -251,11 +255,11 @@ export default {
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
-    -webkit-filter: blur(9px);
-    -moz-filter: blur(9px);
-    -o-filter: blur(9px);
-    -ms-filter: blur(9px);
-    filter:blur(9px);
+    -webkit-filter: blur(30px);
+    -moz-filter: blur(30px);
+    -o-filter: blur(30px);
+    -ms-filter: blur(30px);
+    filter:blur(30px);
 
   }
 
@@ -286,10 +290,11 @@ export default {
   }
   .fontWhite{
     position: relative;
-    bottom: 7vw;
+    bottom: 9vw;
     height: 8vw;
     background-size: cover;
     background-position: bottom;
+    z-index: 2;
   }
   .fontWhite li{
     float:left;
@@ -308,6 +313,7 @@ export default {
     top: 12vw;
     color: white;
     width: 100%;
+    z-index: 2;
   }
   .sreachInput{
     margin-left: 6vw;

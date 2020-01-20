@@ -70,6 +70,7 @@ export default {
     }
   },
   mounted () {
+
     var _this = this
     window.onscroll = function () {
       // 变量scrollTop是滚动条滚动时，距离顶部的距离

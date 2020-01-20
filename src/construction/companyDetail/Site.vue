@@ -56,7 +56,7 @@ export default {
   },
   mounted () {
     let _this = this
-    window.scroll(0, 0)
+
     window.addEventListener('scroll', this.handleFun)
     if (_this.sites === undefined) {
       _this.$ajax.get('/api/construction/site?company_id= ' + this.$route.query.id + '& itemsPerLoad: 10&lastIndex: 0').then((res) => {

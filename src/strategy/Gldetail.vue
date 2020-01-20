@@ -32,7 +32,7 @@
   <!--文章标识-->
 
   <!--文章-->
-    <div class="article" v-html="bbs.bbs_content"></div>
+    <div class="article" id="artilcle" v-html="bbs.bbs_content"></div>
   <!--文章-->
 
   <!--为您推荐-->
@@ -93,11 +93,8 @@ export default {
     rightButtom
   },
   updated () {
-    for (var i = 0; i < document.getElementsByClassName('topic_content-img').length; i++) {
-      var g = document.getElementsByClassName('topic_content-img')[i].getElementsByTagName('img')
-      for (var k = 0; k < g.length; k++) {
-        g[k].classList = ['img']
-      }
+    for (var i = 0; i < document.getElementById('artilcle').getElementsByTagName('img').length; i++) {
+      document.getElementById('artilcle').getElementsByTagName('img')[i].classList = ['img']
     }
   },
   mounted () {

@@ -516,7 +516,7 @@ body,#app,html{
 }
 .top_dd{
   position: fixed !important;
-  top: 15vw;
+  top: 13vw;
   width: -webkit-fill-available;
   z-index: 999;
 }

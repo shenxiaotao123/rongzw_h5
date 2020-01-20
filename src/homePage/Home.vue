@@ -9,9 +9,9 @@
           <img src="../assets/img/msg.png" height="15" width="18"/>
         </div>
         <swiper :options="titleSwiperOption">
-          <swiper-slide v-for="tt of titleHome" style="height: 41vw;">
+          <swiper-slide v-for="tt of titleHome" style="height: 41vw;" >
             <div style=" margin: 0 2vw;">
-              <img :src="tt.pic_url" class="img bannerimgheight" style="float: none; width: 100%;"/>
+              <img :src="tt.pic_url" class="img bannerimgheight" style="float: none; width: 100%;" @click="$router.push({path:tt.url})"/>
             </div>
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"/>
@@ -40,9 +40,9 @@
 
       <!--轮播图开始-->
       <swiper :options="swiperOption1" style="height: 25vw; touch-action: none;margin-top: 2vw">
-          <swiper-slide v-for="gg of advertisement" @click="$router.push({path:gg.url,query:{id:gg.id}})">
+          <swiper-slide v-for="gg of advertisement">
             <div style=" margin: 0 0 0 2vw;">
-             <img :src="gg.pic_url"  />
+             <img :src="gg.pic_url"  @click="$router.push({path:gg.url})"/>
             </div>
           </swiper-slide>
         </swiper>
@@ -87,11 +87,11 @@
         </p>
         <div style=" height: 64vw">
           <div class="strategy-row">
-          <div class="strategy" v-for="ss of strategys" @click="$router.push({path:ss.url,query:{id:ss.id}})">
+          <div class="strategy" v-for="ss of strategys">
 
               <div class="strategy-com-50">
                 <div class="strategy-img">
-                  <img :src="ss.pic_url" class="img">
+                  <img :src="ss.pic_url" class="img"  @click="$router.push({path:ss.url})">
                 </div>
               </div>
 

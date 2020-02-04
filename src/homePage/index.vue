@@ -49,7 +49,7 @@ export default {
 
 <style scoped>
   .menu>a>div>img{
-    margin-bottom: 2vw;
+    margin-bottom:2vw;
     height: 5vw;
   }
   .router-link-exact-active { color: #333 !important;}

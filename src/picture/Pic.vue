@@ -14,7 +14,7 @@
           {{site.zaojia>1000 ? site.zaojia/10000+'万':site.zaojia}}
           <span class="right" style="font-size: 5vw">{{activeIndex}}/{{site.work_images.length}}</span>
         </p>
-        <p class="content_title" style="font-size: 4.5vw">
+        <p class="content_title">
           {{site.designer_name}}
         </p>
         <p class="content_title" style="font-size: 3vw">
@@ -73,13 +73,12 @@ export default {
   .content_bottom button{
     background: black;
     color: white;
-    border: .1vw solid rgb(82,94,114);
-    padding: 0 3vw;
-    margin: 2vw;
+    border: .1vw solid rgb(250,250,250);
+    padding: 1vw 3vw;
   }
   .content_bottom{
     position: fixed;
-    bottom: 0;
+    bottom: 3vw;
     color: white;
     width: -webkit-fill-available;
   }
@@ -91,12 +90,13 @@ export default {
     color: white;
     position: fixed;
     top: 66%;
-    margin: 0 3vw;
     width: -webkit-fill-available;
   }
   .content_title{
     text-align: left;
+    padding: 0 5vw;
     font-size: 3.9vw;
-    line-height: 7vw;
+    line-height: 5vw;
+    margin-bottom: 4vw;
   }
 </style>

@@ -46,7 +46,7 @@ export default {
   }
 }
 </script>
-<!- 测试 ->
+
 <style scoped>
   .menu>a>div>img{
     margin-bottom:2vw;

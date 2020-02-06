@@ -17,8 +17,8 @@
       <img src="@/assets/img/dianpu.png" />
       <img src="@/assets/img/咨询.png"/>
       <img src="@/assets/img/购物车-23.png" @click="to('/shopCart')"/>
-      <button class="red_btn btn" @click="emit('cart')">加入购物车</button>
-      <button class="yellow_white_btn btn" @click="emit('bay')">立即购买</button>
+      <button class="yellow_white_btn btn fr" @click="emit('bay')">立即购买</button>
+      <button class="red_btn btn fr" @click="emit('cart')">加入购物车</button>
     </p>
   </div>
 </template>
@@ -49,19 +49,21 @@ export default {
 </script>
 
 <style scoped>
+  .fr { float:right;}
   .menu .btn{
     padding: 2vw 5vw;
     border-radius: 6vw;
     font-size: medium;
-    margin-left: 2vw;
+    margin:1vw 2vw 0 2vw;
   }
   .menu>img{
-    width: 6vw;
-    height: 6vw;
+    width: 5vw;
+    height: 5vw;
     margin-left: 4vw;
   }
   .menu{
     line-height: 13vw;
+    border-top: 1px solid #eee;
   }
   .jiesuan{
     padding: 2vw 8vw;

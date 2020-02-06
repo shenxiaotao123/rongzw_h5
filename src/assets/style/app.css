@@ -290,6 +290,7 @@ body,#app,html{
 .white{
   background-color: white;
 }
+.white:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
 .red_white_btn{
   border: .1vw solid #DD1A21;
   color: #DD1A21;

@@ -1,6 +1,6 @@
 <template>
     <div class="white">
-      <ul>
+      <ul class="sxulbox">
         <li class="n" :style="classObject" v-for="(type,index) of types">
 
           <!--就一个-->
@@ -146,6 +146,7 @@ export default {
 </script>
 
 <style scoped>
+  .sxulbox:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
   .sort{
     line-height: 15vw;
     border-bottom: .1vw solid #f7f7f7;
@@ -188,7 +189,6 @@ export default {
     width: 3vw;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
     position: absolute;
     right: -5vw;
   }

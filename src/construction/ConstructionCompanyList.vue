@@ -79,6 +79,7 @@ export default {
   border-bottom: .5vw solid rgb(247, 247, 247);
   padding-bottom: 2vw;
 }
+  .company:after { content:"."; display:block; height:0; clear:both; visibility:hidden;} 
   .companyImg{
     margin: 3.5vw 0px 0px 3vw;
     height: 17vw;

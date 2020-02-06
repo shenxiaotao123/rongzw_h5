@@ -1,8 +1,8 @@
 <template>
-    <div class="backcolor" style="padding-top:15vw;height: 100%;">
+    <div class="backcolor" style="padding-top:13.5vw;height: 100%;">
       <mtitle :titleC="title.titlec"  :titleR="title.titleR" class="top_title"></mtitle>
       <!--类目-->
-      <div class="white" :class="{showTitle:showAllType}" id="tt">
+      <div class="white" :class="{showTitle:showAllType}" id="tt" style="margin-bottom: 2vw;">
         <navigation :types="types" :model="selectType" @up="up"/>
 
         <div v-show="childrens.length > 0" class="backcolor" style="    clear: both;     height: 8.5vw;">
@@ -15,12 +15,10 @@
       </div>
       <!--类目-->
 
-      <div style="height: 2vw"></div>
-
       <drop-down :types="dd" @sort="sort" :class="{top_dd:top}"/>
       <!--筛选类目-->
       <!--商品-->
-      <div class="white" style="padding: 0 5vw;">
+      <div class="white" style=" padding: 0 5vw;">
         <div class="forYou left" v-for="(shop,index) in shops" :key="index" @click="$router.push({path: '/materialShopDetail', query: {id: shop.spu_id}})">
           <div style="    height: 20vw;    width: 40vw;"><img class="img" :src="shop.goods_thumb"/></div>
           <p>{{shop.goods_name}}</p>

@@ -1,11 +1,11 @@
 <template>
-    <div style="height: auto;width:100%;margin-top: 15vw">
+    <div style="height: auto;width:100%;margin-top: 13.5vw">
       <!--抬头-->
       <mtitle :titleC="titleC" :titleR="titleR" :titleL="titleL" @to="$router.push({path:'/index/home'})" class="top_title"></mtitle>
       <!--抬头-->
 
       <!--图片-->
-      <div style="height: 49vw;width: 100%"><img src="../assets/img/construction/bj.png" class="img"/></div>
+      <div style="width: 100%"><img src="../assets/img/construction/bj.png" class="img"/></div>
       <!--图片-->
 
       <!--介绍-->
@@ -188,9 +188,9 @@ export default {
 </script>
 
 <style scoped>
-.lbt{
-  margin-top: 2vw;
-}
+.lbt{}
+.medium { margin-top: 2vw;}
+.all:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
   .details p:nth-child(2){
     padding-top: 2vw;
   }
@@ -259,9 +259,10 @@ export default {
     color: #D96A6E;
     border-radius: 5vw;
     height: 7vw;
+    font-size: 3vw;
   }
 .constructionYD {
   height: 7vw;
-  padding: 5vw 2vw;
+  padding: 3vw 2vw 1vw 2vw;
 }
 </style>

@@ -15,7 +15,7 @@
         <img src="../../assets/img/upsolid.png"  />
         <li><img src="../../assets/img/msg2.png" />消息</li>
         <li><img src="@/assets/img/home/buttom/home.png" class="imgGray" />首页</li>
-        <li><img src="../../assets/img/购物车-23.png" />购物车</li>
+        <li  @click="$store.state.showToast = true" ><img src="../../assets/img/购物车-23.png"/>购物车</li>
       </ul>
     </div>
     <div  class="company">
@@ -74,11 +74,13 @@
         <p>
           <span class="cinnabar">￥{{commodity.low_price}} </span>
           <span class="gray">{{commodity.sales_actual+commodity.sales_initial}}人付款 </span>
-          <span class="right"><img  src="../../assets/img/baycart.png"/></span>
+          <span class="right"><img  src="../../assets/img/baycart.png" @click="$store.state.showToast = true"/></span>
         </p>
       </div>
 
     </div>
+
+  <msg v-if="this.$store.state.showToast" :msgObj="msgObj" ></msg>
 
 </div>
 </template>
@@ -87,6 +89,7 @@
 
 import mtitle from '@/public/TextTitle'
 import dropDown from '@/public/DropDown'
+import msg from '@/public/Msg'
 export default {
   name: 'Store',
   methods: {
@@ -153,6 +156,7 @@ export default {
   },
   components: {
     mtitle,
+    msg,
     dropDown
   },
   beforeDestroy () {
@@ -179,6 +183,11 @@ export default {
   data () {
     return {
       top: false,
+      msgObj: {
+        left: false,
+        position: 'middle',
+        from: 'down'
+      },
       param: {
         des_status: 0,
         itemsPerLoad: 10,

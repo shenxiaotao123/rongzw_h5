@@ -12,7 +12,7 @@
           <span class="regular name">{{designer.name}}</span>
           <span class="workLife regular">{{designer.years}}年经验</span>
         </p>
-        <p class="regular gray" style="width: 65vw;">{{designer.styles_text}}</p>
+        <p class="regular gray" style="width: 45vw;">{{designer.styles_text}}</p>
         <p class="regular gray ">
           <span   class="cinnabar">{{designer.min_money}}-{{designer.max_money}}元/m²</span><br>
         </p>
@@ -40,7 +40,7 @@
     </ul>
     <router-view/>
   </div>
-  <msg v-show="showToast" :msgObj="msgObj" @closeMsg="closeMsg" @yesMsg="yesMsg" :order="order"></msg>
+  <msg v-show="this.$store.state.showToast" :msgObj="msgObj"></msg>
   <right-bottom :rightBottom="rightBottom" class="top_rightBottom"></right-bottom>
 </div>
 </template>
@@ -68,17 +68,9 @@ export default {
       designer: {},
       count: 0,
       msgObj: {
-        msgs: '',
-        btns: ['pay'],
-        title: '',
-        url: '/payment',
-        query: {
-          designerId: 123,
-          from: 'showDetail'
-        },
-        left: true,
-        position: 'bottom',
-        from: 'designerPay'
+        left: false,
+        position: 'middle',
+        from: 'down'
       },
       showToast: false,
       order: {
@@ -90,7 +82,6 @@ export default {
       rightBottom: {
         type: 'top',
         imgUrl: require('@/assets/img/top.png')
-
       }
     }
   },
@@ -111,9 +102,6 @@ export default {
         }
       }
     },
-    closeMsg: function (v) {
-      this.showToast = v
-    },
     getRouterData: function () {
       let path = '/api/designer/designer/' + this.$route.query.id + '?no_cached=1'
       this.$ajax.get(path).then((response) => {
@@ -121,10 +109,9 @@ export default {
         this.designer = response.data.data
       })
       this.count++
-      this.showToast = this.$store.state.showToast
     },
     appointment: function () {
-      this.$router.push('/paytips')
+      this.$store.state.showToast = !this.$store.state.showToast
     }
   },
   mounted () {

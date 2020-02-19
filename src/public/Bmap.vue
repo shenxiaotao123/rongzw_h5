@@ -24,7 +24,7 @@ export default {
           gc.getLocation(pt, function (rs) {
             var addComp = rs.addressComponents
             // 获取地址
-            var a = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber
+            // var a = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber
             for (let key in _this.regions[0]) {
               if (addComp.province === _this.regions[0][key]) {
                 sessionStorage.setItem('province', key)
@@ -41,6 +41,7 @@ export default {
               }
             }
           })
+          _this.$emit('citys')
         } else {
           // 关于状态码
           // BMAP_STATUS_SUCCESS   检索成功。对应数值“0”。

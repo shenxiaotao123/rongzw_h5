@@ -161,7 +161,6 @@ export default {
     background-color: #F1F3F6 !important;
     border-radius: 1vw;
     margin: 1vw;
-    font-size: 1vw;
   }
 
   .city{

@@ -1,6 +1,6 @@
 <template>
     <div style="margin-bottom: 17vw;">
-      <bmap :method="bma"/>
+      <bmap :method="bma" @city="citys()"/>
       <div class="ti">
         <div class="hometitle">
           <span style="float: left;width: 12vw">{{city}}</span>
@@ -162,11 +162,11 @@ export default {
   name: 'Home',
   data () {
     return {
-      gl:[],
+      gl: [],
       bma: 'handler',
       scroll: false,
       navigations: [],
-      works:[],
+      works: [],
       strategys: [],
       titleHome: [],
       advertisement: [],
@@ -240,13 +240,14 @@ export default {
     this.$ajax.get('/api/designer/designer?no_cached=1&is_rec=1&itemsPerLoad=3').then((response) => {
       this.designers = response.data.data
     })
-    this.$ajax.get('/api/designer/works?is_rec=1&itemsPerLoad=3').then((res)=>{
+    this.$ajax.get('/api/designer/works?is_rec=1&itemsPerLoad=3').then((res) => {
       this.works = res.data.data
     })
-
-    this.city = this.regions[sessionStorage.getItem('province')][sessionStorage.getItem('city')]
   },
   methods: {
+    citys: function () {
+      this.city = this.regions[sessionStorage.getItem('province')][sessionStorage.getItem('city')]
+    },
     closeMsg: function (v) {
       this.showToast = v
     },

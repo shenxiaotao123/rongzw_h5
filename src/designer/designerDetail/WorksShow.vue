@@ -74,8 +74,8 @@
       <p style="clear: both"></p>
       <!--设计师作品推荐结束-->
       <!--右下角按钮开始-->
-      <right-bottom :rightBottom="tobuy" class="middle_rightBottom" @click="pay"></right-bottom>
-      <right-bottom :rightBottom="consultation" class="top_rightBottom"></right-bottom>
+      <right-bottom :rightBottom="tobuy" class="middle_rightBottom" ></right-bottom>
+      <right-bottom :rightBottom="consultation" class="top_rightBottom" ></right-bottom>
       <!--右下角按钮结束-->
       <!--最下-->
       <div class="menu">
@@ -126,22 +126,15 @@ export default {
       article: '',
       designer: {},
       msgObj: {
-        msgs: '您确定要直接购买该案例里的施工图吗? ',
-        btns: ['yes', 'no'],
-        title: '温馨提示',
-        url: '/payment',
         left: false,
-        position: 'middle'
+        position: 'middle',
+        from: 'down'
       },
       tobuy: {
-        type: 'tobuy',
-        imgUrl: require('@/assets/img/buy.png'),
-        url: ''
+        imgUrl: require('@/assets/img/buy.png')
       },
       consultation: {
-        type: 'consultation',
-        imgUrl: require('@/assets/img/consultation.png'),
-        url: ''
+        imgUrl: require('@/assets/img/consultation.png')
       },
       tuijian: {}
     }
@@ -170,9 +163,6 @@ export default {
     tjian: function (id, deid) {
       this.$router.push({path: '/worksShow', query: {workid: id, designerid: deid}})
       window.location.reload()
-    },
-    pay: function () {
-      alert()
     }
   }
 }

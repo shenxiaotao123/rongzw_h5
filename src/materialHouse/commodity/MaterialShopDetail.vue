@@ -143,8 +143,8 @@
         <span class="gray">已经到底啦</span>
       </p>
 <!--为您推荐-->
-      <msg v-if="this.$store.state.showToast" :msgObj="msgObj" :order="order"  @to="to"></msg>
-      <bmenu @cart="shop('cart')" @bay="shop('bay')"/>
+      <msg v-if="this.$store.state.showToast" :msgObj="fmsgObj" :order="order"  @to="to"></msg>
+      <bmenu @al="al"/>
 </div>
 </template>
 
@@ -191,7 +191,7 @@ export default {
       store: {},
       comment: [],
       goods: [],
-      msgObj: {
+      fmsgObj: {
         title: '优惠卷',
         left: true,
         position: 'bottom',
@@ -224,8 +224,8 @@ export default {
     }
   },
   methods: {
-    position(val){
-      var a = '#maodian'+val
+    position (val) {
+      var a = '#maodian' + val
       const returnEle = document.querySelector(a)
       if (returnEle) {
         returnEle.scrollIntoView(true)
@@ -248,19 +248,35 @@ export default {
       this.$store.state.showToast = false
     },
     shop: function (val) {
-      this.msgObj.from = 'shopNum'
-      this.msgObj.title = ''
+      this.fmsgObj = {
+        title: '',
+        left: true,
+        position: 'bottom',
+        from: 'shopNum',
+        btns: ['yes'],
+        detial: this.goods
+      }
       this.$store.state.showToast = true
-      this.msgObj.btns = ['yes']
       this.order.type = val
-      this.msgObj.detail = this.goods
     },
     chooseNum: function () {
-      this.msgObj.from = 'shopNum'
-      this.msgObj.title = ''
+      this.fmsgObj = {
+        title: '',
+        left: true,
+        position: 'bottom',
+        from: 'shopNum',
+        btns: [],
+        detial: this.goods
+      }
       this.$store.state.showToast = true
-      this.msgObj.btns = []
-      this.msgObj.detail = this.goods
+    },
+    al () {
+      this.fmsgObj = {
+        left: false,
+        position: 'middle',
+        from: 'down'
+      }
+      this.$store.state.showToast = true
     },
     showDetail: function (id) {
       this.$router.push({path: '/materialShopDetail', query: {id: id}})
@@ -276,7 +292,6 @@ export default {
     },
     youhuijuan: function () {
       this.$store.state.showToast = true
-      document.getElementById('pj').scrollIntoView()
     }
   },
   computed: {

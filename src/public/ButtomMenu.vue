@@ -18,7 +18,7 @@
       <van-goods-action>
         <van-goods-action-icon icon="shop-o" text="店铺" @click="to('/store?id='+$route.query.id)"/>
         <van-goods-action-icon icon="chat-o" text="客服" @click="$emit('al')"/>
-        <van-goods-action-icon icon="cart-o" text="购物车" @click="$emit('al')" info="12" />
+        <van-goods-action-icon icon="cart-o" text="购物车" @click="$emit('al')"/>
         <van-goods-action-button type="warning" text="加入购物车" @click="$emit('al')" />
         <van-goods-action-button type="danger" text="立即购买" @click="$emit('al')" />
       </van-goods-action>

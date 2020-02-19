@@ -13,16 +13,28 @@
       <span class="gray" style="font-size: 4vw;width: 30%;text-align: center">共2件</span>
       <button class="red_btn jiesuan" @click="$router.push({path: '/payment',query:{from:$route.path}})">提交订单</button>
     </p>
-    <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="menu">
-      <img src="@/assets/img/dianpu.png" @click="to('/store?id='+$route.query.id)"/>
-      <img src="@/assets/img/咨询.png" @click="$emit('al')"/>
-      <img src="@/assets/img/购物车-23.png" @click="$emit('al')"/>
-      <button class="yellow_white_btn btn fr" @click="$emit('al')">下载app立即购买</button>
+    <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="">
+
+      <van-goods-action>
+        <van-goods-action-icon icon="shop-o" text="店铺" @click="to('/store?id='+$route.query.id)"/>
+        <van-goods-action-icon icon="chat-o" text="客服" @click="$emit('al')"/>
+        <van-goods-action-icon icon="cart-o" text="购物车" @click="$emit('al')" info="12" />
+        <van-goods-action-button type="warning" text="加入购物车" @click="$emit('al')" />
+        <van-goods-action-button type="danger" text="立即购买" @click="$emit('al')" />
+      </van-goods-action>
+
     </p>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import { GoodsAction, GoodsActionIcon, GoodsActionButton, Toast } from 'vant'
+
+Vue.use(GoodsAction)
+Vue.use(GoodsActionButton)
+Vue.use(GoodsActionIcon)
+
 export default {
   name: 'ButtomMenu',
   props: ['totalPrice'],

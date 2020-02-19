@@ -14,11 +14,10 @@
       <button class="red_btn jiesuan" @click="$router.push({path: '/payment',query:{from:$route.path}})">提交订单</button>
     </p>
     <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="menu">
-      <img src="@/assets/img/dianpu.png" />
-      <img src="@/assets/img/咨询.png"/>
-      <img src="@/assets/img/购物车-23.png" @click="to('/shopCart')"/>
-      <button class="yellow_white_btn btn fr" @click="emit('bay')">立即购买</button>
-      <button class="red_btn btn fr" @click="emit('cart')">加入购物车</button>
+      <img src="@/assets/img/dianpu.png" @click="to('/store?id='+$route.query.id)"/>
+      <img src="@/assets/img/咨询.png" @click="$emit('al')"/>
+      <img src="@/assets/img/购物车-23.png" @click="$emit('al')"/>
+      <button class="yellow_white_btn btn fr" @click="$emit('al')">下载app立即购买</button>
     </p>
   </div>
 </template>
@@ -29,18 +28,15 @@ export default {
   props: ['totalPrice'],
   data () {
     return {
+      msgObj: {
+        left: false,
+        position: 'middle',
+        from: 'down'
+      },
       route: this.$route.path
     }
   },
   methods: {
-    emit: function (e) {
-      var input = e.target
-      if (input === undefined) {
-        this.$emit(e)
-      } else {
-        this.$emit(input.value, input.checked)
-      }
-    },
     to: function (url) {
       this.$router.push({path: url})
     }

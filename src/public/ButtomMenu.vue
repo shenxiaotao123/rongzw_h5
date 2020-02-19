@@ -13,17 +13,37 @@
       <span class="gray" style="font-size: 4vw;width: 30%;text-align: center">共2件</span>
       <button class="red_btn jiesuan" @click="$router.push({path: '/payment',query:{from:$route.path}})">提交订单</button>
     </p>
-    <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="menu">
-      <img src="@/assets/img/dianpu.png" />
-      <img src="@/assets/img/咨询.png"/>
-      <img src="@/assets/img/购物车-23.png" @click="to('/shopCart')"/>
-      <button class="yellow_white_btn btn fr" @click="emit('bay')">立即购买</button>
-      <button class="red_btn btn fr" @click="emit('cart')">加入购物车</button>
+
+
+
+    <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="">
+
+      <van-goods-action>
+        <van-goods-action-icon icon="shop-o" text="店铺" />
+        <van-goods-action-icon icon="chat-o" text="客服" />
+        <van-goods-action-icon icon="cart-o" text="购物车" @click="to('/shopCart')" info="12" />
+        <van-goods-action-button type="warning" text="加入购物车" @click="emit('cart')" />
+        <van-goods-action-button type="danger" text="立即购买" @click="emit('bay')" />
+      </van-goods-action>
+
+      <!--<img src="@/assets/img/dianpu.png" />-->
+      <!--<img src="@/assets/img/咨询.png"/>-->
+      <!--<img src="@/assets/img/购物车-23.png" @click="to('/shopCart')"/>-->
+      <!--<button class="yellow_white_btn btn fr" @click="emit('bay')">立即购买</button>-->
+      <!--<button class="red_btn btn fr" @click="emit('cart')">加入购物车</button>-->
     </p>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue';
+  import { GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
+  Vue.use(GoodsAction);
+  Vue.use(GoodsActionButton);
+  Vue.use(GoodsActionIcon);
+
+  import { Toast } from 'vant';
+
 export default {
   name: 'ButtomMenu',
   props: ['totalPrice'],

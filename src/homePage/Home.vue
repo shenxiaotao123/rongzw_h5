@@ -8,6 +8,7 @@
           <input type="text" placeholder="找施工，设计师，主材" v-model="search"/>
           <img src="../assets/img/msg.png" height="15" width="18"/>
         </div>
+
         <swiper :options="titleSwiperOption">
           <swiper-slide v-for="tt of titleHome" style="height: 41vw;" >
             <div style=" margin: 0 2vw;">

@@ -33,7 +33,7 @@ import materialSettlement from '@/materialHouse/commodity/MateriaOrderSettlement
 import payResult from '@/public/PayResult'
 import address from '@/public/Address'
 import addressAdd from '@/public/AddressAdd'
-import account from '@/homePage/account' //我的
+import account from '@/homePage/account' 
 Vue.use(Router)
 export default new Router({
   routes: [

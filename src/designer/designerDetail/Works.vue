@@ -3,7 +3,7 @@
     <div v-for="designer in designers" class="works" :key="designer.id" v-if="path.indexOf('showDetail')>-1" >
 
       <swiper :options="swiperOption1" style="height: 25vw; touch-action: none;margin-top: 2vw">
-        <swiper-slide v-for="gg of designer.work_images">
+        <swiper-slide v-for="(gg,index) of designer.work_images" :key="index">
           <img :src="gg" @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})" class="img"/>
         </swiper-slide>
       </swiper>

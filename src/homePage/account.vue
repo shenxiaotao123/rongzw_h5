@@ -38,12 +38,11 @@
 </template>
 
 <script>
-  import Vue from 'vue';
+import Vue from 'vue'
   //vant单元格
   import { Cell, CellGroup } from 'vant';
   Vue.use(Cell);
   Vue.use(CellGroup);
-
   //vant布局
   import { Col, Row } from 'vant';
   Vue.use(Col);
@@ -51,7 +50,6 @@
 
     export default {
         name: "account"
-
     }
 </script>
 

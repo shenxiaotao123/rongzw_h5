@@ -21,9 +21,7 @@
 export default {
   name: 'Comment2',
   components:[bm],
-  props:['comments','authorId'],
-  methods:{
-  },
+  props:['comments', 'authorId'],
   data () {
     return {
     }

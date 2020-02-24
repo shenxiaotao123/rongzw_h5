@@ -100,9 +100,6 @@ export default {
     }
   },
   computed: {
-    commit: function () {
-
-    },
     classObject: function () {
       return {
         width: 100 / this.types.length + '%'

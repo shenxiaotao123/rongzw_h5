@@ -2,7 +2,7 @@
     <div class="pageColor" style="height: 100%;">
       <mt :titleC="titleC"/>
       <!--有地址-->
-      <div  v-for="(add,index) of adds">
+      <div  v-for="(add,index) of adds" :key="index">
         <div class="white user_add">
           <p>
             {{add.name}}

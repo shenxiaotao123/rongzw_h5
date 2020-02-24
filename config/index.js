@@ -52,7 +52,7 @@ module.exports = {
 
   build: {
     // Template for stratPage.html
-    index: path.resolve(__dirname, '../dist/stratPage.html'),
+    index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),

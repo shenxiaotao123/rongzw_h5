@@ -28,7 +28,7 @@
 
           <p style="clear: both"/>
           <div  style="display: flex;justify-content: space-around; ">
-            <div v-for="good of storeGoods[index]" style="position: relative;" @click="$router.push({path: '/materialShopDetail', query: {id: good.spu_id}})">
+            <div v-for="(good,index) of storeGoods[index]" :key="index" style="position: relative;" @click="$router.push({path: '/materialShopDetail', query: {id: good.spu_id}})">
               <img :src="good.goods_thumb"  style="width: 30vw;height: 15vw;">
               <div style="position: absolute; bottom: 0;text-align: right;width: 100%;background-color: rgba(47,47,47,0.7);    color: white;">{{good.low_price}}</div>
             </div>

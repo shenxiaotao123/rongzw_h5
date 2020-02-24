@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="company" v-if="companys.id  === undefined"  @click="$router.push({path:'/company',query:{id:company.id}})" v-for="(company) in companys">
+    <div class="company" v-if="companys.id  === undefined"  @click="$router.push({path:'/company',query:{id:company.id}})" v-for="(company,index) in companys" :key="index">
       <div class="companyImg">
         <img :src="company.avatar" class="img"/></div>
       <div class="companyDetail">

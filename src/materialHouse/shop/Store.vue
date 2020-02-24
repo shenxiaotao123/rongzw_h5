@@ -163,7 +163,6 @@ export default {
     window.removeEventListener('scroll', this.handleFun)
   },
   mounted () {
-
     let _this = this
     this.$ajax.get('/api/shop/store/' + this.$route.query.id).then((response) => {
       _this.store = response.data.data

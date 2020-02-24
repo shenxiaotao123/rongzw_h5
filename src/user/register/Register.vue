@@ -8,24 +8,12 @@
     </div>
 
     <div class="body">
-      <div v-show="!code">
         <i class="icon-user"></i>
         <input    placeholder="手机号"  type="text"   /><br><br>
         <i class="icon-code" ></i>
         <input  placeholder="验证码"   class="codeInput"  type="text" />
         <button  class="text-code"> 获取验证码</button>
-        <button class="btn-login" @click="next">下一步</button>
-      </div>
-
-      <div v-show="code">
-        <i class="icon-lock"></i>
-        <input    placeholder="新密码（8-16位数字或字母）"  type="password" v-model="password"/><br><br>
-        <i class="icon-lock" ></i>
-        <input  placeholder="再次输入"     type="password" v-model="passagain" />
-        <p>{{reStr}}</p>
-        <button class="btn-login" @click="verification">完成</button>
-      </div>
-
+        <button class="btn-login">绑定</button>
     </div>
 
   </div>
@@ -42,26 +30,11 @@ export default {
       passagain: '',
       reStr: '',
       code: false,
-      title: '注册 （1/2）'
+      title: '手机号码绑定'
     }
   },
   methods: {
-    back () {
-      this.$router.go(-1)
-    },
-    verification: function () {
-      if (this.password.length < 8 || this.password.length > 16) {
-        this.reStr = '密码长度应在8-16位之间'
-      } else if (!(this.password === this.passagain)) {
-        this.reStr = '两次输入的密码不一致'
-      } else {
-        this.$router.push('/')
-      }
-    },
-    next: function () {
-      this.code = true
-      this.title = '注册 （2/2）'
-    }
+
   }
 }
 </script>
@@ -118,7 +91,7 @@ export default {
          background-size:50%;
          background-image: url("../../assets/img/loginUser/code.png");
        }  .btn-login{
-            background-color: #108EE9 !important;
+            background-color: #dd1a21 !important;
             height: 13vw;
             width: 82vw;
             color: white;

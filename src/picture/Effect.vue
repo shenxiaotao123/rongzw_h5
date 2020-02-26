@@ -1,8 +1,7 @@
 <template>
     <div>
-
         <drop-down :types="dd" @fg="fg" @style="style" @money="money" class="top_dd" />
-        <div style="margin: 2vw;">
+        <div style="margin: 0 10px 0px 10px;">
           <img src="../assets/img/找设计（合并）.png" class="img"/>
         </div>
       <site @up="concatSites" :sites="work"/>

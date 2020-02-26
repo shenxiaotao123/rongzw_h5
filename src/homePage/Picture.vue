@@ -1,5 +1,5 @@
 <template>
-<div  style="margin:26vw 0  30vw 0">
+<div  style="margin:96px 0 30vw 0">
   <div class="title top_title">
     <ul>
       <li class="center">
@@ -32,8 +32,8 @@ export default {
 
 <style scoped>
   .router-link-active {
-    border-bottom: .4vw solid #DD1A21;
-    height: 13.60vw;
+    border-bottom: 2px solid #DD1A21;
+    height: 44px;
     display: inline-block;
   }
   a{
@@ -47,8 +47,9 @@ ul{
   li{
     float: left;
     width: 50%;
-    line-height: 14vw;
+    line-height: 46px;
     text-align: left;
+    font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;
   }
   .center
   { text-align: center;}

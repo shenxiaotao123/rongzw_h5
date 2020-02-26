@@ -1,6 +1,6 @@
 <template>
     <div class="pageColor" >
-      <navigation :types="types" :model="tt" @up="up" class="top_dd" style="top: 14vw;"/>
+      <navigation :types="types" :model="tt" @up="up" class="top_dd" style="top: 46px;"/>
       <!--推荐-->
       <div class="tuijian">
         <div class="left" @click="$router.push({path:'/construction'})">
@@ -140,7 +140,7 @@ export default {
     width: 35%; height: 100%;
   }
   .red_btn{
-    margin: 5vw;
+    margin: 10px 15px;
     width: 90%;
     height: 10vw;
     border-radius: 5vw;

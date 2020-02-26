@@ -4,11 +4,11 @@
 
       <toptitle v-show="navigation" class="topmenu" :titleC="titleC" :titleR="titleR" @position="position"/>
       <!--头信息-->
-      <div style="margin: 0 5vw;">
+      <div class="back_white padder-md clear">
         <p  class="biaoti" >
           {{goods.goods_name}}
         </p>
-        <p  class="gray">
+        <p  class="gray size12">
           {{goods.goods_name}}
         </p>
         <br>
@@ -17,34 +17,43 @@
           <span class="gray"  style="text-decoration: line-through;" v-if="goods.line_price!== '0.00'">￥{{goods.line_price}}</span>
           <span class="gray right">已售{{goods.sales_actual+goods.sales_initial}}</span>
         </p>
-        <p>
+        <p class="m-b-md">
           <button class="white_btn" v-for="tip of goods.infos.spu_tips">{{tip}}</button>
           <label class="right"><img src="../../assets/img/shoucang.png"  class="imgs"/>&nbsp;收藏</label>
         </p>
       </div>
-      <div style="height: 1.5vw; margin-top: 5vw;" class="backcolor"></div>
       <!--头信息-->
 
       <!---商品详情-->
-      <div class="details">
-        <p @click="youhuijuan">
-          <span>优惠劵</span>
-          <i class="right">
-            <button class="red_red_brn">收藏省10元</button>
-            <button class="red_red_brn">满299减10</button>
-            <button class="red_red_brn">满399减20</button>
-            <img src="../../assets/img/rightArrow.png" style="width: 4vw;"/>
-          </i>
-        </p>
-        <p>
-          <span>发货</span>
-          <img src="../../assets/img/position.png" style="width: 4vw;"/>
-          {{store.address}} |     快递: 0.00
-        </p>
-        <p @click="chooseNum">
-          <span>选择</span>
-          规格数量
-        </p>
+      <div class="details back_white m-t-sm">
+
+      <van-cell is-link @click="youhuijuan" title-style="color:#999;">
+        <template slot="title">
+          <span class="custom-title">优惠劵</span>
+          <div class="fr">
+            <van-tag color="#FDE8EF" text-color="#C82126">收藏省10元</van-tag>
+            <van-tag color="#FDE8EF" text-color="#C82126">满299减10</van-tag>
+            <van-tag color="#FDE8EF" text-color="#C82126">满399减20</van-tag>
+          </div>
+        </template>
+      </van-cell>
+        <van-cell is-link>
+          <template slot="title">
+            <span class="custom-title gray">发货</span>
+            <span class="m-l-md">
+              <van-icon name="location-o" />
+              {{store.address}} |     快递: 0.00
+            </span>
+
+          </template>
+        </van-cell>
+        <van-cell is-link @click="chooseNum">
+          <template slot="title">
+            <span class="custom-title gray">选择</span>
+            <span class="m-l-md">规格数量</span>
+          </template>
+        </van-cell>
+
       </div>
       <div style="height: 1.5vw;" class="backcolor"></div>
       <ul class="zp">
@@ -149,6 +158,14 @@
 </template>
 
 <script>
+  // vant Tag 标记
+  import Vue from 'vue';
+  import { Tag, Icon, Cell, CellGroup  } from 'vant';
+  Vue.use(Tag);
+  Vue.use(Cell);
+  Vue.use(CellGroup);
+  Vue.use(Icon);
+
 import mtitle from '@/public/ImgTitle'
 import toptitle from '@/public/TextTitle.vue'
 import msg from '@/public/Msg'
@@ -401,10 +418,6 @@ export default {
   }
   .imgs{
     width: 4vw;
-  }
-  .red_red_brn{
-    padding: 1vw;
-    font-size: x-small;
   }
   .details p span{
     color: #999999;

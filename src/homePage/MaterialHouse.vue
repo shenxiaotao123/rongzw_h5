@@ -1,5 +1,5 @@
 <template>
-    <div style="    padding-bottom: 25vw;">
+    <div style="padding-bottom: 20vw;">
       <mtitle :titleC="title.titlec" :titleL="title.titleL" :titleR="title.titleR" @search="search"></mtitle>
       <!--轮播图-->
       <swiper :options="swiperOption" style="height: 40vw;">
@@ -56,7 +56,7 @@
       </div>
       <!--合作对象-->
       <!--为您推荐-->
-      <div class="hezuo">
+      <div class="hezuo" style="margin-top: 10px">
         <p class="all" style="margin-bottom: 5vw;">
           <span class="heavy" style="    font-size: 4vw;    font-weight: 600;">为您推荐</span>
         </p>
@@ -74,7 +74,6 @@
 
       </div>
       <!--为您推荐-->
-      <div style="clear: both"></div>
     </div>
 </template>
 
@@ -174,6 +173,7 @@ export default {
 </script>
 
 <style scoped>
+  .effect { background: #fff;}
   .forYou>p{
     height: 3.5vw;
     overflow: hidden;
@@ -220,8 +220,10 @@ export default {
     border-bottom: .5vw solid #f7f7f7;
   }
   .hezuo{
-    margin-top: 5vw;
+    padding-top: 15px;
+    background: #fff;
   }
+  .hezuo:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
   .backcolor>div>img{
     margin-right: 2.5vw;
   }

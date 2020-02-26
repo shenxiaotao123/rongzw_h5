@@ -111,7 +111,7 @@ export default {
   }
   .titleR{
     position: absolute;
-    top: 25%;
+    top: 0;
     right: 2%;
   }
   .titleR>img{

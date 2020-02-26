@@ -1,5 +1,5 @@
 <template>
-    <div style="margin:28vw 0 30vw 0 ">
+    <div style="margin:90px 0 30vw 0 ">
       <div class="title top_title">
 
         <router-link to="/index/strategy/gl" class="S_titlecenter regular" >
@@ -73,10 +73,10 @@ export default {
   a {
     color:black;
   }
-  .S_titlecenter { line-height: 14vw; font-size: 4.4vw;}
+  .S_titlecenter { line-height: 46px; font-size: 16px; font-family: PingFang SC, 'Helvetica Neue', Arial, sans-serif;}
   .router-link-active {
-    border-bottom: .4vw solid red;
-    height: 13.60vw;
+    border-bottom: 2px solid red;
+    height: 44px;
     display: inline-block;
   }
   .tuijian>.right{

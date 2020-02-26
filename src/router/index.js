@@ -33,10 +33,30 @@ import materialSettlement from '@/materialHouse/commodity/MateriaOrderSettlement
 import payResult from '@/public/PayResult'
 import address from '@/public/Address'
 import addressAdd from '@/public/AddressAdd'
-import account from '@/homePage/account' 
+import account from '@/homePage/account'
 Vue.use(Router)
 export default new Router({
   routes: [
+    {
+      path: '/aboutUs',
+      name: 'AboutUs',
+      component: () => import('@/user/myHome/AboutUs')
+    },
+    {
+      path: '/contactUs',
+      name: 'contactUs',
+      component: () => import('@/user/myHome/contactUs')
+    },
+    {
+      path: '/checkStyle',
+      name: 'checkStyle',
+      component: () => import('@/user/myHome/checkStyle')
+    },
+    {
+      path: '/myhome',
+      name: 'myhome',
+      component: () => import('@/user/myHome/index')
+    },
     {
       path: '/siteList',
       name: 'siteList',

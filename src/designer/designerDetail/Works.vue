@@ -3,7 +3,7 @@
     <div v-for="designer in designers" class="works" :key="designer.id" v-if="path.indexOf('showDetail')>-1" >
 
       <swiper :options="swiperOption1" style="height: 25vw; touch-action: none;margin-top: 2vw">
-        <swiper-slide v-for="gg of designer.work_images">
+        <swiper-slide v-for="(gg,index) of designer.work_images" :key="index">
           <img :src="gg" @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})" class="img"/>
         </swiper-slide>
       </swiper>
@@ -18,7 +18,7 @@
           <li class="gray"  >{{designer.shape.name}}</li>
           <li  class="gray" >{{designer.mianji}}m²</li>
         </ul>
-        <button class="bule_white_btn right" >立刻咨询</button>
+        <button class="bule_white_btn right" @click="$store.state.showToast = true">立刻咨询</button>
       </div>
     </div>
     <div v-for="(designer) in works" class="works" :key="designer.id" v-if="path.indexOf('home')>-1||path.indexOf('picture')>-1">
@@ -50,6 +50,8 @@
         </div>
       </div>
     </div>
+
+    <msg v-show="this.$store.state.showToast" :msgObj="msgObj"></msg>
   </div>
 
 </template>
@@ -60,6 +62,11 @@ export default {
   props: ['works'],
   data () {
     return {
+      msgObj: {
+        left: false,
+        position: 'middle',
+        from: 'down'
+      },
       designers: [],
       path: window.location.href,
       swiperOption1: {
@@ -101,10 +108,9 @@ export default {
           _this.$ajax.get(path).then((response) => {
             _this.designers = _this.designers.concat(response.data.data)
           })
-        }else{
+        } else {
           _this.$emit('pic')
         }
-
       }
     }
   },
@@ -113,16 +119,16 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleFun)
-    if (this.path.indexOf('home')>-1) {
+    if (this.path.indexOf('home') > -1) {
       window.removeEventListener('scroll', this.handleFun)
     }
 
     let path = '/api/designer/works'
     if (this.$route.query.id) {
       path = path + '?designer_id=' + this.$route.query.id
-    } else if (this.path.indexOf('home') >-1) {
+    } else if (this.path.indexOf('home') > -1) {
       path = path + '?is_rec=1&itemsPerLoad=3'
-    } else if (this.path.indexOf('pic')>-1) {
+    } else if (this.path.indexOf('pic') > -1) {
     }
     this.$ajax.get(path).then((response) => {
       this.designers = response.data.data

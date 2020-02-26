@@ -290,6 +290,7 @@ body,#app,html{
 .white{
   background-color: white;
 }
+.white:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
 .red_white_btn{
   border: .1vw solid #DD1A21;
   color: #DD1A21;
@@ -516,7 +517,7 @@ body,#app,html{
 }
 .top_dd{
   position: fixed !important;
-  top: 15vw;
+  top: 13vw;
   width: -webkit-fill-available;
   z-index: 999;
 }

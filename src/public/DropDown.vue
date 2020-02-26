@@ -1,6 +1,6 @@
 <template>
     <div class="white">
-      <ul>
+      <ul class="sxulbox">
         <li class="n" :style="classObject" v-for="(type,index) of types">
 
           <!--就一个-->
@@ -100,9 +100,6 @@ export default {
     }
   },
   computed: {
-    commit: function () {
-
-    },
     classObject: function () {
       return {
         width: 100 / this.types.length + '%'
@@ -146,6 +143,7 @@ export default {
 </script>
 
 <style scoped>
+  .sxulbox:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
   .sort{
     line-height: 15vw;
     border-bottom: .1vw solid #f7f7f7;
@@ -160,7 +158,6 @@ export default {
     background-color: #F1F3F6 !important;
     border-radius: 1vw;
     margin: 1vw;
-    font-size: 1vw;
   }
 
   .city{
@@ -188,7 +185,6 @@ export default {
     width: 3vw;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
     position: absolute;
     right: -5vw;
   }

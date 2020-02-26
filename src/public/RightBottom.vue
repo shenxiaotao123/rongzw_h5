@@ -15,10 +15,8 @@ export default {
         window.pageYOffse = 0
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
-      } else if (type === 'tobuy') {
+      } else {
         this.$store.state.showToast = true
-      } else if (type === 'consultation') {
-
       }
     }
   },

@@ -12,7 +12,6 @@ import Works from '@/designer/designerDetail/Works'
 import Profile from '@/designer/designerDetail/Profile'
 import msg from '@/util/Message'
 import index from '@/homePage/index'
-import my from '@/homePage/my'
 import MessageCenter from '@/message/MessageCenter'
 import Jiaoyi from '@/message/fenlei/Jiaoyi'
 import Construction from '@/construction/Construction'
@@ -34,6 +33,7 @@ import materialSettlement from '@/materialHouse/commodity/MateriaOrderSettlement
 import payResult from '@/public/PayResult'
 import address from '@/public/Address'
 import addressAdd from '@/public/AddressAdd'
+import account from '@/homePage/account' 
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -222,7 +222,7 @@ export default new Router({
         {
           path: 'my',
           name: 'my',
-          component: my
+          component: account
         },
         {
           path: 'materialHouse',

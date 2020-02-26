@@ -4,7 +4,7 @@
       <!--轮播图-->
       <swiper :options="swiperOption" style="height: 40vw;">
         <swiper-slide v-for="tt of indexSwiper">
-          <img :src="tt.pic_url" class="img" style="float: none; width: 100%;"/>
+          <img :src="tt.pic_url" class="img" style="float: none; width: 100%;" @click="$router.push({path:tt.url})"/>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"/>
       </swiper>
@@ -22,7 +22,7 @@
       <!--廣告位-->
       <div  class="backcolor">
         <div class="navigationBar">
-          <img :src="tt.pic_url"  class="img" v-for="(tt,index) of banner">
+          <img :src="tt.pic_url"  class="img" v-for="(tt,index) of banner" @click="$router.push({path:tt.url})">
         </div>
       </div>
       <!--廣告位-->

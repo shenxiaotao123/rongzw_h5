@@ -13,34 +13,42 @@
       <span class="gray" style="font-size: 4vw;width: 30%;text-align: center">共2件</span>
       <button class="red_btn jiesuan" @click="$router.push({path: '/payment',query:{from:$route.path}})">提交订单</button>
     </p>
-    <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="menu">
-      <img src="@/assets/img/dianpu.png" />
-      <img src="@/assets/img/咨询.png"/>
-      <img src="@/assets/img/购物车-23.png" @click="to('/shopCart')"/>
-      <button class="red_btn btn" @click="emit('cart')">加入购物车</button>
-      <button class="yellow_white_btn btn" @click="emit('bay')">立即购买</button>
+    <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="">
+
+      <van-goods-action>
+        <van-goods-action-icon icon="shop-o" text="店铺" @click="to('/store?id='+$route.query.id)"/>
+        <van-goods-action-icon icon="chat-o" text="客服" @click="$emit('al')"/>
+        <van-goods-action-icon icon="cart-o" text="购物车" @click="$emit('al')"/>
+        <van-goods-action-button type="warning" text="加入购物车" @click="$emit('al')" />
+        <van-goods-action-button type="danger" text="立即购买" @click="$emit('al')" />
+      </van-goods-action>
+
     </p>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import { GoodsAction, GoodsActionIcon, GoodsActionButton, Toast } from 'vant'
+
+Vue.use(GoodsAction)
+Vue.use(GoodsActionButton)
+Vue.use(GoodsActionIcon)
+
 export default {
   name: 'ButtomMenu',
   props: ['totalPrice'],
   data () {
     return {
+      msgObj: {
+        left: false,
+        position: 'middle',
+        from: 'down'
+      },
       route: this.$route.path
     }
   },
   methods: {
-    emit: function (e) {
-      var input = e.target
-      if (input === undefined) {
-        this.$emit(e)
-      } else {
-        this.$emit(input.value, input.checked)
-      }
-    },
     to: function (url) {
       this.$router.push({path: url})
     }
@@ -49,19 +57,21 @@ export default {
 </script>
 
 <style scoped>
+  .fr { float:right;}
   .menu .btn{
     padding: 2vw 5vw;
     border-radius: 6vw;
     font-size: medium;
-    margin-left: 2vw;
+    margin:1vw 2vw 0 2vw;
   }
   .menu>img{
-    width: 6vw;
-    height: 6vw;
+    width: 5vw;
+    height: 5vw;
     margin-left: 4vw;
   }
   .menu{
     line-height: 13vw;
+    border-top: 1px solid #eee;
   }
   .jiesuan{
     padding: 2vw 8vw;

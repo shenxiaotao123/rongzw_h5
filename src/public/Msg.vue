@@ -12,6 +12,32 @@
       </p>
     </div>
     <!--中间的-->
+    <!--引导下载-->
+    <div v-if="msgObj.position==='middle'&&msgObj.from === 'down'" class="toast all" style="    top: 50vw;">
+      <img src="../assets/img/close.png" @click="closeMsg"/>
+
+      <div style=" position: relative;display: flex; width: 100%;   justify-content: space-around; margin-top: 12vw;margin-bottom: -5vw">
+        <div style="width: 35%">
+          <img src="../assets/img/app_down.png" class="img"/>
+        </div>
+        <div style="width: 55%">
+          <p style="font-size: 4vw;width: 45vw;text-align: left; line-height: 5vw">
+            为了您更好的支付体验， 请下载 <i class="cinnabar">荣装网APP</i>继续进行  下一步操作哦！
+          </p>
+          <br>
+          <p class="gray" style="text-align: left;font-size: 1vw;line-height: 5vw">
+            荣装网APP可以实时接受订单信息 功能更全，体验更佳！
+          </p>
+          <br>
+          <p style="transform: scale(0.9); font-size: 1vw;position: relative;bottom: 3vw;left: 28.5vw; width: 23vw">
+            扫描二维码下载
+          </p>
+          <img src="../assets/img/app_down_code.png" style="width: 20vw;position: relative;    right: -15vw;    height: 20vw;    bottom: 3vw;"/>
+        </div>
+      </div>
+
+    </div>
+    <!--引导下载-->
 
     <!--设计师订单-->
     <div v-if="msgObj.position==='bottom'&&msgObj.from === 'designerPay'" class=" toast bottommsg">
@@ -188,7 +214,7 @@ export default {
           for (var i = 0; i < _this.selectSpecs.spec.length; i++) {
             b.push(_this.selectSpecs.spec[i] + '')
           }
-          if (a.toString() === b.toString() && item.stock > 0 ) {
+          if (a.toString() === b.toString() && item.stock > 0) {
             _this.msgObj.detail.low_price = item.price
           }
         })
@@ -197,8 +223,8 @@ export default {
   },
   methods: {
     closeMsg: function () {
-      this.$emit('closeMsg', false)
-      this.$store.commit('upMsgState', false)
+      this.$store.state.showToast = false
+      this.emit('close', this.$store.state.showToast)
     },
     to: function (url) {
       if (Object.keys(this.msgObj.query).length > 0) {
@@ -226,7 +252,11 @@ export default {
   },
   computed: {
     newSpec: function () {
-      return this.selectSpecs.spec
+      if (this.selectSpecs) {
+        return this.selectSpecs.spec
+      } else {
+        return null
+      }
     },
     yesBtn: function () {
       return this.msgObj.btns.indexOf('yes') > -1

@@ -25,6 +25,7 @@ export default {
     }
   },
   created () {
+    window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9cf296975442a767&redirect_uri=rongzw.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
     var _this = this
     setTimeout(function () {
       this.show = false

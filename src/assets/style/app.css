@@ -375,7 +375,7 @@ body,#app,html{
 }
 .red_btn{
   color: white;
-  background-color: #DD1A21;
+  background-color: #DD1A21 !important;
 }
 .yellow_white_btn{
   background-color: #FFA700;

@@ -3,12 +3,12 @@
     <swiper-slide v-for="site of constructionSite" :key="site.id">
       <img :src="site.thumb_img" style="height: 22vw; border-radius: 2vw" />
 
-        <p class="heavy" style="padding:1vw 0 0 1vw;  text-align: center; line-height: 1.2;">{{site.quarter_name}}|{{site.shape_name}}</p>
-
+      <p class="van-ellipsis" style="padding:1vw 0 0 1vw;  text-align: center; line-height: 1.2;">{{site.quarter_name}}|{{site.shape_name}}</p>
     </swiper-slide>
   </swiper>
 </template>
 <script>
+
 var _this = null
 export default {
   name: 'Scene',

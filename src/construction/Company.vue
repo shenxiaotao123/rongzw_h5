@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="back_white clear">
     <mtitle :titleC="titleC" :titleR="titleR" :titleL="titleL" @to="to"/>
     <company :companys="company" ></company>
     <div class="address">

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="back_white clear">
     <div class="company" v-if="companys.id  === undefined"  @click="$router.push({path:'/company',query:{id:company.id}})" v-for="(company,index) in companys" :key="index">
       <div class="companyImg">
         <img :src="company.avatar" class="img"/></div>
@@ -17,7 +17,6 @@
       </div>
       <!--<bmap :method="bma" :stratLng="company.lng"  :stratlat="company.lat" @juli="juli"/>-->
     </div>
-
     <div class=" company"  v-if="typeof companys.id  === 'number'" style="height: 25vw;">
       <div class="companyImg">
         <img :src="companys.avatar" class="img"/></div>
@@ -37,7 +36,6 @@
 
       </div>
     </div>
-
   </div>
 </template>
 

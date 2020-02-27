@@ -158,6 +158,9 @@ export default {
     background-color: #F1F3F6 !important;
     border-radius: 1vw;
     margin: 1vw;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
 
   .city{
@@ -197,5 +200,6 @@ export default {
     float: left;
     line-height: 50px;
     background-color: white;
+    font-size: 12px;
   }
 </style>

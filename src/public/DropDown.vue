@@ -158,6 +158,9 @@ export default {
     background-color: #F1F3F6 !important;
     border-radius: 1vw;
     margin: 1vw;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
 
   .city{
@@ -187,6 +190,7 @@ export default {
     background-position: center;
     position: absolute;
     right: -5vw;
+    top:2px;
   }
   .n>div>label{
     position: relative;
@@ -194,7 +198,8 @@ export default {
   .n{
     text-align: center;
     float: left;
-    padding: 3vw 0;
+    line-height: 50px;
     background-color: white;
+    font-size: 12px;
   }
 </style>

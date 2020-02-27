@@ -1,8 +1,8 @@
 <template>
-    <div class="backcolor" style="padding-top:13.5vw;height: 100%;">
+    <div class="backcolor" style="padding-top:46px; height:100%;">
       <mtitle :titleC="title.titlec"  :titleR="title.titleR" class="top_title"></mtitle>
       <!--类目-->
-      <div class="white" :class="{showTitle:showAllType}" id="tt" style="margin-bottom: 2vw;">
+      <div class="white" :class="{showTitle:showAllType}" id="tt" style="margin-bottom:10px;">
         <navigation :types="types" :model="selectType" @up="up"/>
 
         <div v-show="childrens.length > 0" class="backcolor" style="    clear: both;     height: 8.5vw;">
@@ -18,15 +18,20 @@
       <drop-down :types="dd" @sort="sort" :class="{top_dd:top}"/>
       <!--筛选类目-->
       <!--商品-->
-      <div class="white" style=" padding: 0 5vw;">
-        <div class="forYou left" v-for="(shop,index) in shops" :key="index" @click="$router.push({path: '/materialShopDetail', query: {id: shop.spu_id}})">
-          <div style="    height: 20vw;    width: 40vw;"><img class="img" :src="shop.goods_thumb"/></div>
-          <p>{{shop.goods_name}}</p>
-          <p>
-            <span class="cinnabar">￥{{shop.low_price}} </span>
-            <span class="right gray">{{shop.sales_actual+shop.sales_initial}}人付款 </span>
-          </p>
-        </div>
+      <div class="white" style="padding: 0 10px;">
+        <van-row gutter="15">
+          <van-col span="12" v-for="(shop,index) in shops" :key="index" @click="$router.push({path: '/materialShopDetail', query: {id: shop.spu_id}})" class="forYou">
+            <div style=" height: 20vw; "><img class="img bor-r-5" :src="shop.goods_thumb"/></div>
+            <p class="van-ellipsis">{{shop.goods_name}}</p>
+            <p>
+              <span class="cinnabar">￥{{shop.low_price}} </span>
+              <span class="right gray">{{shop.sales_actual+shop.sales_initial}}人付款 </span>
+            </p>
+          </van-col>
+        </van-row>
+
+
+
         <div style="clear: both"><br/></div>
       </div>
       <!--商品-->
@@ -36,6 +41,13 @@
 </template>
 
 <script>
+  //vant布局
+  import Vue from 'vue';
+  import { Col, Row } from 'vant';
+  Vue.use(Col);
+  Vue.use(Row);
+
+
 import mtitle from '@/public/TextTitle'
 import dropDown from '@/public/DropDown'
 export default {
@@ -177,19 +189,12 @@ export default {
   padding-left: 5%;
 }
   .forYou>p{
-    height: 12%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    margin-top: 1vw;
+    line-height: 1.5;
+    font-size: 12px;
   }
-  .forYou>div{
-    height: 65%;
-  }
+  .van-ellipsis { margin-top: 5px; font-size: 14px;}
   .forYou{
-    height: 45vw;
-    width: 45.5%;
-    margin-left: 3%;
+    margin-bottom: 20px;
   }
   li{
     float: left;

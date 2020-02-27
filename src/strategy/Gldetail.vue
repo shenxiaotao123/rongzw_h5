@@ -3,7 +3,7 @@
   <mtitle :img="bbs.bbs_pic" style="height: 65vw;"/>
 
   <!--文章标识-->
-    <div class="article">
+    <div class="article back_white">
       <p>
         <span class="gray">
                 <img :src="bbs.bbs_user_image" class="user_portrait"/>{{bbs.bbs_user_name}}
@@ -32,15 +32,17 @@
   <!--文章标识-->
 
   <!--文章-->
-    <div class="article" id="artilcle" v-html="bbs.bbs_content"></div>
+  <div class="article back_white">
+    <div class="padder-v" id="artilcle" v-html="bbs.bbs_content"></div>
+  </div>
   <!--文章-->
 
   <!--为您推荐-->
-  <div class="white">
+  <div class="white clear">
     <p style="text-align: center;margin: 5vw;">
-      <span class="line"></span>&nbsp;&nbsp;&nbsp;
-      <span class="introduction-title">为您推荐</span>&nbsp;&nbsp;&nbsp;
-      <span class="line"></span>
+      <van-divider :style="{ color: '#333', borderColor: '#ccc', padding: '0 16px',}">
+        为您推荐
+      </van-divider>
     </p>
     <div class="forYou left" v-for="(wz,index) in wenzhang" :key="index" @click="to(wz.id)" v-if="index<19">
       <div><img class="img" :src="wz.bbs_pic" style="    border-radius: 3vw;"/></div>
@@ -54,19 +56,26 @@
   <!--为您推荐-->
 
   <!--底部-->
-  <div class="menu">
-    <input type="text" placeholder="想勾搭，先评论" class="left">
-    <div class="left " @click="$router.push({path:'/glReviews',query:{id:bbs.id,authorId:bbs.bbs_user_id}})">
-      <button class="tip_btn right" v-show="bbs.bbs_com_num>0"><i>{{bbs.bbs_com_num}}</i></button>
-      <img src="@/assets/img/dialogue.png" class="imgGray"/> <br>
-      <span class="left" style="transform: scale(0.7);">评论</span>
-    </div>
-    <div  class="left">
-      <img src="@/assets/img/redStar.png" class="imgGray" /><br>
-      <span class="left" style="transform: scale(0.7);">收藏</span>
-    </div>
-    <button class="red_btn">找设计</button>
-  </div>
+  <!--<div class="menu">-->
+    <!--<input type="text" placeholder="想勾搭，先评论" class="left">-->
+    <!--<div class="left m-l-sm m-t-xs" @click="$router.push({path:'/glReviews',query:{id:bbs.id,authorId:bbs.bbs_user_id}})">-->
+      <!--<button class="tip_btn right" v-show="bbs.bbs_com_num>0"><i>{{bbs.bbs_com_num}}</i></button>-->
+      <!--<p><van-icon name="chat-o" size="25" info="99+" /></p>-->
+      <!--<span class="left" style="transform: scale(0.7);">评论</span>-->
+    <!--</div>-->
+    <!--<div class="left m-l-sm m-t-xs">-->
+      <!--<p><van-icon name="star-o" size="25" /></p>-->
+      <!--<span class="left" style="transform: scale(0.7);">收藏</span>-->
+    <!--</div>-->
+    <!--<button class="red_btn fr m-t-xs m-r-sm">找设计</button>-->
+  <!--</div>-->
+
+  <van-goods-action class="menu">
+    <input type="text" placeholder="想勾搭，先评论" class="left menu_input">
+    <van-goods-action-icon icon="chat-o" text="评论" @click="$router.push({path:'/glReviews',query:{id:bbs.id,authorId:bbs.bbs_user_id}})" info="5" />
+    <van-goods-action-icon icon="star-o" text="收藏" />
+    <van-goods-action-button type="danger" text="找设计" @click="onClickButton" />
+  </van-goods-action>
   <!--底部-->
 
   <!--下拉顶部-->
@@ -75,7 +84,7 @@
     <p class="titleC">
       {{bbs.bbs_title}}
 
-    </p><img src="../assets/img/title/fenxiang.png" style="    width: 4vw;    position: absolute;    top: 5vw;    right: 4vw;"/>
+    </p><img src="../assets/img/title/fenxiang.png" style="width: 4vw; position: absolute; top: 33%; right: 4vw;"/>
     <right-buttom :rightBottom="rightBottom"  class="top_rightBottom" style="bottom: 20vw;"/>
   </div>
   <!--下拉顶部-->
@@ -86,6 +95,14 @@
 
 import rightButtom from '@/public/RightBottom'
 import mtitle from '@/public/ImgTitle'
+//vant Divider 分割线,图标,商品导航
+import Vue from 'vue';
+import { Divider,Icon,GoodsAction, GoodsActionIcon, GoodsActionButton,Toast } from 'vant';
+Vue.use(Divider);
+Vue.use(Icon);
+Vue.use(GoodsAction);
+Vue.use(GoodsActionButton);
+Vue.use(GoodsActionIcon);
 export default {
   name: 'GlDetail',
   components: {
@@ -145,7 +162,6 @@ export default {
     top: 0;
   }
   .titleC{
-    line-height: 15vw;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
@@ -166,7 +182,7 @@ export default {
   }
   .article{
     border-bottom: 2vw solid #f7f7f7;
-    padding: 2vw 5vw;
+    padding:5px 20px;
   }
   .red_red_brn{
     padding: 1.5vw;
@@ -186,41 +202,25 @@ export default {
   .forYou>div{
     height: 60%;
   }
-
   .red_btn{
-    float: left;
     height: 75%;
     width: 26vw;
     text-align: center;
     border-radius: 5vw;
     font-size: large;
     font-weight: 700;
-    margin-top: 2vw;
   }
-
-  .menu div{
-    margin-top: 2vw;
-    margin-right: 2vw;
-    position: relative;
-  }
-  .menu img{
-    width: 7vw;
-  }
-  .menu>input{
+  .menu_input{
     background-color: #F5F6FA;
     border-radius: 8vw;
-    height: 8vw;
+    height: 40px;
     padding-left: 5vw;
-    margin-left: 3vw ;
+    margin-left: 5px;
     transform: translateY(33%);
+    margin-top: -26px;
   }
   .menu{
-    background-color: white;
-    height: 13vw;
-    width: 100%;
-    bottom: 0;
-    z-index: 100000;
-    position: fixed;
+    border-top: 1px solid #eee;
   }
 
 </style>

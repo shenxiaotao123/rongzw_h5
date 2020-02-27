@@ -1,5 +1,6 @@
 <template>
     <div style="text-align: center;    text-indent: 7vw;">
+
       <mtitle :titleC="titleC"/>
       <img src="../../assets/img/my/logo.png" width="180" style="margin:8vw"/>
       <p class="white">

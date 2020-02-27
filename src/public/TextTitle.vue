@@ -107,11 +107,11 @@ export default {
     background-color: #F5F6FA;
     height: 8vw;
     width: 65vw;
-    margin-top: 4vw;
+
   }
   .titleR{
     position: absolute;
-    top: 25%;
+    top: 0;
     right: 2%;
   }
   .titleR>img{

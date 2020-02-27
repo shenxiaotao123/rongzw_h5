@@ -8,34 +8,38 @@
       <div style="width: 100%"><img src="../assets/img/construction/bj.png" class="img"/></div>
       <!--图片-->
 
-      <!--介绍-->
-      <div class="constructionYD all" >
-        <button>先施工在支付</button>
-        <button>工地全程记录  </button>
-        <button>施工过程透明  </button>
+      <div class="case back_white">
+        <!--介绍-->
+        <div class="constructionYD all" >
+          <button>先施工在支付</button>
+          <button>工地全程记录  </button>
+          <button>施工过程透明  </button>
+        </div>
+        <!--介绍-->
+
+        <!--轮播图-->
+        <scene class="lbt"></scene>
+        <!--轮播图-->
+
+        <!--介绍-->
+        <ul class="stage medium all padder-v">
+          <li><div>水电阶段</div></li>
+          <li><div>泥工阶段 </div> </li>
+          <li><div>木工阶段 </div> </li>
+          <li><div>油漆阶段</div> </li>
+          <li><div>保洁修补 </div>  </li>
+        </ul>
+        <!--介绍-->
       </div>
-      <!--介绍-->
 
-      <!--轮播图-->
-      <scene class="lbt"></scene>
-      <!--轮播图-->
-
-      <!--介绍-->
-      <ul class="stage medium all">
-        <li><div>水电阶段</div></li>
-        <li><div>泥工阶段 </div> </li>
-        <li><div>木工阶段 </div> </li>
-        <li><div>油漆阶段</div> </li>
-        <li><div>保洁修补 </div>  </li>
-      </ul>
-      <!--介绍-->
-<p></p>
-      <!--导航-->
-      <drop-down :types="types" @region="region" @style="upstyle" @sort="sort" :class="{top_dd:this.top}" style="top: 15vw;"/>
-      <!--导航-->
-      <!--施工公司-->
-      <company  :companys="companys"></company>
-      <!--施工公司-->
+      <div class="case back_white m-t-sm">
+        <!--导航-->
+        <drop-down :types="types" @region="region" @style="upstyle" @sort="sort" :class="{top_dd:this.top}" style="top: 15vw;"/>
+        <!--导航-->
+        <!--施工公司-->
+        <company  :companys="companys"></company>
+        <!--施工公司-->
+      </div>
     </div>
 </template>
 
@@ -189,7 +193,6 @@ export default {
 
 <style scoped>
 .lbt{}
-.medium { margin-top: 2vw;}
 .all:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
   .details p:nth-child(2){
     padding-top: 2vw;

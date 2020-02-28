@@ -25,7 +25,28 @@ export default {
     }
   },
   created () {
-    window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9cf296975442a767&redirect_uri=rongzw.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+    //沒有token的情況
+    if(!this.$cookies.isKey('token')){
+      //路徑裏沒有code
+      if(!window.location.href.indexOf('code')>-1){
+        //獲取
+        window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ee338e15d915705&redirect_uri=http://mobile.rongzw.com&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'
+      }else{
+        var r = /code=([\w-]*)&/
+        var code = r.exec(location.search)[1]
+        this.http({
+          method:'post',
+          url:'/api/consumer/OAuthLogin',
+          data:{
+            oauth_type:'wx',
+            code:code
+          }
+        }).then((res)=>{
+          this.$cookies.set('token', res.data.token,60*60*24*30)
+        })
+        alert(code)
+      }
+    }
     var _this = this
     setTimeout(function () {
       this.show = false

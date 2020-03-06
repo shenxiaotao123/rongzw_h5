@@ -26,7 +26,8 @@ Vue.use(VueAwesomeSwiper)
 Vue.config.silent = true
 com.$router = router
 com.vue = Vue
-
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
 axios.defaults.timeout = 5000 // 请求超时
 axios.defaults.baseURL = 'http://admintest.rongzw.com'
 Vue.directive('input-num', {

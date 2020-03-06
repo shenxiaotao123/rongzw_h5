@@ -39,6 +39,47 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/myInteraction',
+      name: 'myInteraction',
+      component: () => import('@/user/myHome/myInteraction'),
+      children:[
+        {
+          path: 'comment',
+          name: 'comment',
+          component: ()=>import('@/user/myHome/myInteraction/Comment')
+        },
+        {
+          path: 'consult',
+          name: 'consult',
+          component: ()=>import('@/user/myHome/myInteraction/Consult')
+        }
+      ],
+      redirect: '/myInteraction/comment'
+    },
+    {
+      path: '/myGl',
+      name: 'myGl',
+      component: () => import('@/user/myHome/MyGl'),
+      children:[
+        {
+          path: 'audit',
+          name: 'audit',
+          component: ()=>import('@/user/myHome/Mygl/audit')
+        },
+        {
+          path: 'draft',
+          name: 'Draft',
+          component: ()=>import('@/user/myHome/Mygl/Draft')
+        },
+        {
+          path: 'publish',
+          name: 'publish',
+          component: ()=>import('@/user/myHome/Mygl/Publish')
+        }
+       ],
+      redirect: '/myGl/audit'
+    },
+    {
       path: '/aboutUs',
       name: 'AboutUs',
       component: () => import('@/user/myHome/AboutUs')

@@ -21,9 +21,10 @@
       </van-row>
     </div>
     <div class="mar-b-10">
-      <van-cell title="完善我的家" is-link icon="wap-home-o" @click="$router.push({path:'/myhome', query: {id:user.id}})"/>
+      <van-cell title="完善我的家" is-link icon="wap-home-o" @click="to('/myhome')"/>
     </div>
     <div class="mar-b-10">
+<<<<<<< HEAD
       <van-cell title="我的互动" is-link icon="friends-o" />
       <van-cell title="我的攻略" is-link icon="send-gift-o" />
       <van-cell title="我的发票 " is-link icon="coupon-o" @click="$router.push({path:'/invoice'})"/>
@@ -32,6 +33,16 @@
       <van-cell title="联系我们" is-link icon="service-o" @click="$router.push({path:'/contactUs'})"/>
       <van-cell title="关于我们" is-link icon="info-o" @click="$router.push({path:'/aboutUs'})"/>
       <van-cell title="投诉建议" is-link icon="records" @click="$router.push({path:'/Suggest'})" />
+=======
+      <van-cell title="我的互动" is-link icon="friends-o"  @click="to('/myInteraction')"/>
+      <van-cell title="我的攻略" is-link icon="send-gift-o" @click="to('/myGl')"/>
+      <van-cell title="我的发票 " is-link icon="coupon-o" />
+      <van-cell title="成为设计师" is-link icon="manager-o" />
+      <van-cell title="招商入口" is-link icon="medal-o" />
+      <van-cell title="联系我们" is-link icon="service-o" @click="to('/contactUs')"/>
+      <van-cell title="关于我们" is-link icon="info-o"  @click="to('/aboutUs')"/>
+      <van-cell title="投诉建议" is-link icon="records" />
+>>>>>>> 599c4721ea05fe170e43ad12ae833460fe59ec0e
     </div>
 
 </div>
@@ -53,6 +64,10 @@ import Vue from 'vue'
       data(){
           return{
             user:{}
+          }
+      },methods:{
+          to(url){
+            this.$router.push({path:url})
           }
       }
     }

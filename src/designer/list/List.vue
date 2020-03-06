@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div v-for="designer in  designers" class="designerList back_white" :key="designer.id" @click="$router.push({path:'/showDetail',query:{id:designer.id}})">
+    <div v-for="designer in  designers" class="designerList m-t back_white m-b" :key="designer.id" @click="$router.push({path:'/showDetail',query:{id:designer.id}})">
       <div class="photo">
         <img :src=designer.avatar />
       </div>
-      <div class="details">
+      <div class="details" style="padding-bottom: 15px;">
         <p>
           <span class="regular name">{{designer.name}}</span>
           <span   class="cinnabar right">{{designer.min_money}}-{{designer.max_money}}元/m²</span><br>
         </p>
-        <p class="regular gray aa">{{designer.styles_text}}</p>
-        <p class="regular gray">{{designer.years}}年以上&nbsp;&nbsp;|&nbsp;&nbsp;{{designer.works_num}}套作品</p>
-        <p class="regular gray ">
+        <p class="regular gray aa size12">{{designer.styles_text}}</p>
+        <p class="regular gray size12">{{designer.years}}年以上&nbsp;&nbsp;|&nbsp;&nbsp;{{designer.works_num}}套作品</p>
+        <p class="regular gray size12">
           签单<span style="color: #333333">{{designer.order_num}}</span>人
           <span style="margin-right: 13vw"></span>
           预约<span style="color: #333333">{{designer.appointment_num}}</span>人</p>

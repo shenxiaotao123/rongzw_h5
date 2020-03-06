@@ -26,12 +26,12 @@
     <div class="mar-b-10">
       <van-cell title="我的互动" is-link icon="friends-o" />
       <van-cell title="我的攻略" is-link icon="send-gift-o" />
-      <van-cell title="我的发票 " is-link icon="coupon-o" />
-      <van-cell title="成为设计师" is-link icon="manager-o" />
-      <van-cell title="招商入口" is-link icon="medal-o" />
+      <van-cell title="我的发票 " is-link icon="coupon-o" @click="$router.push({path:'/invoice'})"/>
+      <van-cell title="成为设计师" is-link icon="manager-o" @click="$router.push({path:'/BecomeDesigner'})"/>
+      <van-cell title="招商入口" is-link icon="medal-o" @click="$router.push({path:'/Merchants'})"/>
       <van-cell title="联系我们" is-link icon="service-o" @click="$router.push({path:'/contactUs'})"/>
-      <van-cell title="关于我们" is-link icon="info-o"  @click="$router.push({path:'/aboutUs'})"/>
-      <van-cell title="投诉建议" is-link icon="records" />
+      <van-cell title="关于我们" is-link icon="info-o" @click="$router.push({path:'/aboutUs'})"/>
+      <van-cell title="投诉建议" is-link icon="records" @click="$router.push({path:'/Suggest'})" />
     </div>
 
 </div>

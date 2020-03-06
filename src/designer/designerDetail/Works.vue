@@ -1,22 +1,21 @@
 <template>
-  <div style="clear: both;">
+  <div class="back_white clear p-t-none">
     <div v-for="designer in designers" class="works" :key="designer.id" v-if="path.indexOf('showDetail')>-1" >
-
-      <swiper :options="swiperOption1" style="height: 25vw; touch-action: none;margin-top: 2vw">
+      <swiper :options="swiperOption1" style="height: 175px; touch-action: none;">
         <swiper-slide v-for="(gg,index) of designer.work_images" :key="index">
           <img :src="gg" @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})" class="img"/>
         </swiper-slide>
       </swiper>
 
-      <div class="works_avatar_detail " >
+      <div class="works_avatar_detail">
           <span class="fontWhite">{{designer.work_images.length}}张</span>
       </div>
-      <div class="introduce">
+      <div class="introduce clear">
         <p class="medium p2">{{designer.title}}</p>
-        <ul  >
-          <li class="gray" >{{designer.style.name}}</li>
-          <li class="gray"  >{{designer.shape.name}}</li>
-          <li  class="gray" >{{designer.mianji}}m²</li>
+        <ul>
+          <li class="gray">{{designer.style.name}}</li>
+          <li class="gray">{{designer.shape.name}}</li>
+          <li class="gray">{{designer.mianji}}m²</li>
         </ul>
         <button class="bule_white_btn right" @click="$store.state.showToast = true">立刻咨询</button>
       </div>
@@ -34,7 +33,7 @@
       <div class="works_img">
         <img :src=designer.img @click="$router.push({path:'/worksShow',query:{workid:designer.id,designerid:designer.designer_id}})"/>
       </div>
-      <div class="introduce">
+      <div class="introduce clear">
         <p class="medium p1">{{designer.title}}</p>
         <ul  >
           <li class="gray" >{{designer.style.name}}</li>
@@ -53,7 +52,6 @@
 
     <msg v-show="this.$store.state.showToast" :msgObj="msgObj"></msg>
   </div>
-
 </template>
 
 <script>
@@ -139,7 +137,7 @@ export default {
 
 <style scoped>
   .introduce {
-    margin-top: 1.5vw;
+
   }
   .introduce ul { margin-bottom:3vw; float: left; font-size: 3vw;}
   .works_avatar_detail{
@@ -147,8 +145,8 @@ export default {
     width: 15vw;
     height: 5vw;
     opacity: .5;
-    position: relative;
-    bottom: 7vw;
+    position: absolute;
+    top: 146px;
     border-radius: 0 0 0 2vw;
     text-align: center;
     font-size: unset;
@@ -191,6 +189,7 @@ export default {
     width: 100%;
     position: relative;
     clear: both;
+    margin-bottom: 5px;
   }
   .works-info { position: absolute; top:31vw; background: linear-gradient(rgba(0,0,0,0),gray); width: 100%; border-radius:0 0 3vw 3vw;}
   .works li{
@@ -217,7 +216,6 @@ export default {
     line-height: 1.5;
   }
   .p2{
-    margin-top: 3vw;
     margin-left: 1vw;
     font-size: 4vw;
     color: #000033;

@@ -29,7 +29,7 @@ export default {
       console.log('没有token')
       //路徑裏有code
       if(window.location.href.indexOf('code') != -1){
-        console.log('有code1')
+        console.log('有code')
         var path = window.location.href
         let code = path.substring(path.indexOf('code=')+5,path.indexOf('&'))
         console.log(code)

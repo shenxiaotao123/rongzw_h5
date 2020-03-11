@@ -56,7 +56,7 @@
 
       </div>
       <div style="height: 1.5vw;" class="backcolor"></div>
-      <ul class="zp">
+      <ul class="zp back_white">
         <li>
           <img src="@/assets/img/home/baozhang.png"  />&nbsp;&nbsp;
           正品保障
@@ -66,8 +66,9 @@
         <li><img src="@/assets/img/jiayipeishi.png"  />&nbsp;&nbsp;假一赔十</li>
       </ul>
       <!---商品详情-->
+
       <!---商品评价-->
-      <div style="margin:0 5vw 4vw 5vw" id="maodian1" @click="$router.push({path: '/materialReviews',query:{id:goods.spu_id}})" v-if="comment.length>0">
+      <div style="padding:0 5vw 4vw 5vw" class="back_white" id="maodian1" @click="$router.push({path: '/materialReviews',query:{id:goods.spu_id}})" v-if="comment.length>0">
         <p style="line-height: 12vw">
           <i style="font-weight: 600">商品评价({{comment.length}})</i>
           <i class="right gray">更多>  </i>
@@ -79,7 +80,7 @@
           <p class="all" style="padding-top: 3vw;">{{comment[0].content}}</p>
         </div>
       </div>
-      <div style="margin:0 5vw 4vw 5vw" id="maodian1" @click="$router.push({path: '/materialReviews',query:{id:goods.spu_id}})" v-else>
+      <div style="padding:0 5vw 4vw 5vw" class="back_white" id="maodian1" @click="$router.push({path: '/materialReviews',query:{id:goods.spu_id}})" v-else>
         <p style="line-height: 12vw">
           <i style="font-weight: 600">暂无评价</i>
           <i class="right gray">更多>  </i>
@@ -93,11 +94,10 @@
           </p>
         </div>
       </div>
-      <div style="height: 1.5vw;" class="backcolor"></div>
       <!---商品评价-->
 
       <!---公司-->
-        <div  class="company">
+        <div  class="company back_white">
           <div class="avatar">
             <img :src="store.logo_image" class="img"/>
           </div>
@@ -111,7 +111,7 @@
             </p>
           </div>
         </div>
-        <ul class="gray zp">
+        <ul class="gray zp back_white">
           <li>商品描述 <span :class="cl(store.description_score)">{{store.description_score}} </span></li>
           <li>卖家服务 <span :class="cl(store.service_score)">{{store.service_score}} </span></li>
           <li>物流服务 <span :class="cl(store.logistics_score)">{{store.logistics_score}} </span></li>
@@ -120,14 +120,11 @@
       <!---公司-->
 
       <!---商品介绍-->
-      <div class="introduction" id="maodian2">
-        <p>
-          <span class="line"></span>&nbsp;&nbsp;&nbsp;
-          <span class="introduction-title">商品详情</span>&nbsp;&nbsp;&nbsp;
-          <span class="line"></span>
-        </p>
+      <div class="introduction back_white" id="maodian2">
+        <van-divider :style="{ paddingTop:'20px', color: '#333', borderColor: '#ccc', padding: '0 16px' }">
+          商品详情
+        </van-divider>
         <div class="infos_content"  id="aaa" v-html="content" @load="upImgWidth"></div>
-
       </div>
       <!---商品介绍-->
 
@@ -160,11 +157,12 @@
 <script>
   // vant Tag 标记
   import Vue from 'vue';
-  import { Tag, Icon, Cell, CellGroup  } from 'vant';
+  import { Tag, Icon, Cell, CellGroup,Divider } from 'vant';
   Vue.use(Tag);
   Vue.use(Cell);
   Vue.use(CellGroup);
   Vue.use(Icon);
+  Vue.use(Divider);
 
 import mtitle from '@/public/ImgTitle'
 import toptitle from '@/public/TextTitle.vue'
@@ -369,7 +367,7 @@ export default {
     height: 60%;
   }
   .introduction{
-    margin: 0 5vw;
+    padding: 0 5vw;
     text-align: center;
   }
   .line{

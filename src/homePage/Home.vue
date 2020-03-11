@@ -411,7 +411,7 @@ export default {
     clear: both;
   }
   .individual{
-    margin-bottom: 8vw;
+
   }
   .slide-content p{
     margin-bottom: 1vw;

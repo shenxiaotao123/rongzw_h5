@@ -1,23 +1,31 @@
 <template>
-<div style="padding-top: 15vw">
+<div style="padding-top: 46px;">
   <mtitle :name="title.name" :titleRight="title.titleR" :titleCenter="title.titlec" :backUrl="title.backUrl" class="top_title"></mtitle>
-  <div class="all">
-    <div  class="designerList back_white">
-      <div class="photo">
-        <img :src=designer.avatar />
-      </div>
+
+    <div  class="designerList back_white wrapper p-l-none clear">
+
+
       <div class="details">
-        <button class="red_btn" @click="appointment">预约TA</button>
-        <p>
-          <span class="regular name">{{designer.name}}</span>
-          <span class="workLife regular">{{designer.years}}年经验</span>
-        </p>
-        <p class="regular gray" style="width: 45vw;">{{designer.styles_text}}</p>
-        <p class="regular gray ">
-          <span   class="cinnabar">{{designer.min_money}}-{{designer.max_money}}元/m²</span><br>
-        </p>
+        <div class="photo">
+          <img :src=designer.avatar />
+        </div>
+        <div class="fl">
+          <p>
+            <span class="regular name">{{designer.name}}</span>
+            <span class="workLife regular">{{designer.years}}年经验</span>
+          </p>
+          <p class="regular gray" style="width: 45vw;">{{designer.styles_text}}</p>
+          <p class="regular gray ">
+            <span   class="cinnabar">{{designer.min_money}}-{{designer.max_money}}元/m²</span><br>
+          </p>
+        </div>
       </div>
+      <div class="m-t-lg">
+        <button class="red_btn" @click="appointment">预约TA</button>
+      </div>
+
     </div>
+    <div class="back_white clear wrapper">
       <div class="subscription">
         <p name="count">{{designer.order_num}}</p>
         <p name="t">签单</p>
@@ -30,22 +38,27 @@
         <p name="count">{{designer.appointment_num}}</p>
         <p name="t">预约</p>
       </div>
+    </div>
 
-    <ul class="jieShao">
-      <li> <router-link :to="{path:'/showDetail/works',query:{id:$route.query.id}}">作品({{designer.works_num}})</router-link></li>
-      <li><router-link :to="{path:'/showDetail/profile',query:{id:$route.query.id}}" >个人简介</router-link></li>
-      <li>
-        <router-link :to="{path:'/showDetail/comment',query:{type:'designer',id:$route.query.id}}">评价({{designer.comment_num}})</router-link>
-      </li>
-    </ul>
-    <router-view/>
-  </div>
+    <van-row class="jieShao back_white clear m-t-sm">
+      <van-col span="8"><router-link :to="{path:'/showDetail/works',query:{id:$route.query.id}}">作品({{designer.works_num}})</router-link></van-col>
+      <van-col span="8"><router-link :to="{path:'/showDetail/profile',query:{id:$route.query.id}}" >个人简介</router-link></van-col>
+      <van-col span="8"><router-link :to="{path:'/showDetail/comment',query:{type:'designer',id:$route.query.id}}">评价({{designer.comment_num}})</router-link></van-col>
+    </van-row>
+    <div class="wrapper back_white p-t-none"><router-view/></div>
+
   <msg v-show="this.$store.state.showToast" :msgObj="msgObj"></msg>
   <right-bottom :rightBottom="rightBottom" class="top_rightBottom"></right-bottom>
 </div>
 </template>
 
 <script>
+  import Vue from 'vue';
+  import { Col, Row } from 'vant';
+
+  Vue.use(Col);
+  Vue.use(Row);
+
 import mtitle from '@/public/Title'
 import '@/assets/style/app.css'
 
@@ -124,12 +137,10 @@ export default {
 </script>
 
 <style scoped>
+  .designerList { border-bottom: 0; display: flex;}
   .red_btn{
-    position: absolute;
-    width: 25vw;
-    right: 2vw;
-    top: 25vw;
-    height: 10vw;
+    flex:1;
+    padding: 5px 20px;
     border-radius: 1vw;
   }
   a{
@@ -151,6 +162,7 @@ export default {
     margin-right: 1vw;
     border-radius: 1vw;
   }
+
   .deDetail p{
     margin: 0 0 2vw 0;
   }

@@ -5,7 +5,9 @@
     <drop-down :types="types" @fg="style" @city="city" @sort="sort" class="top_dd"/>
 
     <!--设计师列表开始-->
-     <list :designers=designers class="back_white all" style="height: auto;padding-top: 23vw;clear: both"></list>
+    <div class="wrapper back_white" style="height: auto;padding-top: 86px;clear: both">
+     <list :designers=designers class="back_white"></list>
+    </div>
     <!--设计师列表结束-->
 
    </div>
@@ -172,8 +174,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+  .titleRight { top:0;}
   .bounce-enter-active {
     animation: bounce-in .4s;
   }

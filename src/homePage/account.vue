@@ -8,15 +8,15 @@
       <van-row class="myTop-data">
         <van-col span="8">
           17
-          <p>收藏</p>
+          <p @click="$router.push({path:'/favorite'})">收藏</p>
         </van-col>
         <van-col span="8">
           18
-          <p>关注</p>
+          <p @click="$router.push({path:'/attentionList'})">关注</p>
         </van-col>
         <van-col span="8">
           23
-          <p>优惠券</p>
+          <p @click="$router.push({path:'/icoupon'})">优惠券</p>
         </van-col>
       </van-row>
     </div>
@@ -24,14 +24,23 @@
       <van-cell title="完善我的家" is-link icon="wap-home-o" @click="to('/myhome')"/>
     </div>
     <div class="mar-b-10">
-      <van-cell title="我的互动" is-link icon="friends-o"  @click="to('/myInteraction')"/>
+      <van-cell title="我的互动" is-link icon="friends-o" @click="to('/myInteraction')" />
       <van-cell title="我的攻略" is-link icon="send-gift-o" @click="to('/myGl')"/>
-      <van-cell title="我的发票 " is-link icon="coupon-o" />
-      <van-cell title="成为设计师" is-link icon="manager-o" />
-      <van-cell title="招商入口" is-link icon="medal-o" />
-      <van-cell title="联系我们" is-link icon="service-o" @click="to('/contactUs')"/>
-      <van-cell title="关于我们" is-link icon="info-o"  @click="to('/aboutUs')"/>
-      <van-cell title="投诉建议" is-link icon="records" />
+      <van-cell title="我的发票 " is-link icon="coupon-o" @click="$router.push({path:'/invoice'})"/>
+      <van-cell title="成为设计师" is-link icon="manager-o" @click="$router.push({path:'/BecomeDesigner'})"/>
+      <van-cell title="招商入口" is-link icon="medal-o" @click="$router.push({path:'/Merchants'})"/>
+      <van-cell title="联系我们" is-link icon="service-o" @click="$router.push({path:'/contactUs'})"/>
+      <van-cell title="关于我们" is-link icon="info-o" @click="$router.push({path:'/aboutUs'})"/>
+      <van-cell title="投诉建议" is-link icon="records" @click="$router.push({path:'/Suggest'})" />
+
+      <!--<van-cell title="我的互动" is-link icon="friends-o"  @click="to('/myInteraction')"/>-->
+      <!--<van-cell title="我的攻略" is-link icon="send-gift-o" @click="to('/myGl')"/>-->
+      <!--<van-cell title="我的发票 " is-link icon="coupon-o" />-->
+      <!--<van-cell title="成为设计师" is-link icon="manager-o" />-->
+      <!--<van-cell title="招商入口" is-link icon="medal-o" />-->
+      <!--<van-cell title="联系我们" is-link icon="service-o" @click="to('/contactUs')"/>-->
+      <!--<van-cell title="关于我们" is-link icon="info-o"  @click="to('/aboutUs')"/>-->
+      <!--<van-cell title="投诉建议" is-link icon="records" />-->
     </div>
 
 </div>

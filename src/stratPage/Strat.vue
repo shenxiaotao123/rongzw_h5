@@ -2,7 +2,6 @@
   <transition name="fade">
 <div v-if="show" style="height: 100%; width: 100%;">
   <img src="../assets/img/startPage/backimg.png" />
-
     <img src="../assets/img/startPage/index.png" style="    position: absolute;
     top: 56vw;
     width: 30vw;

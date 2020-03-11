@@ -1,5 +1,5 @@
 <template>
-    <div v-html="designer.content.content"></div>
+    <div class="back_white clear wrapper" v-html="designer.content.content"></div>
 </template>
 
 <script>

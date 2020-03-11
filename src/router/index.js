@@ -34,6 +34,7 @@ import payResult from '@/public/PayResult'
 import address from '@/public/Address'
 import addressAdd from '@/public/AddressAdd'
 import account from '@/homePage/account'
+
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -97,6 +98,61 @@ export default new Router({
       path: '/myhome',
       name: 'myhome',
       component: () => import('@/user/myHome/index')
+    },
+    {
+      path: '/invoice',
+      name: 'invoice',
+      component: () => import('@/user/myHome/invoice')
+    },
+    {
+      path: '/lookUpM',
+      name: 'lookUpM',
+      component: () => import('@/user/myHome/lookUpM')
+    },
+    {
+      path: '/AddLookUp',
+      name: 'AddLookUp',
+      component: () => import('@/user/myHome/AddLookUp')
+    },
+    {
+      path: '/Suggest',
+      name: 'Suggest',
+      component: () => import('@/user/myHome/Suggest')
+    },
+    {
+      path: '/BecomeDesigner',
+      name: 'BecomeDesigner',
+      component: () => import('@/user/myHome/BecomeDesigner')
+    },
+    {
+      path: '/Merchants',
+      name: 'Merchants',
+      component: () => import('@/user/myHome/Merchants')
+    },
+    {
+      path: '/icoupon',
+      name: 'icoupon',
+      component: () => import('@/user/myHome/icoupon')
+    },
+    {
+      path: '/attentionList',
+      name: 'attentionList',
+      component: () => import('@/user/myHome/attentionList')
+    },
+    {
+      path: '/favorite',
+      name: 'favorite',
+      component: () => import('@/user/myHome/favorite')
+    },
+    {
+      path: '/supervision',
+      name: 'supervision',
+      component: () => import('@/applets/supervision')
+    },
+    {
+      path: '/intelligent',
+      name: 'intelligent',
+      component: () => import('@/applets/intelligent')
     },
     {
       path: '/siteList',

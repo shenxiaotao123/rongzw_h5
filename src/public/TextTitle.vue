@@ -118,9 +118,9 @@ export default {
     margin-right: 2vw;
   }
 .centerT{
+  margin: 0 5px;
   position: relative;
-  top: 31%;
-  font-size: larger;
+  font-size: 14px;
 }
   .centerT>span{
     margin-right: 3vw;

@@ -130,6 +130,31 @@ export default new Router({
       component: () => import('@/user/myHome/Merchants')
     },
     {
+      path: '/icoupon',
+      name: 'icoupon',
+      component: () => import('@/user/myHome/icoupon')
+    },
+    {
+      path: '/attentionList',
+      name: 'attentionList',
+      component: () => import('@/user/myHome/attentionList')
+    },
+    {
+      path: '/favorite',
+      name: 'favorite',
+      component: () => import('@/user/myHome/favorite')
+    },
+    {
+      path: '/supervision',
+      name: 'supervision',
+      component: () => import('@/applets/supervision')
+    },
+    {
+      path: '/intelligent',
+      name: 'intelligent',
+      component: () => import('@/applets/intelligent')
+    },
+    {
       path: '/siteList',
       name: 'siteList',
       component: () => import('@/construction/SiteList')

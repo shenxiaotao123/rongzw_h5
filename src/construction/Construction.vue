@@ -261,11 +261,11 @@ export default {
     background-color: #FCE8E8;
     color: #D96A6E;
     border-radius: 5vw;
-    height: 7vw;
-    font-size: 3vw;
+    padding: 3px 0;
+    font-size: 12px;
   }
 .constructionYD {
-  height: 7vw;
-  padding: 3vw 2vw 1vw 2vw;
+
+  padding: 3vw 2vw 0 2vw;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="pageColor" style="margin-bottom: 18vw">
-  <div class="navigationBar top_dd" style="top: 14vw;">
+  <div class="navigationBar top_dd">
         <span v-for="(type,ind) of types">
           <input type="radio"  v-model="tt" :value="type" :id="type.id" :checked="ind===0" name="guide">
           <label :for="type.id">
@@ -120,8 +120,10 @@ export default {
     white-space: nowrap;
     overflow-x: auto;
     text-align: center;
-    padding: 5vw;
-    font-size: 4vw;
+    padding: 0 15px;
+    height: 44px;
+    line-height:44px;
+    font-size: 14px;
     background-color: white;
   }
   .navigationBar input:checked+label{

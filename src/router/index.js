@@ -155,6 +155,11 @@ export default new Router({
       component: () => import('@/applets/intelligent')
     },
     {
+      path: '/WatchLive',
+      name: 'WatchLive',
+      component: () => import('@/applets/WatchLive')
+    },
+    {
       path: '/siteList',
       name: 'siteList',
       component: () => import('@/construction/SiteList')

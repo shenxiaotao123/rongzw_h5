@@ -80,7 +80,7 @@ export default {
   }
   .router-link-active {
     color:#DD1A21;
-    border-bottom: 1vw solid #DD1A21;
+    border-bottom: 2px solid #DD1A21;
   }
   .companyDetail li{
     float: left;
@@ -90,10 +90,11 @@ export default {
     font-weight: 600;
     font-size: 4vw;
     font-family: PingFang-SC-Medium;
-    padding-bottom: 2vw;
+
     margin-left: 6.5vw;
 
   }
+  .companyDetail li a { display: block; padding-bottom: 10px;}
 
   .companyDetail{
     height: 15vw;

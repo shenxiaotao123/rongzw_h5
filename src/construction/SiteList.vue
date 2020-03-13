@@ -4,8 +4,8 @@
       <div style="height: 49vw;width: 100%"><img src="../assets/img/construction/bj.png" style="height: 100%;width: 100%"/></div>
       <div class="constructionYD all" >
         <button>先施工在支付</button>
-        <button>工地全程记录  </button>
-        <button>施工过程透明  </button>
+        <button>工地全程记录</button>
+        <button>施工过程透明</button>
       </div>
       <ul class="stage medium all">
         <li><div>水电阶段</div></li>
@@ -168,7 +168,8 @@ export default {
     background-color: #FCE8E8;
     color: #D96A6E;
     border-radius: 5vw;
-    height: 7vw;
+    padding: 5px 0;
+    font-size: 12px;
   }
   .constructionYD {
     height: 7vw;

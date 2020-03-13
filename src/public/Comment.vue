@@ -106,7 +106,7 @@ export default {
   }
   .comment{
     clear: both;
-    border-bottom: 0.1vw solid #999999;
+    border-bottom: 1px solid #eee;
     padding: 5vw 0;
   }
   ul li:nth-child(5){

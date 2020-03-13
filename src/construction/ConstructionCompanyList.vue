@@ -5,10 +5,10 @@
         <img :src="company.avatar" class="img"/></div>
       <div class="companyDetail">
         <p class="regular companyName">{{company.name}}</p>
-        <p class="regular gray aa" >
+        <p class="regular gray aa size12">
          {{company.brief}}
         </p>
-        <p class="regular gray " style="width: 65vw">
+        <p class="regular gray size12" style="width: 65vw">
           施工工地  {{company.site_nums}}个
           <!--<span class="right gray">{{jl[index]}}km</span>-->
           <span class="right gray">{{company.distance}}km</span>
@@ -58,7 +58,6 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin-top: 1vw;
     width: 50vw;
   }
   .redWhitebtn{
@@ -69,7 +68,6 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin-top: 1vw;
     width: 100%;
   }
 .company{
@@ -82,7 +80,7 @@ export default {
     margin: 3.5vw 0px 0px 3vw;
     height: 17vw;
     width: 17vw;
-    border: .1vw solid #cfcfcf;
+    border: 1px solid #cfcfcf;
     background-color: rgb(207, 207, 207);
     margin-left: 5vw;
     float: left;

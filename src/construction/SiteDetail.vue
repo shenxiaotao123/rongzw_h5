@@ -15,7 +15,7 @@
         </div>
 
       </div>
-      <div style=" height: 9vw;padding: 3vw;border-bottom: 3vw solid #f7f7f7;">
+      <div class="back_white wrapper-md m-b-sm">
         <p style="margin-bottom: 2vw">施工公司：
           <span class="cinnabar"
                 @click="$router.push({path:'/company/constructionSite',query:{id:site.company_id}})">
@@ -23,7 +23,7 @@
         <p>施工负责人：{{site.manager}}</p>
       </div>
 
-      <div class="schedule">
+      <div class="schedule back_white">
         <p class="schedule_title">
           工程进度
         </p>
@@ -33,12 +33,12 @@
             <button class="schedule_check_state" v-show="site.stage_name === siteStageInfo.stage_name"/>
             <button class="schedule_uncheck_state" v-show="site.stage_name !== siteStageInfo.stage_name"/>
             <p style="    position: absolute;    top: -3.7vw;left: 4vw;" :class="{cinnabar:site.stage_name === siteStageInfo.stage_name}">{{siteStageInfo.stage_name}}</p>
-            <div  style="padding-left: 5vw;    padding-top: 3vw;height: 100%;">
+            <div  style="padding:10px 0 20px 20px; height: 100%;">
               <div class="navigationBar">
                   <img :src="pic"  class="img"  v-for="pic of siteStageInfo.pic_json">
               </div>
-              <p style="    line-height: 6vw;">{{siteStageInfo.note}}</p>
-              <p style="clear: both">
+              <p style="line-height: 1.5;" class="gray m-t-xs">{{siteStageInfo.note}}</p>
+              <p style="clear: both" class="gray size12 m-t-xs">
                 {{siteStageInfo.updated_at}}
               </p>
             </div>
@@ -103,12 +103,12 @@ export default {
   }
   .schedule_uncheck_state{
     background-color: #DDDDDD;
-    width: 6vw;
-    height: 6vw;
+    width: 15px;
+    height: 15px;
     border-radius: 5vw;
     position: absolute;
-    top: -5vw;
-    left: -3vw;
+    top: -15px;
+    left: -7.5px;
   }
   .schedule_check_state{
     background-color: #DD1A21;
@@ -172,6 +172,5 @@ export default {
   overflow-x: auto;
   text-align: left;
   font-size: 4vw;
-  background-color: white;
 }
 </style>

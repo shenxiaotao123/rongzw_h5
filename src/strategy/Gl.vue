@@ -150,14 +150,7 @@ export default {
   .navigationBar>span{
     padding-right: 5vw;
   }
-  .navigationBar{
-    white-space: nowrap;
-    overflow-x: auto;
-    text-align: center;
-    padding: 5vw;
-    font-size: 4vw;
-    background-color: white;
-  }
+
   .navigationBar input:checked+label{
     color: red;
   }

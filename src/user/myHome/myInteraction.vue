@@ -1,7 +1,7 @@
 <template>
   <div style="margin:14vw 0">
     <div class="title top_title">
-
+      <img src="@/assets/img/loginUser/back.png" class="titleLeft"  @click="leftClick"/>
       <router-link to="/myInteraction/comment" class="S_titlecenter regular" >
           <span >
             评论
@@ -23,7 +23,12 @@
 
 <script>
     export default {
-        name: "myInteraction"
+        name: "myInteraction",
+      methods:{
+        leftClick:function () {
+          this.$router.push('/index/my')
+        }
+      }
     }
 </script>
 
@@ -35,7 +40,7 @@
   .S_titlecenter { line-height: 14vw; font-size: 4.4vw;}
   .router-link-active {
     border-bottom: .4vw solid red;
-    height: 13.60vw;
+    height: 12.60vw;
     display: inline-block;
   }
   .tuijian>.right{

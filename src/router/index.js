@@ -204,6 +204,16 @@ export default new Router({
       name: 'Zxdetail',
       component: () => import('@/strategy/Zxdetail')
     },
+    { //注册协议
+      path: '/registered',
+      name: 'registered',
+      component: () => import('@/protocol/registered')
+    },
+    { //支付协议
+      path: '/Pay',
+      name: 'Pay',
+      component: () => import('@/protocol/Pay')
+    },
     {
       path: '/addressAdd',
       name: 'addressAdd',

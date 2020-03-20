@@ -214,6 +214,11 @@ export default new Router({
       name: 'Pay',
       component: () => import('@/protocol/Pay')
     },
+    { //引导下载APP
+      path: '/downloadApp',
+      name: 'downloadApp',
+      component: () => import('@/public/downloadApp')
+    },
     {
       path: '/addressAdd',
       name: 'addressAdd',

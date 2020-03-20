@@ -141,10 +141,10 @@ export default {
         content: require('@/assets/img/loginUser/back.png'),
         method: 'to'
       },
-      titleR: {
-        type: 'img',
-        content: require('@/assets/img/msg.png')
-      },
+      // titleR: {
+      //   type: 'img',
+      //   content: require('@/assets/img/msg.png')
+      // },
       tt: [],
       types: [
         {

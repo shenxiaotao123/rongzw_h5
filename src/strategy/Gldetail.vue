@@ -8,7 +8,7 @@
         <span class="gray">
                 <img :src="bbs.bbs_user_image" class="user_portrait"/>{{bbs.bbs_user_name}}
         </span>
-        <button class="redWhitebtn right">关注</button>
+        <!--<button class="redWhitebtn right">关注</button>-->
       </p>
       <p class="articName">
         {{bbs.bbs_title}}
@@ -70,12 +70,12 @@
     <!--<button class="red_btn fr m-t-xs m-r-sm">找设计</button>-->
   <!--</div>-->
 
-  <van-goods-action class="menu">
-    <input type="text" placeholder="想勾搭，先评论" class="left menu_input">
-    <van-goods-action-icon icon="chat-o" text="评论" @click="$router.push({path:'/glReviews',query:{id:bbs.id,authorId:bbs.bbs_user_id}})" info="5" />
-    <van-goods-action-icon icon="star-o" text="收藏" />
-    <van-goods-action-button type="danger" text="找设计" @click="onClickButton" />
-  </van-goods-action>
+  <!--<van-goods-action class="menu">-->
+    <!--<input type="text" placeholder="想勾搭，先评论" class="left menu_input">-->
+    <!--<van-goods-action-icon icon="chat-o" text="评论" @click="$router.push({path:'/glReviews',query:{id:bbs.id,authorId:bbs.bbs_user_id}})" info="5" />-->
+    <!--<van-goods-action-icon icon="star-o" text="收藏" />-->
+    <!--<van-goods-action-button type="danger" text="找设计" @click="onClickButton" />-->
+  <!--</van-goods-action>-->
   <!--底部-->
 
   <!--下拉顶部-->

@@ -1,5 +1,5 @@
 <template>
-  <div  >
+  <div>
     <img :src="rightBottom.imgUrl" @click="toPageIndex" class="img"/>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
       var type = _this.rightBottom.type
       if (type === 'top') {
         window.pageYOffse = 0
-        document.documentElement.scrollTop = 0
+        document.documen扫描二维码下载tElement.scrollTop = 0
         document.body.scrollTop = 0
       } else {
         this.$store.state.showToast = true

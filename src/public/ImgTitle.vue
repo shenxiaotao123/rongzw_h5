@@ -2,7 +2,7 @@
   <div class="imgTitle" >
     <img :src="img" class="img"/>
     <img src="@/assets/img/loginUser/back.png" class="titleLeft"  @click="back"/>
-    <img src="@/assets/img/title/fx.png" class="titleRight" style="width: 5vw"/>
+    <!--<img src="@/assets/img/title/fx.png" class="titleRight" style="width: 5vw"/>-->
   </div>
 </template>
 

@@ -27,7 +27,7 @@
         <p class="content_title">
           <span @click="$router.push({path:'/worksShow',query:{workid:site.id,designerid:site.designer_id}})">了解更多</span>
           <span class="right">
-            <button>收藏</button>
+            <!--<button>收藏</button>-->
             <button @click="$router.push({path:'/showDetail',query:{id:site.designer_id}})">找他设计</button>
           </span>
         </p>

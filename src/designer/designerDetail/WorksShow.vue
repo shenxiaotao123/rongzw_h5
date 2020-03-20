@@ -72,19 +72,22 @@
         <!--设计师作品推荐结束-->
       </div>
       <!--右下角按钮开始-->
-      <right-bottom :rightBottom="tobuy" class="middle_rightBottom" ></right-bottom>
-      <right-bottom :rightBottom="consultation" class="top_rightBottom" ></right-bottom>
+      <!--<right-bottom :rightBottom="tobuy" class="middle_rightBottom" ></right-bottom>-->
+      <!--<right-bottom :rightBottom="consultation" class="top_rightBottom" ></right-bottom>-->
       <!--右下角按钮结束-->
+
+
+
       <!--最下-->
       <van-goods-action class="menu">
-        <input type="text" placeholder="想勾搭，先评论" class="left menu_input">
-        <van-goods-action-icon icon="chat-o" text="评论" @click="$router.push({path:'/glReviews',query:{id:bbs.id,authorId:bbs.bbs_user_id}})" info="5" />
-        <van-goods-action-icon icon="star-o" text="收藏" />
-        <van-goods-action-button type="danger" text="找设计" @click="onClickButton" />
+        <van-cell is-link @click="showPopup" class="btn_D_app">下载APP找TA设计</van-cell>
+        <van-popup v-model="show">
+          <downloadApp></downloadApp>
+        </van-popup>
       </van-goods-action>
       <!--最下  -->
 
-      <msg v-show="this.$store.state.showToast" :msgObj="msgObj"  ></msg>
+      <msg v-show="this.$store.state.showToast" :msgObj="msgObj"></msg>
     </div>
 
 </template>
@@ -92,18 +95,18 @@
 <script>
 import mtitle from '@/public/ImgTitle'
 import rightBottom from '@/public/RightBottom.vue'
+import downloadApp from '@/public/downloadApp.vue'
 import msg from '@/public/Msg'
 import Router from 'vue-router'
 //vant Divider 分割线,图标,商品导航
 import Vue from 'vue';
-import { Divider,Icon,GoodsAction, GoodsActionIcon, GoodsActionButton, Col, Row } from 'vant';
+import { Divider,Icon,GoodsAction, GoodsActionIcon, GoodsActionButton,Popup } from 'vant';
 Vue.use(Divider);
 Vue.use(Icon);
 Vue.use(GoodsAction);
 Vue.use(GoodsActionButton);
 Vue.use(GoodsActionIcon);
-Vue.use(Col);
-Vue.use(Row);
+Vue.use(Popup);
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {
@@ -114,6 +117,7 @@ export default {
   components: {
     mtitle,
     rightBottom,
+    downloadApp,
     msg
   },
   updated () {
@@ -124,6 +128,7 @@ export default {
   },
   data () {
     return {
+      show: false,
       article: '',
       designer: {},
       msgObj: {
@@ -164,12 +169,19 @@ export default {
     tjian: function (id, deid) {
       this.$router.push({path: '/worksShow', query: {workid: id, designerid: deid}})
       window.location.reload()
+    },
+    showPopup() {
+      this.show = true;
     }
   }
 }
 </script>
 
 <style scoped>
+  .btn_D_app { background: #dd1a21; color: #fff; border-radius: 50px;}
+  .btn_D_app .van-cell__value--alone
+  {color: #fff; text-align: center;}
+  .btn_D_app .van-cell__right-icon {color: #fff;}
   .ws-data { margin: 0 10px 20px 10px; padding: 20px 0; text-align: center; background: #F5F7FA;}
   .ws-data p { font-size: 14px; line-height: 1.8;}
   .ws-data p[name='count'] { color: #333; font-weight: 700;}

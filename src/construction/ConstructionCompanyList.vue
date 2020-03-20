@@ -25,13 +25,12 @@
         <p class="regular gray" style="width: 72vw;">
           <p class="aa" style="width: 45vw;">
         {{companys.brief}}
-
           </p>
-        <button class="redWhitebtn right" style="position: relative;    bottom: 7vw;    right: 2vw;">
-          <div style="    width: 4vw;    margin-top: -0.5vw;    margin-right: 1vw;float: left">
-            <img src="@/assets/img/关注 (1).png" class="img"/>
-          </div>
-          关注</button>
+        <!--<button class="redWhitebtn right" style="position: relative;    bottom: 7vw;    right: 2vw;">-->
+          <!--<div style="    width: 4vw;    margin-top: -0.5vw;    margin-right: 1vw;float: left">-->
+            <!--<img src="@/assets/img/关注 (1).png" class="img"/>-->
+          <!--</div>-->
+          <!--关注</button>-->
         </p>
 
       </div>

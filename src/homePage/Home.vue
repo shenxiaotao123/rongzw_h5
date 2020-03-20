@@ -3,10 +3,7 @@
       <bmap :method="bma" @city="citys()"/>
       <div class="ti">
         <div class="hometitle">
-          <span style="float: left;width: 12vw">{{city}}</span>
-          <div class="downArrow"></div>
           <input type="text" placeholder="找施工，设计师，主材" v-model="search"/>
-          <img src="../assets/img/msg.png" height="15" width="18"/>
         </div>
         <swiper :options="titleSwiperOption">
           <swiper-slide v-for="tt of titleHome" style="height: 41vw;" >
@@ -453,15 +450,14 @@ export default {
 
   .hometitle input{
     border-radius: 5vw;
-    width: 53vw;
+    width: 100%;
     height: 7vw;
-    margin-left: 6vw;
-    padding-left: 8vw;
+    text-align: center;
     font-size: 3vw;
     background-image: url(../assets/img/home/sousuo.png);
     background-repeat: no-repeat;
     background-position: 4%;
-    background-size: 6%;
+    background-size: 4%;
   }
   .futitle{
     transform: scale(0.9);

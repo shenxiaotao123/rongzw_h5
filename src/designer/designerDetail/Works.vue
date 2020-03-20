@@ -43,10 +43,12 @@
         <span class="right gray" v-show="path.indexOf('picture')>-1">
           收藏{{designer.coll_nums}}&nbsp;|&nbsp;阅读{{designer.hits>10000 ?designer.hits/10000+'万':designer.hits}}
         </span>
-        <div  class="right introduce_fx hide" :class="{display : path.indexOf('home')>-1}">
-          <button class="white introduce_fx_sc"></button>
-          <button class="white introduce_fx_fx "></button>
-        </div>
+        <!--
+        <div class="right introduce_fx hide" :class="{display : path.indexOf('home')>-1}">-->
+          <!--<button class="white introduce_fx_sc"></button>-->
+          <!--<button class="white introduce_fx_fx "></button>-->
+        <!--</div>
+        -->
       </div>
     </div>
 

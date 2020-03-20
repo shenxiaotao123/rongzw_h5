@@ -6,7 +6,7 @@
       <p class="all">
         <span class="left">{{company.address}}</span>
         <span class="right">
-        <img src="../assets/img/dialogue.png"/>
+        <!--<img src="../assets/img/dialogue.png"/>-->
 
           <a :href="'tel:'+company.phone"><img src="../assets/img/dianhua.png" /></a>
         </span></p>
@@ -61,10 +61,10 @@ export default {
         type: 'text',
         content: '找施工'
       },
-      titleR: {
-        type: 'img',
-        content: require('@/assets/img/msg.png')
-      },
+      // titleR: {
+      //   type: 'img',
+      //   content: require('@/assets/img/msg.png')
+      // },
       company: {},
       rightBottom: {
         type: 'top',

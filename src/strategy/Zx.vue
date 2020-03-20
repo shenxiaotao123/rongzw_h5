@@ -150,6 +150,7 @@ export default {
     line-clamp: 2;
     -webkit-box-orient: vertical;
   }
+  .wenda>.problem>img,.answer>img { width: 13px;height: 13px;}
   .answer{
     line-height: 5vw;
     text-overflow: -o-ellipsis-lastline;

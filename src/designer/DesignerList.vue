@@ -30,7 +30,7 @@ export default {
       designers: [],
       title: {
         name: '设计师',
-        titleR: '我是设计师',
+        // titleR: '我是设计师',
         titlec: 'name',
         backUrl: '/index/home'
       },

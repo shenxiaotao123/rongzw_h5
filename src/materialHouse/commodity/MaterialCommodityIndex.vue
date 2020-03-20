@@ -30,8 +30,6 @@
           </van-col>
         </van-row>
 
-
-
         <div style="clear: both"><br/></div>
       </div>
       <!--商品-->
@@ -100,12 +98,12 @@ export default {
         titlec: {
           content: '建材城',
           type: 'text'
-        },
-        titleR: {
-          content: [require('@/assets/img/home/sousuo.png'), require('@/assets/img/home/jaincai/payCar.png')],
-          type: 'imgArray',
-          method: ['search', 'paycar']
         }
+        // titleR: {
+        //   content: [require('@/assets/img/home/sousuo.png'), require('@/assets/img/home/jaincai/payCar.png')],
+        //   type: 'imgArray',
+        //   method: ['search', 'paycar']
+        // }
       },
       selectType: parseInt(this.$route.query.pid),
       showAllType: false,

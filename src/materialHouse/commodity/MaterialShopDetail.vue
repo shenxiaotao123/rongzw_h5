@@ -215,11 +215,11 @@ export default {
         detial: {}
       },
       navigation: false,
-      titleR: {
-        type: 'imgArray',
-        content: [require('@/assets/img/title/商城.png'), require('@/assets/img/title/fenxiang.png')],
-        method: ['to', 'fx']
-      },
+      // titleR: {
+      //   type: 'imgArray',
+      //   content: [require('@/assets/img/title/商城.png'), require('@/assets/img/title/fenxiang.png')],
+      //   method: ['to', 'fx']
+      // },
       titleC: {
         type: 'textArray',
         content: ['商品', '评价', '详情', '推荐'],

@@ -18,7 +18,7 @@
         </router-link>
       </li>
     </ul>
-    <img src="@/assets/img/msg.png" class="titleRight"  style="width: 5vw;"/>
+    <!--<img src="@/assets/img/msg.png" class="titleRight"  style="width: 5vw;"/>-->
   </div>
   <router-view/>
 </div>

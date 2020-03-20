@@ -1,7 +1,7 @@
 <template>
 <div>
 
-  <div id="tt" :style="{height:store.backgroundImage !=='undefined' ? '92vw' : '45vw'}" style="overflow: hidden;">
+  <div id="tt" :style="{height:store.backgroundImage !=='undefined' ? '92vw' : '45vw'}" class="pos-rlt" style="overflow: hidden;">
 
     <div :style="{background: 'url(' + (store.backgroundImage) + ')' }" class="bg bg-blur">
     </div>
@@ -13,14 +13,13 @@
       <img :src="type"  v-for="(type,index) of titleR.content" @click="titler(titleR.method[index])"  style="width: 5vw;margin-left: 3vw;margin-top: 3vw"/>
       <ul class="gengduo" :style="{display:display}">
         <img src="../../assets/img/upsolid.png"  />
-        <li><img src="../../assets/img/msg2.png" />消息</li>
-        <li><img src="@/assets/img/home/buttom/home.png" class="imgGray" />首页</li>
-        <li  @click="$store.state.showToast = true" ><img src="../../assets/img/购物车-23.png"/>购物车</li>
+        <li class="size12" @click="$router.push({path:'/index/home'})"><img src="@/assets/img/home/buttom/home.png" class="imgGray" />首页</li>
+        <li class="size12" @click="$store.state.showToast = true" ><img src="../../assets/img/购物车-23.png"/>购物车</li>
       </ul>
     </div>
     <div  class="company">
       <div>
-        <div class="avatar"  @click="$router.push({path:'/storeDetail',query:{id:store.shop_id}})">
+        <div class="avatar" @click="$router.push({path:'/storeDetail',query:{id:store.shop_id}})">
           <img :src="store.logo_image" class="img"/>
         </div>
         <div class="avatar" style="width: 73%;">
@@ -29,7 +28,7 @@
               <span class=" onehang">
                 主营:{{store.shop_category}}
               </span>
-            <button class="white_btn" style=" position: absolute;  right: 0;">关注</button>
+            <!--<button class="white_btn" style=" position: absolute;  right: 0;">关注</button>-->
           </p>
         </div>
       </div>
@@ -42,46 +41,46 @@
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"/>
     </swiper>
+
+    <ul class="fontWhite clear" :class="{top_dd:top,color:top  }">
+      <li>
+        <button :class="{red_btn:this.type === 'default',navigation_btn:this.type !=='default'}" @click="checkType('default')">综合</button>
+      </li>
+      <li>
+        <button :class="{red_btn:this.type === 'des_status',navigation_btn:this.type !=='des_status'}" @click="checkType('des_status')">销量</button>
+      </li>
+      <li>
+        <button :class="{red_btn:this.type === 'price',navigation_btn:this.type !=='price'}" @click="checkType('price')">
+          价格
+          <span v-if="param.des_status === 3">⬇</span>
+          <span v-else>⬆</span>
+        </button>
+      </li>
+      <li>
+        <button :class="{red_btn:this.type === 'new',navigation_btn:this.type !=='new'}" @click="checkType('new')">新品优先</button>
+      </li>
+    </ul>
   </div>
 
-  <ul class="fontWhite" :class="{top_dd:top,color:top  }">
-    <li>
-      <button :class="{red_btn:this.type === 'default',navigation_btn:this.type !=='default'}" @click="checkType('default')">综合</button>
-    </li>
-    <li>
-      <button :class="{red_btn:this.type === 'des_status',navigation_btn:this.type !=='des_status'}" @click="checkType('des_status')">销量</button>
-    </li>
-    <li>
-      <button :class="{red_btn:this.type === 'price',navigation_btn:this.type !=='price'}" @click="checkType('price')">
-        价格
-        <span v-if="param.des_status === 3">⬇</span>
-        <span v-else>⬆</span>
-      </button>
-    </li>
-    <li>
-      <button :class="{red_btn:this.type === 'new',navigation_btn:this.type !=='new'}" @click="checkType('new')">新品优先</button>
-    </li>
-  </ul>
 
-    <div class="hezuo">
+
+  <div class="back_white">
+    <div class="hezuo clear padder-v">
       <div class="forYou left" v-for="(commodity,index) of commoditys" v-if="index<101">
-        <div  >
+        <div >
           <img class="img" :src="commodity.goods_thumb" style="border-radius: 2vw;" @click="$router.push({path:'/'})"/>
         </div>
-        <p style="    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;    ">{{commodity.goods_name}}</p>
-        <p>
+        <p style="overflow: hidden; white-space: nowrap;  text-overflow: ellipsis;    ">{{commodity.goods_name}}</p>
+        <p class="size12">
           <span class="cinnabar">￥{{commodity.low_price}} </span>
           <span class="gray">{{commodity.sales_actual+commodity.sales_initial}}人付款 </span>
-          <span class="right"><img  src="../../assets/img/baycart.png" @click="$store.state.showToast = true"/></span>
+          <!--<span class="right"><img  src="../../assets/img/baycart.png" @click="$store.state.showToast = true"/></span>-->
         </p>
       </div>
 
     </div>
-
+  </div>
   <msg v-if="this.$store.state.showToast" :msgObj="msgObj" ></msg>
-
 </div>
 </template>
 
@@ -142,8 +141,6 @@ export default {
     titler: function (val) {
       let _this = this
       switch (val) {
-        case 'kefu':
-          break
         case 'gengduo':
           if (_this.display === 'none') {
             _this.display = 'block'
@@ -217,8 +214,8 @@ export default {
       },
       titleR: {
         type: 'imgArray',
-        content: [require('@/assets/img/zixun.png'), require('@/assets/img/省略号.png')],
-        method: ['kefu', 'gengduo']
+        content: [ require('@/assets/img/省略号.png')],
+        method: ['gengduo']
       },
       store: {}
 
@@ -232,7 +229,7 @@ export default {
   .avatar>p>.white_btn{
     width: 20vw;
     margin-top: -5vw;
-
+    border: 0;
   }
   .avatar>p:nth-child(1){
     font-size: large;
@@ -282,7 +279,7 @@ export default {
     height: 65%;
   }
   .forYou{
-    height: 35vw;
+    height: 37vw;
     width: 45.5%;
     margin-left: 3%;
   }
@@ -297,9 +294,8 @@ export default {
     color: white;
   }
   .fontWhite{
-    position: relative;
-    bottom: 9vw;
-    height: 8vw;
+    position: absolute;
+    bottom: 8px;
     background-size: cover;
     background-position: bottom;
     z-index: 2;
@@ -332,7 +328,7 @@ export default {
     background-position: 4%;
     background-size: 6%;
     height: 8vw;
-    width: 60vw;
+    width: 67vw;
     margin-top: 3vw;
   }
   .title-content{

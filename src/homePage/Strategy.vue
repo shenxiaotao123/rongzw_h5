@@ -16,7 +16,7 @@
           </span>
         </router-link>
 
-        <img src="@/assets/img/msg.png" class="titleRight" @click="rightClick" style="width: 5vw;"/>
+        <!--<img src="@/assets/img/msg.png" class="titleRight" @click="rightClick" style="width: 5vw;"/>-->
       </div>
       <router-view/>
     </div>

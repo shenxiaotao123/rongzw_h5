@@ -3,7 +3,7 @@
     <img src="../assets/img/loginUser/back.png" class="titleLeft"  @click="back"/>
     <span class="regular titlecenter" v-if="titleCenter==='name'">{{name}}</span>
     <input class="medium" type="text" :placeholder="inputText" v-model="search" v-if="titleCenter==='input'">
-    <img src="../assets/img/msg.png"  class="titleRight" v-if="ismsg" />
+    <!--<img src="../assets/img/msg.png"  class="titleRight" v-if="ismsg" />-->
     <span class="titleRight" v-if="!ismsg && !isFx">{{titleRight}}</span>
   </div>
 </template>

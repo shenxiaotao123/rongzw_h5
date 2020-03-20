@@ -29,7 +29,7 @@
       </ul>
       <!--文章-->
 
-      <button class="red_btn">我要写攻略</button>
+      <!--<button class="red_btn">我要写攻略</button>-->
     </div>
 </template>
 

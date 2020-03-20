@@ -55,12 +55,12 @@ export default {
       titleC: {
         type: 'text',
         content: '评价'
-      },
-      titleR: {
-        type: 'imgArray',
-        content: [require('@/assets/img/title/商城.png'), require('@/assets/img/title/fenxiang.png')],
-        method: ['to', 'fx']
       }
+      // titleR: {
+      //   type: 'imgArray',
+      //   content: [require('@/assets/img/title/商城.png'), require('@/assets/img/title/fenxiang.png')],
+      //   method: ['to', 'fx']
+      // }
     }
   }
 }

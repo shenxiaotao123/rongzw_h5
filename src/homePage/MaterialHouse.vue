@@ -131,15 +131,19 @@ export default {
           type: 'text'
         },
         titleL: {
-          content: require('@/assets/img/home/sousuo.png'),
-          type: 'img',
-          method: 'search'
-        },
-        titleR: {
-          type: 'img',
-          content: require('@/assets/img/home/jaincai/payCar.png'),
-          method: 'gouwuche'
+          content: ' ',
+          type: 'text'
         }
+        // titleL: {
+        //   content: require('@/assets/img/home/sousuo.png'),
+        //   type: 'img',
+        //   method: 'search'
+        //  }
+        // titleR: {
+        //   type: 'img',
+        //   content: require('@/assets/img/home/jaincai/payCar.png'),
+        //   method: 'gouwuche'
+        // }
       }
 
     }

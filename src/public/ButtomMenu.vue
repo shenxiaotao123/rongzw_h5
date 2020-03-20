@@ -14,13 +14,11 @@
       <button class="red_btn jiesuan" @click="$router.push({path: '/payment',query:{from:$route.path}})">提交订单</button>
     </p>
     <p v-if="route.indexOf('materialShopDetail')>-1 ||route.indexOf('materialReviews')>-1" class="">
-
       <van-goods-action>
         <van-goods-action-icon icon="shop-o" text="店铺" @click="to('/store?id='+$route.query.id)"/>
         <van-goods-action-icon icon="chat-o" text="客服" @click="$emit('al')"/>
         <van-goods-action-icon icon="cart-o" text="购物车" @click="$emit('al')"/>
-        <van-goods-action-button type="warning" text="加入购物车" @click="$emit('al')" />
-        <van-goods-action-button type="danger" text="立即购买" @click="$emit('al')" />
+        <van-goods-action-button type="danger" text="下载APP购买" @click="$emit('al')" />
       </van-goods-action>
 
     </p>

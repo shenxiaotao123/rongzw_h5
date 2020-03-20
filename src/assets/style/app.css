@@ -491,9 +491,10 @@ body,#app,html{
   padding: 0 6vw;
 }
 .user_portrait{
-  width: 5vw;
-  border-radius: 5vw;
-  margin-right: 2vw
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  margin-right: 5px
 }
 .yihang{
   margin-top: 2vw;

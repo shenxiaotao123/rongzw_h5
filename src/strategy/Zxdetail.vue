@@ -14,7 +14,7 @@
           <div  class="you">
             <p>{{zx.bbs_title}}
             </p>
-            <p class="gray" style="line-height: 5vw;">
+            <p class="gray size12" style="line-height: 5vw;">
               {{zx.bbs_content}}
             </p>
           </div>
@@ -43,7 +43,7 @@
                <button  class="red_red_brn" v-show="com.id === zx.bbs_user_id">本人</button>
                {{com.created_at}}
             </span>
-            <span class="right cinnabar">回复</span>
+            <!--<span class="right cinnabar">回复</span>-->
           </p>
           <p style="margin: 3vw 2vw 5vw 2vw;">
             回复 <span class="cinnabar">{{com.to_user_name}}</span>: {{com.com_content}}
@@ -57,21 +57,18 @@
         <span class="line"></span>你看到我的底线了<span class="line"></span>
       </p>
 
-      <div class="bottom white">
-
-          <input type="text" placeholder="我也想回复">
-
-        <img src="@/assets/img/collection.png" class="right"  style="
-       position: absolute;
-    right: 5.9vw;
-    width: 6vw;
-    top: 1vw;"/>
-          <span style="     position: absolute;
-    bottom: 0vw;
-    right: 5vw;
-    transform: scale(0.8);">关注</span>
-
-      </div>
+      <!--<div class="bottom white">-->
+          <!--<input type="text" placeholder="我也想回复">-->
+        <!--<img src="@/assets/img/collection.png" class="right"  style="-->
+       <!--position: absolute;-->
+    <!--right: 5.9vw;-->
+    <!--width: 6vw;-->
+    <!--top: 1vw;"/>-->
+          <!--<span style="     position: absolute;-->
+    <!--bottom: 0vw;-->
+    <!--right: 5vw;-->
+    <!--transform: scale(0.8);">关注</span>-->
+      <!--</div>-->
 
     </div>
 
@@ -125,7 +122,6 @@ export default {
     font-size: 1vw;
   }
 .titleC{
-  line-height: 15vw;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;

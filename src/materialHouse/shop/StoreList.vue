@@ -1,23 +1,20 @@
 <template>
-    <div style="padding-top: 15vw;">
+    <div style="padding-top: 15vw;" class="back_white">
       <mtitle :titleC="title.titlec"  :titleR="title.titleR" class="top_title"></mtitle>
       <!--类目-->
       <!--<navigation :types="types" :model="selectType" @up="up"/>-->
       <!--类目-->
-      <div style="height: 2vw"></div>
 
       <!--<drop-down :types="dd" @jiage="jiage" @style="brand"/>-->
 
-      <p style="clear: both"></p>
-
-        <div  class="company" v-for="(shop,index) of stores" :key="index">
-          <div @click="$router.push({path:'/store',query:{id:shop.shop_id}})">
+        <div class="company" v-for="(shop,index) of stores" :key="index">
+          <div @click="$router.push({path:'/store',query:{id:shop.shop_id}})" class="clear">
             <div class="avatar">
               <img :src="shop.logo_image" class="img"/>
             </div>
             <div class="avatar" style="width: 73%;">
-              <p>{{shop.shop_name}}</p>
-              <p>
+              <p class="size16">{{shop.shop_name}}</p>
+              <p class="size14">
               <span class="gray onehang">
                 主营:{{shop.shop_category}}
               </span>
@@ -26,14 +23,17 @@
             </div>
           </div>
 
-          <p style="clear: both"/>
-          <div  style="display: flex;justify-content: space-around; ">
-            <div v-for="(good,index) of storeGoods[index]" :key="index" style="position: relative;" @click="$router.push({path: '/materialShopDetail', query: {id: good.spu_id}})">
-              <img :src="good.goods_thumb"  style="width: 30vw;height: 15vw;">
-              <div style="position: absolute; bottom: 0;text-align: right;width: 100%;background-color: rgba(47,47,47,0.7);    color: white;">{{good.low_price}}</div>
-            </div>
-
+          <div class="m-l-sm m-r-sm">
+          <van-row>
+            <van-col span="8"v-for="(good,index) of storeGoods[index]" :key="index" style="position: relative;" @click="$router.push({path: '/materialShopDetail', query: {id: good.spu_id}})">
+              <div class="m-l-xs m-r-xs pos-rlt">
+                <img :src="good.goods_thumb"  style="width: 30vw;height: 15vw;">
+                <div style="position: absolute; bottom: 0;text-align: right;width: 100%;background-color: rgba(47,47,47,0.7);    color: white;">{{good.low_price}}</div>
+              </div>
+            </van-col>
+          </van-row>
           </div>
+
         </div>
 
     </div>
@@ -41,6 +41,11 @@
 </template>
 
 <script>
+  import Vue from 'vue';
+  import { Col, Row } from 'vant';
+  Vue.use(Col);
+  Vue.use(Row);
+
 import mtitle from '@/public/TextTitle'
 import dropDown from '@/public/DropDown'
 export default {
@@ -136,11 +141,6 @@ export default {
         titlec: {
           content: '建材城',
           type: 'text'
-        },
-        titleR: {
-          content: [require('@/assets/img/home/jaincai/payCar.png'), require('@/assets/img/home/sousuo.png')],
-          type: 'imgArray',
-          method: ['paycar', 'search']
         }
       },
       types: [],
@@ -156,9 +156,6 @@ export default {
     width: 20vw;
     margin-top: -5vw;
 
-  }
-  .avatar>p:nth-child(1){
-    font-size: large;
   }
   .avatar>p{
     height: 50%;
@@ -195,7 +192,7 @@ export default {
   }
 
   .company{
-    border-bottom: .5vw solid #f7f7f7;
+    border-bottom: 1px solid #eee;
     padding-bottom: 2vw;
   }
   .showTitle{

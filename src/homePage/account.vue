@@ -28,6 +28,9 @@
       <van-grid-item icon="info-o" text="关于我们" @click="$router.push({path:'/aboutUs'})"/>
       <van-grid-item icon="records" text="投诉建议" @click="$router.push({path:'/Suggest'})"/>
     </van-grid>
+    <div class="m-t-sm">
+      <a href="https://www.rongzw.com/appdownload.html"><img src="../assets/img/my/downloadApp.jpg" class="downloadAppImg" alt="手机下载APP 实时接受订单信息  功能更全，体验更佳！"/></a>
+    </div>
     <div class="mar-b-10">
       <!--<van-cell title="我的互动" is-link icon="friends-o" @click="to('/myInteraction')" />-->
       <!--<van-cell title="我的攻略" is-link icon="send-gift-o" @click="to('/myGl')"/>-->
@@ -81,7 +84,7 @@ import Vue from 'vue'
 <style scoped>
   .myTop {
     position: relative;
-    padding-top: 15px;
+    padding-top: 25px;
     /*height:186px;*/
     height:130px;
     background: url("../assets/img/my/titleBg.png")no-repeat;
@@ -91,4 +94,5 @@ import Vue from 'vue'
   .user-name { padding: 15px 0; color: #fff;text-align: center; font-size: 18px; font-weight: 500;}
   .myTop-data { position: absolute; bottom: 10px; width: 100%; color: #fff; text-align: center; line-height: 1.8;}
   .mar-b-10 { margin-bottom: 10px;}
+  .downloadAppImg { width: 100%;}
 </style>

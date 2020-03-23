@@ -139,7 +139,7 @@ export default {
 
 <style scoped>
   .introduce {
-
+   margin-top: 5px;
   }
   .introduce ul { margin-bottom:3vw; float: left; font-size: 3vw;}
   .works_avatar_detail{

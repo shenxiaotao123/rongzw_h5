@@ -2,6 +2,7 @@ body,#app,html{
   height: 100%;
   width: 100%;
 }
+html { background: #f7f7f7;}
 .upArrow{
   height: 2vw;
   width: 2vw;
@@ -210,7 +211,7 @@ body,#app,html{
 .workLife{
   background-color: #FDE8EF;
   color: #C82126;
-  font-size: 1vw;
+  font-size: 12px;
   margin-left: 3vw;
   padding: 5px;
   position: absolute;
@@ -357,7 +358,7 @@ body,#app,html{
   position: fixed;
   top: 0;
   opacity: 0.5;
-  z-index: 100000;
+  z-index: 9998;
 }
 .msg_text_left{
   text-align: left;

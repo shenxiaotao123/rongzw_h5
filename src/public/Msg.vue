@@ -397,7 +397,7 @@ export default {
     width: 92%;
     background-color: white;
     border-radius: 2vw;
-    z-index: 999999999999999999999;
+    z-index: 9999;
     position: fixed;
     top: 39%;
     text-align: center;

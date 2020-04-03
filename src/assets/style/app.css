@@ -324,6 +324,7 @@ html { background: #f7f7f7;}
   -o-filter: grayscale(100%);
   filter: grayscale(100%);
   filter: gray;
+  opacity: 0.5;
 }
 
 .effect{

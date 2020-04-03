@@ -144,20 +144,25 @@ export default new Router({
       name: 'favorite',
       component: () => import('@/user/myHome/favorite')
     },
-    {
+    { //要监理
       path: '/supervision',
       name: 'supervision',
       component: () => import('@/applets/supervision')
     },
-    {
+    { //智慧家
       path: '/intelligent',
       name: 'intelligent',
       component: () => import('@/applets/intelligent')
     },
-    {
+    { //看直播
       path: '/WatchLive',
       name: 'WatchLive',
       component: () => import('@/applets/WatchLive')
+    },
+    { //算报价
+      path: '/calculator',
+      name: 'calculator',
+      component: () => import('@/applets/calculator')
     },
     {
       path: '/siteList',
@@ -386,14 +391,10 @@ export default new Router({
         }
       ]
     },
-    {
+     {
       path: '/',
       name: 'Strat',
-      component: Strat
-    }, {
-      path: '/home',
-      name: 'Home',
-      component: home,
+      component: Strat,
       children: [
         {
           path: 'msg',

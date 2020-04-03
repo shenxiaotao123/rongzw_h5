@@ -3,7 +3,7 @@
     <router-view/>
     <div class="all menu">
       <router-link to="/index/home" >
-        <div><img src="@/assets/img/home/aa/jiaj11u.png" :class="{imgGray:!home}" /></div>        首页
+        <div><img src="@/assets/img/home/aa/jiaj11u.png" :class="{imgGray:!home}" /></div>首页
       </router-link>
       <router-link to="/index/picture">
         <div><img src="@/assets/img/home/aa/picture.png" :class="{imgGray:!tupian}"/></div>效果图
@@ -52,7 +52,7 @@ export default {
     margin-bottom:2vw;
     height: 5vw;
   }
-  .router-link-exact-active { color: #333 !important;}
+  .router-link-exact-active,.router-link-active { color: #333 !important;}
   .menu>a{
     float: left;
     text-align: center;

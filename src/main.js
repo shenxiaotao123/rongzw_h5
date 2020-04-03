@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import less from 'less'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import '@/assets/style/border.css'
@@ -23,6 +24,7 @@ Vue.prototype.$ajax = axios
 Vue.config.productionTip = false
 Vue.config.devtools = true
 Vue.use(VueAwesomeSwiper)
+Vue.use(less)
 Vue.config.silent = true
 com.$router = router
 com.vue = Vue

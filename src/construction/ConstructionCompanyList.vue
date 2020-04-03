@@ -1,40 +1,42 @@
 <template>
   <div class="back_white clear">
-    <div class="company" v-if="companys.id  === undefined"  @click="$router.push({path:'/company',query:{id:company.id}})" v-for="(company,index) in companys" :key="index">
-      <div class="companyImg">
-        <img :src="company.avatar" class="img"/></div>
-      <div class="companyDetail">
-        <p class="regular companyName">{{company.name}}</p>
-        <p class="regular gray aa size12">
-         {{company.brief}}
-        </p>
-        <p class="regular gray size12" style="width: 65vw">
+
+    <div class="unitList" v-if="companys.id  === undefined"  @click="$router.push({path:'/company',query:{id:company.id}})" v-for="(company,index) in companys" :key="index">
+      <div class="unitImg">
+        <img :src="company.avatar" /></div>
+      <div class="unitCon">
+        <h6>{{company.name}}</h6>
+        <p class="Introduction">{{company.brief}}</p>
+        <p class="ConstructionSite">
           施工工地  {{company.site_nums}}个
           <!--<span class="right gray">{{jl[index]}}km</span>-->
           <span class="right gray">{{company.distance}}km</span>
         </p>
 
       </div>
-      <!--<bmap :method="bma" :stratLng="company.lng"  :stratlat="company.lat" @juli="juli"/>-->
+      <!--<bmap :method="bma" :stratLng="company.lng" :stratlat="company.lat" @juli="juli"/>-->
     </div>
-    <div class=" company"  v-if="typeof companys.id  === 'number'" style="height: 25vw;">
-      <div class="companyImg">
-        <img :src="companys.avatar" class="img"/></div>
-      <div class="companyDetail">
-        <span class="regular companyName">{{companys.name}}</span>
-        <p class="regular gray" style="width: 72vw;">
-          <p class="aa" style="width: 45vw;">
-        {{companys.brief}}
-          </p>
-        <!--<button class="redWhitebtn right" style="position: relative;    bottom: 7vw;    right: 2vw;">-->
-          <!--<div style="    width: 4vw;    margin-top: -0.5vw;    margin-right: 1vw;float: left">-->
-            <!--<img src="@/assets/img/关注 (1).png" class="img"/>-->
-          <!--</div>-->
-          <!--关注</button>-->
-        </p>
 
-      </div>
-    </div>
+
+    <!--<div class="company" v-if="typeof companys.id  === 'number'" style="height: 25vw;">-->
+      <!--<div class="companyImg">-->
+        <!--<img :src="companys.avatar" class="img"/></div>-->
+      <!--<div class="companyDetail">-->
+        <!--<span class="regular companyName">{{companys.name}}</span>-->
+        <!--<p class="regular gray" style="width: 72vw;">-->
+          <!--<p class="aa" style="width: 45vw;">-->
+        <!--{{companys.brief}}-->
+          <!--</p>-->
+        <!--&lt;!&ndash;<button class="redWhitebtn right" style="position: relative;    bottom: 7vw;    right: 2vw;">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div style="    width: 4vw;    margin-top: -0.5vw;    margin-right: 1vw;float: left">&ndash;&gt;-->
+        <!--&lt;!&ndash;<img src="@/assets/img/关注 (1).png" class="img"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;关注</button>&ndash;&gt;-->
+        <!--</p>-->
+
+      <!--</div>-->
+    <!--</div>-->
+
   </div>
 </template>
 
@@ -52,7 +54,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
+  .unitList { padding: 15px; display: flex; border-bottom: 1px solid #eee;
+    .unitImg { margin-right: 15px; width: 73px; height: 73px; border: 1px solid #eee;
+      img { width: 73px; height: 73px;}
+    }
+    .unitCon { flex: 1;
+      h6 { font-size: 16px; color: #333; line-height: 1.4;}
+      .Introduction { margin: 8px 0; color: #999; font-size: 12px; line-height: 1.4; overflow: hidden;text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+      .ConstructionSite { font-size: 12px; color: #999;}
+    }
+  }
+
+
+
   .aa{
     overflow: hidden;
     white-space: nowrap;
@@ -85,9 +100,6 @@ export default {
     float: left;
   }
   .companyDetail{
-    margin-left: 4vw;
-    padding-top: 3vw;
-    float: left;
-    line-height: 6vw;
+
   }
 </style>

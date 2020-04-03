@@ -1,7 +1,7 @@
 <template>
   <div class="back_white clear">
     <mtitle :titleC="titleC" :titleR="titleR" :titleL="titleL" @to="to"/>
-    <company :companys="company" ></company>
+    <company :companys="company"></company>
     <div class="address">
       <p class="all">
         <span class="left">{{company.address}}</span>
@@ -16,26 +16,38 @@
           <router-link :to="{path:'/company/constructionSite',query:{id:company.id}}" >施工工地({{company.site_nums}})</router-link>
         </li>
         <li>
-          <router-link :to="{path:'/company/comment',query:{id:company.id,type:'construction'}}"  >用户评价</router-link>
+          <router-link :to="{path:'/company/comment',query:{id:company.id,type:'construction'}}">用户评价</router-link>
         </li>
-        <li> <router-link :to="{path:'/company/companyDetail',query:{id:company.id}}"  >公司信息</router-link>   </li>
+        <li><router-link :to="{path:'/company/companyDetail',query:{id:company.id}}">公司信息</router-link></li>
       </ul>
     <router-view class="`all"></router-view>
 
     <right-bottom :rightBottom="rightBottom" class="top_rightBottom"/>
+    <div class="wrapper-md m-t-md">
+      <van-cell is-link @click="showPopup" class="btn_D_app">预约施工</van-cell>
+      <van-popup v-model="show">
+        <downloadApp></downloadApp>
+      </van-popup>
+    </div>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue';
+  import { Popup } from 'vant';
+  Vue.use(Popup);
+
 import mtitle from '@/public/TextTitle'
-import company from '@/construction/ConstructionCompanyList'
+import company from '@/construction/ConstructionCompanyHead'
 import rightBottom from '@/public/RightBottom.vue'
+  import downloadApp from '@/public/downloadApp.vue'
 export default {
   name: 'Company',
   components: {
     mtitle,
     company,
-    rightBottom
+    rightBottom,
+    downloadApp
   },
   created () {
     this.getRouterData()
@@ -49,6 +61,9 @@ export default {
     },
     to () {
       this.$router.push({path: '/construction'})
+    },
+    showPopup() {
+      this.show = true;
     }
   },
   data: function () {
@@ -69,12 +84,17 @@ export default {
       rightBottom: {
         type: 'top',
         imgUrl: require('@/assets/img/top.png')
-      }
+      },
+      show: false
+
     }
   }
 }
 </script>
 <style scoped>
+  .btn_D_app { background: #dd1a21; color: #fff; border-radius: 3px;}
+  .btn_D_app .van-cell__value--alone {color: #fff; text-align: center;}
+  .btn_D_app .van-cell__right-icon {color: #fff;}
   a{
     color: black;
   }
@@ -88,7 +108,7 @@ export default {
     text-align: center;
     margin-top: 3vw;
     font-weight: 600;
-    font-size: 4vw;
+    font-size: 14px;
     font-family: PingFang-SC-Medium;
 
     margin-left: 6.5vw;

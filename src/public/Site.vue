@@ -46,9 +46,10 @@ export default {
 <style scoped>
   .site p{
     text-align: center;
-    margin-top: 2vw;
-    font-size: xx-small;
+    margin-top: 10px;
+    font-size: 14px;
   }
+  .site p.gray { margin-top: 5px; font-size: 12px;}
 .site{
   width: 47%;
   margin-top: 4vw;

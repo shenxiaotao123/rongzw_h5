@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <img :src="rightBottom.imgUrl" @click="toPageIndex" class="img"/>
-  </div>
+  <!--<div>-->
+    <!--<img :src="rightBottom.imgUrl" @click="toPageIndex" class="img"/>-->
+  <!--</div>-->
 </template>
 
 <script>

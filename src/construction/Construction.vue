@@ -1,5 +1,6 @@
 <template>
-    <div style="height: auto;width:100%;margin-top: 13.5vw">
+    <div style="height: auto;width:100%;margin-top: 46px">
+      <bmap :method="bma" @city="citys()"/>
       <!--抬头-->
       <mtitle :titleC="titleC" :titleR="titleR" :titleL="titleL" @to="$router.push({path:'/index/home'})" class="top_title"></mtitle>
       <!--抬头-->
@@ -23,38 +24,42 @@
 
         <!--介绍-->
         <ul class="stage medium all padder-v">
-          <li><div>水电阶段</div></li>
-          <li><div>泥工阶段 </div> </li>
-          <li><div>木工阶段 </div> </li>
-          <li><div>油漆阶段</div> </li>
-          <li><div>保洁修补 </div>  </li>
+          <li>水电阶段</li>
+          <li>泥工阶段</li>
+          <li>木工阶段</li>
+          <li>油漆阶段</li>
+          <li>保洁修补</li>
         </ul>
         <!--介绍-->
       </div>
 
       <div class="case back_white m-t-sm">
         <!--导航-->
-        <drop-down :types="types" @region="region" @style="upstyle" @sort="sort" :class="{top_dd:this.top}" style="top: 15vw;"/>
+        <drop-down :types="types" @region="region" @style="upstyle" @sort="sort" :class="{top_dd:this.top}" style="top:46px;"/>
         <!--导航-->
         <!--施工公司-->
-        <company  :companys="companys"></company>
+        <company :companys="companys"></company>
         <!--施工公司-->
       </div>
     </div>
 </template>
 
 <script>
+  console.log(sessionStorage.getItem('province'))
 import company from '@/construction/ConstructionCompanyList'
 import scene from '@/construction/Scene'
 import mtitle from '@/public/TextTitle'
 import DropDown from '@/public/DropDown'
+  import bmap from '@/public/Bmap'
+  import '@/assets/js/regions.js'
 export default {
   name: 'Construction',
   components: {
     mtitle,
     scene,
     company,
-    DropDown
+    DropDown,
+    bmap
   },
   methods: {
     getCompany () {
@@ -105,6 +110,8 @@ export default {
         })
       }
     }
+    ,
+
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.topdd)
@@ -115,6 +122,7 @@ export default {
       this.types[2].list = res.data.data
       this.types[2].list.unshift({id: 0, name: '不限', sort: 1})
     })
+
   },
   mounted () {
     window.addEventListener('scroll', this.topdd)
@@ -150,15 +158,18 @@ export default {
         {
           name: '区域选择',
           defaultName: '区域选择',
-          default: this.regions[sessionStorage.getItem('province')][sessionStorage.getItem('city')],
+          default: '...',
+          //default: this.regions[sessionStorage.getItem('province')][sessionStorage.getItem('city')],
+          //default: this.regions[this.$store.state.commit('province')][this.$store.state.commit('city')],
           list: this.regions[sessionStorage.getItem('city')],
           display: 'none',
           mode: 'region',
           subheading: '下属区县市'
         },
         {
-          name: '综合',
+          name: '综合排序',
           default: 0,
+          defaultName:'综合排序',
           list: [
             {
               id: 0,
@@ -189,6 +200,8 @@ export default {
     }
   }
 }
+
+
 </script>
 
 <style scoped>
@@ -246,12 +259,11 @@ export default {
   }
   .stage li{
     float: left;
-    width: 13vw;
-    margin-right: 0.5vw;
+    margin-right: 5px;
+    padding: 3px;
     text-align: center;
-    height: 4vw;
-    border-radius: 1vw;
-    font-size: xx-small;
+    border-radius: 2px;
+    font-size: 11px;
   }
   il{
     float: left;

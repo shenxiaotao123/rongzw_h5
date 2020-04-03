@@ -33,8 +33,10 @@
 
   <!--文章-->
   <div class="article back_white">
-    <div class="padder-v" id="artilcle" v-html="bbs.bbs_content"></div>
+    <div class="padder-v" id="artilcle" ref="name" v-html="bbs.bbs_content"></div>
+    {{ mItemType }}  {{ content }}
   </div>
+
   <!--文章-->
 
   <!--为您推荐-->
@@ -103,6 +105,14 @@ Vue.use(Icon);
 Vue.use(GoodsAction);
 Vue.use(GoodsActionButton);
 Vue.use(GoodsActionIcon);
+Vue.prototype.highlight= function (sTitle) {
+  // to do
+};
+Vue.prototype.msg= function (msg) {
+
+  return msg.replace("\n", "<br>")
+
+};
 export default {
   name: 'GlDetail',
   components: {
@@ -113,6 +123,13 @@ export default {
     for (var i = 0; i < document.getElementById('artilcle').getElementsByTagName('img').length; i++) {
       document.getElementById('artilcle').getElementsByTagName('img')[i].classList = ['img']
     }
+
+    //return this.$refs.name.firstChild
+
+
+   console.log(this.$refs.name.firstChild)
+
+
   },
   mounted () {
     window.pageYOffset = 0
@@ -121,6 +138,10 @@ export default {
     window.addEventListener('scroll', this.handleScroll)
     this.$ajax.get('/api/bbs/guide/' + this.$route.query.id + '?no_cached=1').then((res) => {
       this.bbs = res.data.data
+
+      this.bbscon = res.data.data.firstChild
+
+
     })
     this.$ajax.get('/api/bbs/guide?is_rec=1').then((res) => {
       this.wenzhang = res.data.data
@@ -140,6 +161,8 @@ export default {
     return {
       topTitle: false,
       bbs: {},
+      bbscon: {},
+
       rightBottom: {
         type: 'top',
         imgUrl: require('@/assets/img/top.png')
@@ -149,6 +172,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>

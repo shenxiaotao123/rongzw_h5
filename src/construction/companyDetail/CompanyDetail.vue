@@ -50,7 +50,7 @@ export default {
   }
   .genre{
     font-weight: 600;
-    font-size: 4vw;
+    font-size: 14px;
     margin-bottom: 2vw;
   }
   .aa{

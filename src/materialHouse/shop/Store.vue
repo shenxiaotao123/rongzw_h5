@@ -327,14 +327,15 @@ export default {
     background-repeat: no-repeat;
     background-position: 4%;
     background-size: 6%;
-    height: 8vw;
+    font-size: 14px;
     width: 67vw;
-    margin-top: 3vw;
+    height: 30px;
+    margin-top: 8px;
   }
   .title-content{
     position:fixed;
     width: 100%;
-    height: 15vw;
+    height: 46px;
     font-size: 4.4vw;
     text-align: center;
     z-index: 999;
@@ -377,4 +378,5 @@ export default {
   .color{
     background-color: #961818;
   }
+  .top_dd { padding-top: 10px; height: 40px;}
 </style>

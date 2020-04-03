@@ -89,7 +89,8 @@ export default {
   .content{
     color: white;
     position: fixed;
-    top: 66%;
+    top: 25%;
+    margin-top: 75vw;
     width: -webkit-fill-available;
   }
   .content_title{

@@ -16,6 +16,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "fastclick": "^1.0.6",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
     "swiper": "^4.5.1",
     "vant": "^2.5.2",
     "vue": "^2.6.11",

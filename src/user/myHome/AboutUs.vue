@@ -1,8 +1,11 @@
 <template>
     <div style="text-align: center;    text-indent: 7vw;">
 
-      <mtitle :titleC="titleC"/>
+      <mtitle :titleC="titleC" id="p1"/>
       <img src="../../assets/img/my/logo.png" width="180" style="margin:8vw"/>
+
+      <div id="demo"></div>
+
       <p class="white">
         人类从印刷术开始历经多次技术革新，到今天互联网技术蓬 勃发展，万物互联使得人们接触信息由原来的不对等到现在信息 自由获取，极大的提高了社会工作效率和效能。技术进步引领企业变革，其最终实质是还权于民，这真是荣装网站创立初衷。荣装网是浙江联合创展科技股份有限公司投资的泛家装生态聚合平台，传统与互联网家装的整合，德系互联网家装标准践行者。荣装网致力于用互联网思维及技术，改变传统家装行业产业链，去掉层层中间环节修最短路径，实现消费者利益的最大化，重塑行业的新商业文明。
       </p>
@@ -60,26 +63,61 @@
         ©2016-2017 浙江联合创展科技股份有限公司 版权所有
       </p>
     </div>
+
 </template>
 
 <script>
+
     export default {
-        name: "AboutUs",
+      name: "AboutUs",
       components:{
         mtitle:() => import('@/public/TextTitle')
+      },
+      updated: function () {
+        var llq = navigator.userAgent;
+        if (llq.indexOf("RZW-MOBILE") >= 0) {
+        }
+        else {
+          var child = document.getElementById("p1");
+          child.style.display = 'block';
+        }
+      },
+      mounted () {
+        this.$nextTick(()=>{
+          var llq = navigator.userAgent;
+          if (llq.indexOf("RZW-MOBILE") >= 0) {
+          }
+          else {
+            var child = document.getElementById("p1");
+            child.style.display = 'block';
+          }
+        });
       },
       data(){
         return{
           titleC: {
             type: 'text',
-            content: '联系我们'
+            content: '关于我们'
           }
         }
       }
     }
+
+    // window.onload = function tt(){
+    //   var llq = navigator.userAgent;
+    //   if (llq.indexOf("RZW-MOBILE") >= 0) {
+    //   }
+    //   else {
+    //     var child = document.getElementById("p1");
+    //     child.style.display = 'block';
+    //   }
+    // };
+
+
 </script>
 
 <style scoped>
+  #p1 { display: none;}
   p {
     line-height: 5vw;
     font-size: x-small;

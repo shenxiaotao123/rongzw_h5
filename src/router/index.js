@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Strat from '@/stratPage/Strat'
 import Login from '@/login/Login'
+import wxlogin from '@/login/wxLogin'
+import Information from '@/login/login/Information'
 import pass from '@/user/password/password'
 import register from '@/user/register/Register'
 import otherLogin from '@/login/login/OtherLogin'
@@ -88,6 +90,11 @@ export default new Router({
       path: '/contactUs',
       name: 'contactUs',
       component: () => import('@/user/myHome/contactUs')
+    },
+    { //隐私政策
+      path: '/PrivacyPolicy',
+      name: 'PrivacyPolicy',
+      component: () => import('@/user/myHome/PrivacyPolicy')
     },
     {
       path: '/checkStyle',
@@ -292,7 +299,7 @@ export default new Router({
     },
     {
       path: '/company',
-      name: 'Company',
+      name: 'contactUs',
       component: company,
       children: [
         {
@@ -407,6 +414,16 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/wxlogin',
+      name: 'wxlogin',
+      component: wxlogin
+    },
+    {
+      path: '/Information',
+      name: 'Information',
+      component: Information
     },
     {
       path: '/pass',

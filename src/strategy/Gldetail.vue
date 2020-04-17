@@ -33,10 +33,20 @@
 
   <!--文章-->
   <div class="article back_white">
-    <div class="padder-v" id="artilcle" ref="name" v-html="bbs.bbs_content"></div>
-    {{ mItemType }}  {{ content }}
-  </div>
+    <!--<div class="padder-v" id="artilcle" v-html="bbs.bbs_content"></div>-->
+    <div class="padder-v" id="artilcle" v-html="bbs.bbs_content"></div>
 
+    <div v-for="item in tmp1">
+      <div v-if="item.wordItem">
+        {{ item.wordItem.content }}
+      </div>
+      <div v-if="item.imageItem">
+        {{ item.imageItem.imgDesc }}
+        <img class="img" :src="item.imageItem.imgUrl" />
+      </div>
+    </div>
+
+  </div>
   <!--文章-->
 
   <!--为您推荐-->
@@ -99,7 +109,7 @@ import rightButtom from '@/public/RightBottom'
 import mtitle from '@/public/ImgTitle'
 //vant Divider 分割线,图标,商品导航
 import Vue from 'vue';
-import { Divider,Icon,GoodsAction, GoodsActionIcon, GoodsActionButton,Toast } from 'vant';
+import { Divider,Icon,GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant';
 Vue.use(Divider);
 Vue.use(Icon);
 Vue.use(GoodsAction);
@@ -124,10 +134,13 @@ export default {
       document.getElementById('artilcle').getElementsByTagName('img')[i].classList = ['img']
     }
 
-    //return this.$refs.name.firstChild
+    // var str = this.$refs.name.innerHTML
+    // let hqsj = JSON.parse(str)
+    // this.tmp1 = hqsj
 
-
-   console.log(this.$refs.name.firstChild)
+    //
+    // console.log(hqsj);
+    //console.log(this.$refs.name.innerHTML)
 
 
   },
@@ -138,14 +151,28 @@ export default {
     window.addEventListener('scroll', this.handleScroll)
     this.$ajax.get('/api/bbs/guide/' + this.$route.query.id + '?no_cached=1').then((res) => {
       this.bbs = res.data.data
+      var str = this.bbsC = res.data.data.bbs_content
+      let hqsj = JSON.parse(str)
+      this.tmp1 = hqsj
 
-      this.bbscon = res.data.data.firstChild
+      //console.log(hqsj)
+
+      this.$nextTick(()=>{
+        if(hqsj.length == 0) {
+        }
+        else {
+          var child = document.getElementById("artilcle");
+          child.style.display = 'none';
+        }
+      });
 
 
     })
     this.$ajax.get('/api/bbs/guide?is_rec=1').then((res) => {
       this.wenzhang = res.data.data
     })
+
+
   },
   methods: {
     handleScroll () {
@@ -156,17 +183,17 @@ export default {
       this.$router.push({path: '/glDetail', query: {id: wzid}})
       location.reload()
     }
+
+
   },
   data () {
     return {
       topTitle: false,
       bbs: {},
-      bbscon: {},
-
+      tmp1:[],
       rightBottom: {
         type: 'top',
         imgUrl: require('@/assets/img/top.png')
-
       },
       wenzhang: []
     }

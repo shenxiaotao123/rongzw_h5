@@ -1,7 +1,7 @@
 <template>
   <div class="accountWrap">
     <div class="myTop">
-      <div class="">
+      <div @click="$router.push({path:'/wxlogin'})">
         <img src="../assets/img/loginUser/headPortrait.png" class="avatarImg" alt="头像"/>
         <p class="user-name">昵称</p>
       </div>
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+
 import Vue from 'vue'
   //vant单元格
   import { Cell, CellGroup,Grid,GridItem } from 'vant';

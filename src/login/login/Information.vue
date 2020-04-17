@@ -1,120 +1,79 @@
 <template>
   <div>
-    <button class="user back_white" :class="{'color':isPhone}" @click="change">账号登陆</button>
-    <button class="code back_white" :class="{'color':!isPhone}" @click="change">验证码登陆</button><br><br><br>
-    <div>
-      <i class="icon-user"></i>
-      <input    placeholder="手机号码"  type="text"   /><br><br>
-      <i class="icon-pass" v-show="isPhone"></i>
-      <i class="icon-code"  v-show="!isPhone"></i>
-        <input  placeholder="密码" v-show="isPhone"   type="password" />
-        <input  placeholder="验证码" v-show="!isPhone"  class="codeInput"  type="text" />
-      <button v-show="!isPhone" class="text-code"> 获取验证码</button>
-    </div><br>
-    <button class="btn-login">登 陆</button>
-    <br><br>
-    <button style="color:#999999;" class="back_white" @click="forgetPass">忘记密码</button>
-    <button style="position: absolute;right: 16vw;color:#C82126;" class="back_white" @click="register">立即注册</button>
+    <mtitle :titleC="titleC"/>
+    <van-form @submit="onSubmit">
+
+    <van-field v-model="tel" type="tel" left-icon="phone-o" placeholder="手机号码" :rules="[{ pattern, message: '请输入正确内容' }]"/>
+      <van-field v-model="sms" center clearable left-icon="qr" placeholder="短信验证码">
+        <template #button>
+          <van-button size="small" color="#dd1a21" type="primary" v-show="sendCode" @click="ObtainCode()">获取验证码</van-button>
+          <van-button size="small" disabled color="#999999" type="primary" v-show="!sendCode">{{authTime}}秒</van-button>
+        </template>
+      </van-field>
+      </van-cell-group>
+
+    <div class="m-md">
+      <van-button color="#dd1a21" block type="info" native-type="submit">绑定</van-button>
+
+      <p class="m-t-sm size12"><van-checkbox v-model="checked" shape="square">我已阅读并接受<a @click="$router.push({path:'/registered'})">《用户服务协议》</a>及<a @click="$router.push({path:'/PrivacyPolicy'})">《隐私政策》</a></van-checkbox></p>
+      <p class="m-t-sm size12 gray">* 绑定手机可以提高账号的安全性，方便找回密码</p>
+      <p class="m-t-sm size12 gray">* 根据国家互联网信息办公室发布的《移动互联网应用程序信息 服务管 理规定》，自2016年8月20日起，注册用户需基于移动电话号码等真实身份信息进行实名认证。</p>
+    </div>
+    </van-form>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue';
+  import { Field,Button,Form,Checkbox,CheckboxGroup,Toast } from 'vant';
+  Vue.use(Field);
+  Vue.use(Button);
+  Vue.use(Form);
+  Vue.use(Checkbox);
+  Vue.use(CheckboxGroup);
+  Vue.use(Toast);
+
 export default {
   name: 'Imformation',
+  components: {
+    mtitle: () => import('@/public/TextTitle')
+  },
   data: function () {
     return {
-      isPhone: true
+      titleC: {
+        type: 'text',
+        content: '新用户绑定手机号码'
+      },
+      checked: true,
+      tel: '',
+      sms: '',
+      sendCode: true, // 控制发送验证码按钮显示
+      authTime: 0, // 倒计时
     }
   },
+
   methods: {
-    change (el) {
-      if (el.target.innerHTML === '验证码登陆') {
-        this.isPhone = false
-      } else {
-        this.isPhone = true
-      }
+    onSubmit(values) {
+      console.log('submit', values);
     },
-    forgetPass: function () {
-      console.log(this)
-      this.$router.push('/pass')
+
+    // 获取验证码
+    ObtainCode () {
+      this.sendCode = false  // 控制显示隐藏
+      this.authTime = 60
+      let timeInt = setInterval(() => {
+        this.authTime--
+        if (this.authTime <= 0) {
+          this.sendCode = true
+          window.clearInterval(timeInt)
+        }
+      }, 1000)
     },
-    register: function () {
-      this.$router.push('/register')
-    }
+
   }
 }
 </script>
 
-<style scoped>
-  .text-code{
-    position: absolute;
-    left: 60vw;
-    z-index: 5;
-    background-size: 30%;
-    top: 31vw;
-    color: #333333;
-    background-color: #f7f7f7 !important;
-  }
-  .codeInput{
-    padding-right:20vw;
-    width: 50vw;
-  }
-  .color{
-    color: #108EE9;
-  }
-  input{
-    padding-left: 12vw;
-    background-color: #f7f7f7;
-    height: 13vw;
-    width: 70vw;
-    color: #999999;
-    font-size: 4vw;
-  }
-  .btn-login{
-    background-color: #108EE9 !important;
-    height: 13vw;
-    width: 82vw;
-    color: white;
-    font-family: PingFang-SC-Regular !important;
-  }
-  .icon-user{
-    position: absolute;left: 0;
-    z-index:5;
-    background-image: url("../../assets/img/loginUser/phone.png");
-    background-repeat: no-repeat; /*设置图片不重复*/
-    background-position:90% 55%; /*图片显示的位置*/
-    width: 8vw; /*设置图片显示的宽*/
-    height: 13vw; /*图片显示的高*/
-    background-size:50%;
-  }
-  .icon-pass{
-    position: absolute;left: 0;
-    z-index:5;
-    background-image: url("../../assets/img/loginUser/password.png");
-    background-repeat: no-repeat; /*设置图片不重复*/
-    background-position:90% 55%; /*图片显示的位置*/
-    width: 8vw; /*设置图片显示的宽*/
-    height: 13vw; /*图片显示的高*/
-    background-size:50%;
-  }
-  .icon-code{
-    position: absolute;left: 0;
-    z-index:5;
-    background-image: url("../../assets/img/loginUser/code.png");
-    background-repeat: no-repeat; /*设置图片不重复*/
-    background-position:100% 55%; /*图片显示的位置*/
-    width: 8vw; /*设置图片显示的宽*/
-    height: 13vw; /*图片显示的高*/
-    background-size:65%;
-  }
-  .user{
-    position: absolute;
-    left: 12vw;
-    font-size: 4.5vw;
-  }
-  .code{
-    position: absolute;
-    right: 26vw;
-    font-size: 4.5vw;
-  }
+<style lang="less">
+
 </style>

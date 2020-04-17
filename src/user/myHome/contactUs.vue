@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mtitle :titleC="titleC"/>
+      <mtitle :titleC="titleC" id="p1"/>
       <div class="mar-b-10" style="margin-top: 1vw ">
         <van-cell title="荣装官网" is-link  value="www.rongzw.com"/>
         <van-cell title="联合创展" is-link value="www.zjlhcz.com" />
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
   import Vue from 'vue'
   //vant单元格
   import { Cell } from 'vant';
@@ -31,6 +32,26 @@
     components:{
       mtitle:() => import('@/public/TextTitle')
     },
+      updated: function () {
+        var llq = navigator.userAgent;
+        if (llq.indexOf("RZW-MOBILE") >= 0) {
+        }
+        else {
+          var child = document.getElementById("p1");
+          child.style.display = 'block';
+        }
+      },
+      mounted () {
+        this.$nextTick(()=>{
+          var llq = navigator.userAgent;
+          if (llq.indexOf("RZW-MOBILE") >= 0) {
+          }
+          else {
+            var child = document.getElementById("p1");
+            child.style.display = 'block';
+          }
+        });
+      },
     data(){
       return{
         titleC: {
@@ -43,5 +64,5 @@
 </script>
 
 <style scoped>
-
+  #p1 { display: none;}
 </style>

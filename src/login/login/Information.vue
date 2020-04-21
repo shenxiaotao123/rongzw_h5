@@ -2,16 +2,14 @@
   <div>
     <mtitle :titleC="titleC"/>
     <van-form @submit="onSubmit">
-
-    <van-field v-model="tel" type="tel" left-icon="phone-o" placeholder="手机号码" :rules="[{ pattern, message: '请输入正确内容' }]"/>
-      <van-field v-model="sms" center clearable left-icon="qr" placeholder="短信验证码">
+    <van-field v-model="user.username" type="tel" left-icon="phone-o" placeholder="手机号码" maxlength="11" :rules="[{ pattern, message: '请输入正确内容' }]"/>
+      <van-field v-model="user.tel_code" center clearable left-icon="qr" placeholder="短信验证码">
         <template #button>
-          <van-button size="small" color="#dd1a21" type="primary" v-show="sendCode" @click="ObtainCode()">获取验证码</van-button>
           <van-button size="small" disabled color="#999999" type="primary" v-show="!sendCode">{{authTime}}秒</van-button>
         </template>
       </van-field>
-      </van-cell-group>
 
+    <div v-model="cs"></div>
     <div class="m-md">
       <van-button color="#dd1a21" block type="info" native-type="submit">绑定</van-button>
 
@@ -20,6 +18,8 @@
       <p class="m-t-sm size12 gray">* 根据国家互联网信息办公室发布的《移动互联网应用程序信息 服务管 理规定》，自2016年8月20日起，注册用户需基于移动电话号码等真实身份信息进行实名认证。</p>
     </div>
     </van-form>
+    <van-button size="small" color="#dd1a21" type="primary" v-show="sendCode" @click="ObtainCode()">获取验证码</van-button>
+
   </div>
 </template>
 
@@ -45,17 +45,65 @@ export default {
         content: '新用户绑定手机号码'
       },
       checked: true,
-      tel: '',
-      sms: '',
+      user:{
+        username:'',
+        tel_code:'',
+      },
       sendCode: true, // 控制发送验证码按钮显示
       authTime: 0, // 倒计时
     }
   },
-
+  created(){
+    let openid = this.$route.query.openid; //拿到上一个页面的openid
+    this.da_openid = openid;
+    let oauth_type = this.$route.query.oauth_type; //登录类型
+    this.da_oauth_type = oauth_type;
+  },
   methods: {
-    onSubmit(values) {
-      console.log('submit', values);
+
+    onSubmit()  {
+      var params= {
+        'username' : this.user.username,
+        'tel_code' : this.user.tel_code,
+        'openid': this.da_openid,
+        'oauth_type' :this.da_oauth_type,
+      };
+      var formData = params; // 这里才是你的表单数据
+      this.$ajax.post('/api/consumer/OAuthBind', formData).then((response) => {
+        // success callback
+        console.log(response);
+      }, (response) => {
+        // error callback
+        console.log(error);
+      });
     },
+
+    //
+    // submit:function(){
+    //   var params=new Object();
+    //
+    //   params.username=this.username;
+    //   params.tel_code=this.tel_code;
+    //   let formData = JSON.stringify(params);
+    //   console.log("formdata："+JSON.stringify(params));
+    //   this.http({
+    //     method:'post',
+    //     formData,
+    //     url:'/api/consumer/OAuthBind',
+    //     data:{
+    //       oauth_type:'wx_h5',
+    //       openid:'',
+    //       username:'',
+    //       tel_code:''
+    //     }
+    //   }).then(function (response) {
+    //     console.log(response);
+    //     JSON.stringify(params)
+    //   })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // },
 
     // 获取验证码
     ObtainCode () {
@@ -68,7 +116,23 @@ export default {
           window.clearInterval(timeInt)
         }
       }, 1000)
+
+      var Cparams= {
+        'phone' : this.user.username,
+        'type' : 'oAuth',
+      };
+      var Captcha = Cparams; // 这里才是你的表单数据
+      this.$ajax.post('/api/consumer/getTelCode', Captcha).then((response) => {
+        // success callback
+        console.log(response);
+      }, (response) => {
+        // error callback
+        console.log(error);
+      });
     },
+
+
+
 
   }
 }

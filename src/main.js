@@ -18,7 +18,22 @@ import '@/assets/js/regions.js'
 Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: 'N7yMzhN89vDNYLlblQbV942V7ixUfWo4'
-})
+});
+
+axios.interceptors.request.use((config) => {
+  if (config.method === 'get') {
+    var querystring = require('querystring');
+    config.data = querystring.encode(config.data);
+  }
+  if (config.method === 'post') {
+    var querystring = require('querystring');
+    config.data = querystring.encode(config.data);
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
 Vue.prototype.$f = com
 Vue.prototype.$ajax = axios
 Vue.config.productionTip = false

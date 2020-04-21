@@ -92,7 +92,7 @@
 
   <!--下拉顶部-->
   <div class="title" v-if="topTitle">
-    <img src="@/assets/img/loginUser/back.png"  class="titleLeft"  @click="$router.go(-1)"/>
+    <img src="@/assets/img/loginUser/back.png" class="titleLeft" @click="$router.go(-1)"/>
     <p class="titleC">
       {{bbs.bbs_title}}
 

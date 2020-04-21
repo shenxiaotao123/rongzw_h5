@@ -45,7 +45,6 @@
 </template>
 
 <script>
-  console.log(sessionStorage.getItem('province'))
 import company from '@/construction/ConstructionCompanyList'
 import scene from '@/construction/Scene'
 import mtitle from '@/public/TextTitle'

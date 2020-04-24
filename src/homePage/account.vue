@@ -1,9 +1,9 @@
 <template>
   <div class="accountWrap">
     <div class="myTop">
-      <div @click="$router.push({path:'/wxlogin'})">
+      <div v-on:click="wxlogin">
         <img src="../assets/img/loginUser/headPortrait.png" class="avatarImg" alt="头像"/>
-        <p class="user-name">昵称</p>
+        <p class="user-name"><span id="loginName">使用微信登录</span>{{ $route.query.real_name }}</p>
       </div>
       <!--<van-row class="myTop-data">-->
         <!--<van-col span="8">-->
@@ -26,7 +26,7 @@
     <van-grid :column-num="3">
       <van-grid-item icon="service-o" text="联系我们" @click="$router.push({path:'/contactUs'})"/>
       <van-grid-item icon="info-o" text="关于我们" @click="$router.push({path:'/aboutUs'})"/>
-      <van-grid-item icon="records" text="投诉建议" @click="$router.push({path:'/Suggest'})"/>
+      <van-grid-item icon="records" text="投诉建议" v-on:click="greet"/>
     </van-grid>
     <div class="m-t-sm">
       <a href="https://www.rongzw.com/appdownload.html"><img src="../assets/img/my/downloadApp.jpg" class="downloadAppImg" alt="手机下载APP 实时接受订单信息  功能更全，体验更佳！"/></a>
@@ -68,16 +68,108 @@ import Vue from 'vue'
   Vue.use(Col);
   Vue.use(Row);
 
-    export default {
-        name: "account",
+export default {
+      name: "account",
       data(){
           return{
             user:{}
           }
-      },methods:{
-          to(url){
-            this.$router.push({path:url})
+      },
+      created (){
+        let real_name = this.$route.query.real_name; //拿到上一个页面的real_name
+        let token = this.$route.query.token; //拿到上一个页面的token
+
+
+      },
+      mounted () {
+        //用户token存在时，隐藏“点击登录”文字
+        var url = window.location.href;
+        if(url.indexOf("token") >= 0 ) { //判断url地址中是否包含token字符串
+          console.log("已登录")
+          var child = document.getElementById("loginName");
+          child.style.display = 'none';
+        }
+        if(url.indexOf("code") >= 0 && url.indexOf("token") >= -1) { //判断url地址中包含code并且不包含token
+          this.wxlogin(); //执行方法
+
+        }
+        var cooo = document.cookie
+        var coo = this.$cookies.get("token")
+        console.log(coo)
+        console.log(cooo)
+      },
+      methods:{
+
+        greet: function (event){
+          //var username = this.$route.query.token;
+          //if( username != null){
+            this.$router.push({  //传参到投诉建议
+              path:'/Suggest',
+              query: {
+                token:this.$route.query.token,
+              }
+            })
+          //}
+         // else {
+            //alert("投诉建议需要用户先登录")
+          //}
+
+
+
+
+
+
+        },
+
+        wxlogin: function (event){
+          //沒有token的情況
+          if(!this.$cookies.isKey('token')){
+            //路徑裏有code
+            if(window.location.href.indexOf('code') != -1){
+              console.log('有code')
+              var path = window.location.href
+              let code = path.substring(path.indexOf('code=')+5,path.indexOf('&'))
+              console.log(code)
+              this.http({
+                method:'post',
+                url:'/api/consumer/OAuthLogin',
+                data:{
+                  oauth_type:'wx_h5',
+                  code:code
+                }
+              }).then((response)=>{
+                //console.log('设置token')
+                this.$cookies.set('token', response.data.data.token,60*60*24*30)
+                console.log(response.data.data.token)
+                var wxcode =response.data.code
+                if (wxcode == 2){
+                  this.$router.push({  //传参到绑定手机号码页面
+                    path:'/Information',
+                    query: {
+                      openid:response.data.data.openid,
+                      oauth_type:response.data.data.oauth_type
+                    }
+                  })
+                }
+                if (wxcode == 0){
+                  this.$router.push({  //传参到我的页面
+                    path:'/index/my',
+                    query: {
+                      real_name:response.data.data.real_name,
+                      token:response.data.data.token,
+                    }
+                  })
+                }
+
+                //this.load()
+              })
+            }
+            else{
+              //獲取
+              window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd802df0d4c9fe16e&redirect_uri=http://mobile.rongzw.com/%23/index/my&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+            }
           }
+        }
       }
     }
 </script>

@@ -78,32 +78,6 @@ export default {
       });
     },
 
-    //
-    // submit:function(){
-    //   var params=new Object();
-    //
-    //   params.username=this.username;
-    //   params.tel_code=this.tel_code;
-    //   let formData = JSON.stringify(params);
-    //   console.log("formdata："+JSON.stringify(params));
-    //   this.http({
-    //     method:'post',
-    //     formData,
-    //     url:'/api/consumer/OAuthBind',
-    //     data:{
-    //       oauth_type:'wx_h5',
-    //       openid:'',
-    //       username:'',
-    //       tel_code:''
-    //     }
-    //   }).then(function (response) {
-    //     console.log(response);
-    //     JSON.stringify(params)
-    //   })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // },
 
     // 获取验证码
     ObtainCode () {

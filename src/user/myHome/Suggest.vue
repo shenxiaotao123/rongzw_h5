@@ -1,11 +1,12 @@
 <template>
  <div>
    <mtitle :titleC="titleC"/>
-   <van-field id="data" v-model.trim="data" rows="10" autosize type="textarea" placeholder="您有任何的投诉与建议,可以在这里畅所欲言,我们一定耐心倾听, 积极改正...."/>
-   <div class="wrapper-md">
-     <van-button color="#dd1a21" block v-on:click="submit">提交</van-button>
-   </div>
-
+   <van-form @submit="onSubmit">
+     <van-field v-model="content" rows="10" autosize type="textarea" placeholder="您有任何的投诉与建议,可以在这里畅所欲言,我们一定耐心倾听, 积极改正...."/>
+     <div class="wrapper-md">
+       <van-button color="#dd1a21" block type="info" native-type="submit">提交</van-button>
+     </div>
+   </van-form>
 
 
  </div>
@@ -22,29 +23,29 @@
     components:{
       mtitle:() => import('@/public/TextTitle')
     },
-    mounted() {
-      axios
-        .post('/api/consumer/feedback')
-        .then(response => (this.info = response))
-        .catch(function (error) { // 请求失败处理
-          console.log(error);
-        });
+    created(){
+      //let token = this.$route.query.token; //拿到上一个页面的token
+
+      var cooo = document.cookie
+      console.log(cooo)
+      var token = this.$cookies.get("token")
+      console.log(token)
+
     },
     methods:{
-      submit: function() {
-        var params=new Object();
-        params.data=this.data;
-        alert("formdata："+JSON.stringify(params));
-
-        axios.post('/api/consumer/feedback', {
-          data: '',
-        })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
+      onSubmit() {
+        var params= {
+          'content' : this.content,
+          'user_token' : this.$cookies.get("token"),
+        };
+        var formData = params; // 这里才是你的表单数据
+        this.$ajax.post('/api/consumer/feedback', formData).then((response) => {
+          // success callback
+          alert(response.data.msg)//接口返回信息
+        }, (response) => {
+          // error callback
+          console.log(error);
+        });
 
       }
     },
@@ -53,11 +54,7 @@
         titleC: {
           type: 'text',
           content: '投诉建议'
-        },
-        code: 0,
-        msg: '反馈成功',
-        data: [],
-        url: ''
+        }
       }
     }
   }

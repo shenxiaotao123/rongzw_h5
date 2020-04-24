@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "wxLogin",
+      name: "wxLogin",
       data: function () {
         return {
           show: true
@@ -28,10 +28,8 @@
                 code:code
               }
             }).then((response)=>{
-              console.log('设置token')
+              //console.log('设置token')
               this.$cookies.set('token', response.data.token,60*60*24*30)
-              console.log(response.data);
-              console.log(response.data.data.openid);
 
               var wxcode =response.data.code
               if (wxcode == 2){
@@ -43,18 +41,27 @@
                   }
                 })
               }
+              if (wxcode == 0){
+                this.$router.push({  //传参到我的页面
+                  path:'/index/my',
+                  query: {
+                    real_name:response.data.data.real_name,
+                    token:response.data.data.token,
+                  }
+                })
+              }
 
               //this.load()
             })
           }
           else{
             //獲取
-             window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd802df0d4c9fe16e&redirect_uri=http://mobile.rongzw.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+             window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd802df0d4c9fe16e&redirect_uri=http://mobile.rongzw.com/&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
           }
         }else{
           //this.load()
         }
-        this.$router.push('/index/my')
+        //this.$router.push('/index/my')
 
         // load(function () {
         //   var _this = this

@@ -15,7 +15,7 @@
       </div>
       <!--类目-->
 
-he      <!--筛选类目-->
+      <!--筛选类目-->
       <!--商品-->
       <div class="white" style="padding: 0 10px;">
         <van-row gutter="15">

@@ -73,7 +73,7 @@
         <span class="individual-title-right medium">更多</span>
       </p>
       <p class="gray futitle">40000+业主的装修案例，100%所见即所得 </p>
-      <list :designers=designers></list>
+      <list :designers='designers'></list>
     </div>
       <!--推荐设计师结束-->
 

@@ -26,10 +26,9 @@
     created(){
       //let token = this.$route.query.token; //拿到上一个页面的token
 
-      var cooo = document.cookie
-      console.log(cooo)
+      document.cookie
       var token = this.$cookies.get("token")
-      console.log(token)
+      //console.log(token)
 
     },
     methods:{

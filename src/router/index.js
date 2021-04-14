@@ -318,7 +318,7 @@ export default new Router({
           component: comment
         }
       ],
-      redirect: '/company/constructionSite'
+      productDetail: '/company/constructionSite'
     },
     {
       path: '/construction',

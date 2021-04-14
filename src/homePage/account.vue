@@ -3,7 +3,7 @@
     <div class="myTop">
       <div v-on:click="wxlogin">
         <img src="../assets/img/loginUser/headPortrait.png" class="avatarImg" alt="头像"/>
-        <p class="user-name"><span id="loginName">使用微信登录</span>{{ $route.query.real_name }}</p>
+        <p class="user-name"><span id="loginName">使用微信登录</span>{{ realnameData }}</p>
       </div>
       <!--<van-row class="myTop-data">-->
         <!--<van-col span="8">-->
@@ -72,64 +72,79 @@ export default {
       name: "account",
       data(){
           return{
-            user:{}
+            user:{},
+            student:{
+
+            }
           }
       },
       created (){
         let real_name = this.$route.query.real_name; //拿到上一个页面的real_name
-        let token = this.$route.query.token; //拿到上一个页面的token
+        //let token = this.$route.query.token; //拿到上一个页面的token
 
-
+        document.cookie
+        var realname = this.$cookies.get("real_name")
+        this.realnameData = realname
       },
       mounted () {
         //用户token存在时，隐藏“点击登录”文字
+        document.cookie
+        var token = this.$cookies.get("token")
         var url = window.location.href;
-        if(url.indexOf("token") >= 0 ) { //判断url地址中是否包含token字符串
+        if(token != null ) { //判断url地址中是否包含token字符串
           console.log("已登录")
           var child = document.getElementById("loginName");
           child.style.display = 'none';
         }
         if(url.indexOf("code") >= 0 && url.indexOf("token") >= -1) { //判断url地址中包含code并且不包含token
           this.wxlogin(); //执行方法
-
         }
-        var cooo = document.cookie
-        var coo = this.$cookies.get("token")
-        console.log(coo)
-        console.log(cooo)
+
       },
       methods:{
-
         greet: function (event){
-          //var username = this.$route.query.token;
-          //if( username != null){
-            this.$router.push({  //传参到投诉建议
-              path:'/Suggest',
-              query: {
-                token:this.$route.query.token,
-              }
+          document.cookie
+          var username = this.$cookies.get("token")
+          if(username != null ) { //判断url地址中是否包含token字符串
+            this.$router.push({  //传参到绑定手机号码页面
+              path:'/Suggest'
             })
-          //}
-         // else {
-            //alert("投诉建议需要用户先登录")
-          //}
-
-
-
-
-
-
+          }
+         else {
+            alert("投诉建议需要用户先登录")
+          }
         },
 
         wxlogin: function (event){
           //沒有token的情況
           if(!this.$cookies.isKey('token')){
+            // var response = {
+            //   "code": 0,
+            //   "msg": "",
+            //   "data": {
+            //     "token": "96bfabfb61be126aa787b15eaae4f617",
+            //     "real_name": "测试用户",
+            //     "user_image": "",
+            //     "huanxin_json": ""
+            //   },
+            //   "url": ""
+            // };
+            //
+            // if(response.code == 0){
+            //   this.$cookies.set('token', response.data.token,60*60*24*30)
+            //   this.$cookies.set('real_name', response.data.real_name,60*60*24*30)
+            //   this.$router.go(0)
+            // }
+            // return false;
+
+
             //路徑裏有code
             if(window.location.href.indexOf('code') != -1){
-              console.log('有code')
+              //console.log('有code')
               var path = window.location.href
               let code = path.substring(path.indexOf('code=')+5,path.indexOf('&'))
-              console.log(code)
+
+              //console.log(code)
               this.http({
                 method:'post',
                 url:'/api/consumer/OAuthLogin',
@@ -139,8 +154,10 @@ export default {
                 }
               }).then((response)=>{
                 //console.log('设置token')
+
                 this.$cookies.set('token', response.data.data.token,60*60*24*30)
-                console.log(response.data.data.token)
+                this.$cookies.set('real_name', response.data.data.real_name,60*60*24*30)
+                //console.log(response.data.data.token)
                 var wxcode =response.data.code
                 if (wxcode == 2){
                   this.$router.push({  //传参到绑定手机号码页面
@@ -152,13 +169,10 @@ export default {
                   })
                 }
                 if (wxcode == 0){
-                  this.$router.push({  //传参到我的页面
-                    path:'/index/my',
-                    query: {
-                      real_name:response.data.data.real_name,
-                      token:response.data.data.token,
-                    }
-                  })
+                  window.location.href="#/index/my";
+                }
+                if (wxcode == 1){
+                  alert(response.data.msg)
                 }
 
                 //this.load()

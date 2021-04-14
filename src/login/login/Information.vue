@@ -1,25 +1,26 @@
 <template>
   <div>
     <mtitle :titleC="titleC"/>
-    <van-form @submit="onSubmit">
-    <van-field v-model="user.username" type="tel" left-icon="phone-o" placeholder="手机号码" maxlength="11" :rules="[{ pattern, message: '请输入正确内容' }]"/>
-      <van-field v-model="user.tel_code" center clearable left-icon="qr" placeholder="短信验证码">
-        <template #button>
-          <van-button size="small" disabled color="#999999" type="primary" v-show="!sendCode">{{authTime}}秒</van-button>
-        </template>
-      </van-field>
+    <div class="pos-rlt">
+      <van-form @submit="onSubmit">
+      <van-field v-model="user.username" type="tel" left-icon="phone-o" placeholder="手机号码"  maxlength="11" />
+        <van-field v-model="user.tel_code" center clearable left-icon="qr" maxlength="6" type="number" placeholder="短信验证码">
+          <template #button>
+            <van-button size="small" disabled color="#999999" type="primary" v-show="!sendCode">{{authTime}}秒</van-button>
+          </template>
+        </van-field>
 
-    <div v-model="cs"></div>
-    <div class="m-md">
-      <van-button color="#dd1a21" block type="info" native-type="submit">绑定</van-button>
+      <div v-model="cs"></div>
+      <div class="m-md">
+        <van-button color="#dd1a21" block type="info" native-type="submit">绑定</van-button>
 
-      <p class="m-t-sm size12"><van-checkbox v-model="checked" shape="square">我已阅读并接受<a @click="$router.push({path:'/registered'})">《用户服务协议》</a>及<a @click="$router.push({path:'/PrivacyPolicy'})">《隐私政策》</a></van-checkbox></p>
-      <p class="m-t-sm size12 gray">* 绑定手机可以提高账号的安全性，方便找回密码</p>
-      <p class="m-t-sm size12 gray">* 根据国家互联网信息办公室发布的《移动互联网应用程序信息 服务管 理规定》，自2016年8月20日起，注册用户需基于移动电话号码等真实身份信息进行实名认证。</p>
+        <p class="m-t-sm size12"><van-checkbox v-model="checked" shape="square">我已阅读并接受<a @click="$router.push({path:'/registered'})">《用户服务协议》</a>及<a @click="$router.push({path:'/PrivacyPolicy'})">《隐私政策》</a></van-checkbox></p>
+        <p class="m-t-sm size12 gray">* 绑定手机可以提高账号的安全性，方便找回密码</p>
+        <p class="m-t-sm size12 gray">* 根据国家互联网信息办公室发布的《移动互联网应用程序信息 服务管 理规定》，自2016年8月20日起，注册用户需基于移动电话号码等真实身份信息进行实名认证。</p>
+      </div>
+      </van-form>
+      <van-button size="small" color="#dd1a21" type="primary" class="Code" v-show="sendCode" @click="ObtainCode()">获取验证码</van-button>
     </div>
-    </van-form>
-    <van-button size="small" color="#dd1a21" type="primary" v-show="sendCode" @click="ObtainCode()">获取验证码</van-button>
-
   </div>
 </template>
 
@@ -49,6 +50,8 @@ export default {
         username:'',
         tel_code:'',
       },
+
+
       sendCode: true, // 控制发送验证码按钮显示
       authTime: 0, // 倒计时
     }
@@ -60,22 +63,37 @@ export default {
     this.da_oauth_type = oauth_type;
   },
   methods: {
-
     onSubmit()  {
       var params= {
         'username' : this.user.username,
         'tel_code' : this.user.tel_code,
         'openid': this.da_openid,
+        //'openid': oTQRy1ukyxYG4tUu9m_WMFDXVAno,
         'oauth_type' :this.da_oauth_type,
       };
       var formData = params; // 这里才是你的表单数据
+
       this.$ajax.post('/api/consumer/OAuthBind', formData).then((response) => {
         // success callback
         console.log(response);
+        alert(response.data.msg)//接口返回信息
+        var rtoken = response.data.code
+        if(rtoken == 0){
+          this.$cookies.set('token', response.data.data.token,60*60*24*30)
+          this.$cookies.set('real_name', response.data.data.real_name,60*60*24*30)
+          window.location.href="#/index/my";
+        }
+        if (wxcode == 1){
+          alert(response.data.msg)
+        }
+
       }, (response) => {
         // error callback
         console.log(error);
       });
+
+
+
     },
 
 
@@ -99,6 +117,9 @@ export default {
       this.$ajax.post('/api/consumer/getTelCode', Captcha).then((response) => {
         // success callback
         console.log(response);
+        // if(){
+        //
+        // }
       }, (response) => {
         // error callback
         console.log(error);
@@ -113,5 +134,5 @@ export default {
 </script>
 
 <style lang="less">
-
+.Code { position: absolute !important; right: 20px; top:50px;}
 </style>
